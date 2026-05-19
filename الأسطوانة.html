@@ -1,0 +1,1797 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الأسطوانة — رياضيات 8</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Tajawal:wght@400;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --p: #0e7c66;
+  --pl: #14a085;
+  --acc: #f6ad55;
+  --acc2: #ed8936;
+  --g: #2ecc71;
+  --r: #e74c3c;
+  --b: #3498db;
+  --pu: #9b59b6;
+  --y: #ecc94b;
+  --light: #e6f5f1;
+  --shadow: 0 8px 32px rgba(14,124,102,0.15);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Cairo', sans-serif;
+  background: linear-gradient(135deg, #e6f5f1 0%, #c5e8de 100%);
+  min-height: 100vh; color: #222;
+}
+
+/* ══ WELCOME ══ */
+#welcome {
+  position: fixed; inset: 0; z-index: 999;
+  background: linear-gradient(145deg, var(--p) 0%, #064a3a 100%);
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px; overflow: hidden;
+}
+.float-shape {
+  position: absolute; opacity: 0.18;
+  animation: floatUp 8s ease-in-out infinite;
+  font-size: 50px;
+}
+.float-shape.s1 { top: 8%; left: 8%; animation-delay: 0s; }
+.float-shape.s2 { top: 22%; right: 10%; animation-delay: 1s; }
+.float-shape.s3 { bottom: 18%; left: 12%; animation-delay: 2s; }
+.float-shape.s4 { bottom: 28%; right: 8%; animation-delay: 3s; }
+.float-shape.s5 { top: 50%; left: 4%; animation-delay: 1.5s; }
+.float-shape.s6 { top: 55%; right: 5%; animation-delay: 2.5s; }
+@keyframes floatUp {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-30px) rotate(15deg); }
+}
+.wc {
+  background: white; border-radius: 28px;
+  padding: 38px 32px 32px; width: 100%; max-width: 420px;
+  text-align: center; box-shadow: 0 24px 64px rgba(0,0,0,0.3);
+  position: relative; z-index: 2;
+  animation: popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes popIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.wc-emoji {
+  font-size: 64px; display: block; margin-bottom: 8px;
+  animation: bounce 2s ease-in-out infinite;
+}
+@keyframes bounce {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-10px) rotate(8deg); }
+}
+.wc h1 {
+  font-family: 'Tajawal', sans-serif; font-size: 1.7rem;
+  font-weight: 900; color: var(--p); margin-bottom: 4px;
+}
+.wc-teacher {
+  background: linear-gradient(135deg, var(--p), var(--pl));
+  color: white; padding: 8px 18px; border-radius: 20px;
+  font-size: 0.88rem; font-weight: 700;
+  display: inline-block; margin-bottom: 14px;
+}
+.wc-teacher span { color: var(--y); }
+.lesson-info { font-size: 0.85rem; color: #888; margin-bottom: 22px; }
+.wc input {
+  width: 100%; padding: 14px 16px; font-family: 'Cairo', sans-serif;
+  font-size: 1rem; border: 2.5px solid #b8dfd2; border-radius: 14px;
+  color: var(--p); text-align: center; outline: none;
+  transition: border 0.2s; margin-bottom: 16px; background: #f0faf6;
+}
+.wc input:focus { border-color: var(--p); }
+.go-btn {
+  width: 100%; padding: 15px;
+  background: linear-gradient(135deg, var(--p), var(--pl));
+  color: white; border: none; border-radius: 14px;
+  font-family: 'Cairo', sans-serif; font-size: 1.05rem; font-weight: 900;
+  cursor: pointer; transition: all 0.25s;
+  box-shadow: 0 6px 18px rgba(14,124,102,0.4);
+}
+.go-btn:hover { transform: translateY(-2px); }
+.go-btn:disabled { background: #ccc; box-shadow: none; cursor: not-allowed; }
+
+/* ══ HEADER ══ */
+header {
+  background: linear-gradient(135deg, var(--p), var(--pl));
+  color: white; padding: 16px 22px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; box-shadow: 0 4px 18px rgba(14,124,102,0.3);
+  position: sticky; top: 0; z-index: 10; overflow: hidden;
+}
+header::before {
+  content: ''; position: absolute; top: -40px; left: -40px;
+  width: 180px; height: 180px;
+  background: rgba(246,173,85,0.2); border-radius: 50%;
+}
+.h-left { display: flex; align-items: center; gap: 12px; position: relative; z-index: 2; }
+.header-icon {
+  font-size: 28px; background: var(--acc);
+  border-radius: 14px; padding: 4px 12px;
+  box-shadow: 0 4px 12px rgba(246,173,85,0.5);
+  animation: pulse 3s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+header h1 { font-family: 'Tajawal', sans-serif; font-size: 1.2rem; font-weight: 900; }
+header .sub { font-size: 0.78rem; opacity: 0.9; margin-top: 1px; }
+
+.h-right { display: flex; align-items: center; gap: 6px; position: relative; z-index: 2; }
+#studentBadge {
+  background: rgba(255,255,255,0.2); border: 1.5px solid rgba(255,255,255,0.35);
+  border-radius: 25px; padding: 5px 14px; font-size: 0.82rem;
+  color: white; font-weight: 700; max-width: 130px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+#soundToggle {
+  background: rgba(255,255,255,0.2); border: 1.5px solid rgba(255,255,255,0.35);
+  border-radius: 50%; width: 36px; height: 36px; cursor: pointer;
+  color: white; font-size: 1rem;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.teacher-banner {
+  background: linear-gradient(90deg, var(--acc), #fbd38d);
+  color: var(--p); padding: 8px 22px;
+  font-weight: 800; font-size: 0.88rem;
+  text-align: center;
+  border-bottom: 2px solid rgba(14,124,102,0.15);
+}
+
+/* ══ TABS ══ */
+.tabs {
+  display: flex; gap: 5px; padding: 14px 16px 0;
+  overflow-x: auto; scrollbar-width: none;
+}
+.tabs::-webkit-scrollbar { display: none; }
+.tab-btn {
+  padding: 9px 16px; border: 2px solid var(--p);
+  background: white; color: var(--p);
+  border-radius: 20px 20px 0 0; font-family: 'Cairo', sans-serif;
+  font-size: 0.85rem; font-weight: 700; cursor: pointer;
+  transition: all 0.22s; white-space: nowrap; flex-shrink: 0;
+}
+.tab-btn.active { background: var(--p); color: white; }
+
+/* ══ MAIN ══ */
+main {
+  background: white; margin: 0 16px 24px;
+  border-radius: 0 14px 14px 14px;
+  box-shadow: var(--shadow); padding: 22px;
+  min-height: 460px;
+}
+.section { display: none; animation: fadeUp 0.4s ease; }
+.section.active { display: block; }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ══ THEORY ══ */
+.intro-box {
+  background: linear-gradient(135deg, var(--p), var(--pl));
+  color: white; border-radius: 16px;
+  padding: 18px 20px; margin-bottom: 18px;
+  position: relative; overflow: hidden;
+}
+.intro-box::after {
+  content: '🥫'; position: absolute; right: -10px; bottom: -30px;
+  font-size: 100px; opacity: 0.15;
+}
+.intro-box h2 { font-size: 1.2rem; font-weight: 900; margin-bottom: 8px; }
+.intro-box p { font-size: 0.95rem; line-height: 1.9; position: relative; z-index: 2; }
+
+/* Story box */
+.story-box {
+  background: linear-gradient(135deg, #fef5e7, #fed7aa);
+  border: 2px solid var(--acc2);
+  border-radius: 14px;
+  padding: 14px 16px; margin: 14px 0;
+  position: relative;
+}
+.story-box .story-icon {
+  position: absolute; top: -16px; right: 14px;
+  background: var(--acc2); color: white;
+  width: 36px; height: 36px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem;
+  box-shadow: 0 3px 8px rgba(237,137,54,0.4);
+}
+.story-box .story-text {
+  font-size: 0.94rem; line-height: 1.9;
+  color: #5a3a1a; padding-right: 30px;
+}
+.story-box .story-text b { color: var(--p); }
+
+/* Cylinder visualization */
+.cylinder-showcase {
+  background: linear-gradient(135deg, #fff8e7, #fff3d0);
+  border: 3px solid var(--acc);
+  border-radius: 16px;
+  padding: 16px;
+  margin: 16px 0;
+  text-align: center;
+}
+.cylinder-showcase svg {
+  max-width: 100%; height: auto;
+  width: 260px;
+}
+.cyl-label {
+  font-size: 0.88rem; color: var(--p);
+  font-weight: 800; margin-top: 6px;
+}
+
+/* Real life examples */
+.real-row {
+  display: flex; gap: 12px; justify-content: center;
+  flex-wrap: wrap; margin: 14px 0;
+}
+.real-item {
+  background: white; border: 2.5px solid var(--p);
+  border-radius: 14px; padding: 10px 14px;
+  text-align: center; min-width: 90px;
+  box-shadow: 0 3px 10px rgba(14,124,102,0.12);
+  transition: transform 0.2s;
+}
+.real-item:hover { transform: translateY(-3px); }
+.real-item .ri-emoji { font-size: 2.4rem; display: block; margin-bottom: 4px; }
+.real-item .ri-name { font-size: 0.82rem; color: var(--p); font-weight: 700; }
+
+/* Formula card */
+.formula-card {
+  background: linear-gradient(135deg, #fff8d1, #ffd47a);
+  border: 3px solid var(--acc2);
+  border-radius: 16px;
+  padding: 18px 20px;
+  margin: 14px 0;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(237,137,54,0.25);
+}
+.formula-card .fc-label {
+  display: inline-block;
+  background: var(--acc2); color: white;
+  padding: 5px 16px; border-radius: 18px;
+  font-weight: 900; font-size: 0.85rem;
+  margin-bottom: 10px;
+}
+.formula-card .fc-formula {
+  font-size: 1.15rem; font-weight: 900;
+  color: var(--p);
+  background: white;
+  padding: 10px 14px; border-radius: 12px;
+  display: inline-block;
+  margin-top: 4px;
+}
+.formula-card .fc-formula em {
+  color: var(--acc2); font-style: normal;
+}
+.formula-card .fc-note {
+  font-size: 0.82rem; color: #5a3a1a;
+  margin-top: 8px;
+}
+
+/* Parts of cylinder list */
+.parts-title {
+  color: var(--p); font-size: 1.12rem;
+  font-weight: 900; margin: 18px 0 12px;
+  text-align: center;
+}
+.part-card {
+  background: var(--light); border-right: 5px solid var(--p);
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin-bottom: 10px;
+  display: flex; align-items: flex-start; gap: 12px;
+}
+.part-card .pc-icon {
+  font-size: 1.6rem; flex-shrink: 0;
+  width: 44px; height: 44px;
+  background: white; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+.part-card .pc-content { flex: 1; }
+.part-card .pc-name {
+  font-weight: 900; color: var(--p);
+  font-size: 0.98rem; margin-bottom: 4px;
+}
+.part-card .pc-desc {
+  font-size: 0.88rem; color: #555;
+  line-height: 1.7;
+}
+
+/* Formulas grid */
+.formulas-grid {
+  display: grid; gap: 12px; margin: 14px 0;
+}
+.formula-row {
+  background: white;
+  border: 2px solid var(--p);
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+.formula-row .fr-title {
+  font-weight: 900; color: var(--p);
+  font-size: 0.92rem; margin-bottom: 6px;
+  display: flex; align-items: center; gap: 6px;
+}
+.formula-row .fr-eq {
+  background: linear-gradient(135deg, var(--light), #d4ebe2);
+  border-radius: 10px; padding: 8px 12px;
+  font-weight: 900; font-size: 1rem;
+  color: var(--p); text-align: center;
+}
+.formula-row .fr-eq em {
+  color: var(--acc2); font-style: normal;
+}
+
+/* Tip box */
+.tip-box {
+  background: #fff8e1; border-right: 5px solid var(--acc);
+  border-radius: 12px; padding: 14px 16px; margin: 14px 0;
+  font-size: 0.93rem; line-height: 1.85;
+  display: flex; gap: 10px; align-items: flex-start;
+}
+
+/* ══ EXAMPLES ══ */
+.example-card {
+  background: white;
+  border: 2px solid #b8dfd2;
+  border-radius: 14px; margin-bottom: 18px;
+  overflow: hidden; transition: all 0.25s;
+}
+.example-card:hover {
+  border-color: var(--p);
+  box-shadow: 0 6px 20px rgba(14,124,102,0.12);
+}
+.ex-header {
+  background: linear-gradient(135deg, var(--p), var(--pl));
+  color: white; padding: 11px 16px;
+  font-weight: 800; font-size: 0.95rem;
+  display: flex; align-items: center; gap: 8px;
+}
+.ex-badge {
+  background: var(--acc); color: var(--p);
+  padding: 3px 12px; border-radius: 14px;
+  font-size: 0.72rem; font-weight: 900;
+  margin-right: auto;
+}
+.ex-body { padding: 16px; }
+.ex-given {
+  background: linear-gradient(135deg, #fff8e7, #fff3d0);
+  border-right: 4px solid var(--acc);
+  border-radius: 10px;
+  padding: 12px 14px; margin-bottom: 14px;
+  font-size: 0.94rem; line-height: 1.85;
+  display: flex; align-items: center; gap: 12px;
+}
+.ex-given svg { flex-shrink: 0; width: 80px; height: auto; }
+.ex-step {
+  display: flex; gap: 10px;
+  margin-bottom: 10px;
+  align-items: flex-start;
+}
+.ex-step .step-num {
+  background: var(--p); color: white;
+  border-radius: 50%; width: 28px; height: 28px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 900; font-size: 0.85rem;
+  flex-shrink: 0;
+}
+.ex-step .step-text {
+  font-size: 0.93rem; line-height: 1.9;
+  padding-top: 2px;
+}
+.ex-step .step-text strong { color: var(--p); }
+.ex-answer {
+  background: linear-gradient(135deg, #d4f5e2, #c4ecd0);
+  border: 2px solid var(--g);
+  border-radius: 10px;
+  padding: 12px 14px; margin-top: 12px;
+  font-weight: 800; color: #1a6b3a;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+.big-arrow {
+  font-size: 1.8rem; color: var(--acc2);
+  font-weight: 900; text-align: center; margin: 6px 0;
+  animation: pointDown 1.2s ease-in-out infinite;
+}
+@keyframes pointDown {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+/* ══ WORKSHEET ══ */
+.ws-header { margin-bottom: 18px; }
+.ws-header h2 {
+  font-size: 1.18rem; color: var(--p);
+  font-weight: 900; margin-bottom: 3px;
+}
+.ws-info { font-size: 0.82rem; color: #999; }
+
+.question-card {
+  border: 2px solid #b8dfd2;
+  border-radius: 14px;
+  padding: 16px 18px; margin-bottom: 14px;
+  transition: border 0.2s;
+}
+.question-card:hover { border-color: var(--p); }
+.q-header {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 10px; flex-wrap: wrap;
+}
+.q-num {
+  background: var(--p); color: white;
+  border-radius: 50%; width: 30px; height: 30px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 900; font-size: 0.85rem; flex-shrink: 0;
+}
+.q-text { font-size: 0.95rem; font-weight: 700; line-height: 1.7; flex: 1; }
+.q-level {
+  padding: 3px 10px; border-radius: 18px;
+  font-size: 0.72rem; font-weight: 700;
+  margin-right: auto; flex-shrink: 0;
+}
+.level-easy { background: #d4f5e2; color: #1a6b3a; }
+.level-med { background: #fff3d0; color: #a07000; }
+.level-hard { background: #fde8e8; color: #a01a1a; }
+
+.mcq-options {
+  display: grid; gap: 8px; margin-top: 10px;
+}
+.mcq-btn {
+  background: white; border: 2.5px solid #b8dfd2;
+  border-radius: 12px; padding: 11px 16px;
+  font-family: 'Cairo', sans-serif;
+  font-size: 0.93rem; font-weight: 700;
+  cursor: pointer; transition: all 0.22s;
+  color: #333; text-align: right;
+}
+.mcq-btn:hover {
+  border-color: var(--p); background: var(--light);
+  transform: translateY(-1px);
+}
+.mcq-btn.ok {
+  border-color: var(--g); background: #d4f5e2; color: #1a6b3a;
+  animation: pulseGood 0.5s ease;
+}
+.mcq-btn.err {
+  border-color: var(--r); background: #fde8e8; color: #a01a1a;
+  animation: shakeX 0.5s ease;
+}
+.mcq-btn.dis { pointer-events: none; opacity: 0.6; }
+@keyframes pulseGood {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+}
+@keyframes shakeX {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+.feedback {
+  margin-top: 10px; border-radius: 10px;
+  padding: 10px 14px; font-weight: 700;
+  display: none; font-size: 0.88rem;
+  line-height: 1.7;
+}
+.feedback.correct { background: #d4f5e2; color: #1a6b3a; display: block; }
+.feedback.wrong { background: #fde8e8; color: #a01a1a; display: block; }
+
+#wsResultBar {
+  display: none;
+  background: linear-gradient(135deg, var(--p), var(--pl));
+  color: white; border-radius: 14px;
+  padding: 20px 22px; margin-bottom: 18px;
+  text-align: center;
+}
+#wsResultBar h3 { font-size: 1.2rem; font-weight: 900; margin-bottom: 6px; }
+#wsResultBar .ws-score {
+  font-size: 2.2rem; font-weight: 900; color: var(--acc);
+}
+#wsResultBar p { font-size: 0.9rem; opacity: 0.9; margin-top: 4px; }
+
+.submit-btn {
+  background: linear-gradient(135deg, var(--acc), var(--acc2));
+  color: var(--p); border: none;
+  border-radius: 12px; padding: 13px 30px;
+  font-family: 'Cairo', sans-serif;
+  font-weight: 900; font-size: 0.95rem;
+  cursor: pointer; box-shadow: 0 5px 16px rgba(246,173,85,0.4);
+  transition: all 0.25s;
+}
+.submit-btn:hover { transform: translateY(-2px); }
+
+/* ══ GAMES MENU ══ */
+.games-menu {
+  display: grid; gap: 14px; margin-top: 8px;
+}
+.game-card {
+  background: linear-gradient(135deg, var(--p), var(--pl));
+  color: white; border-radius: 16px;
+  padding: 20px; cursor: pointer;
+  transition: all 0.25s;
+  box-shadow: 0 6px 20px rgba(14,124,102,0.25);
+  position: relative; overflow: hidden;
+  text-align: right;
+}
+.game-card::before {
+  content: ''; position: absolute; top: -30px; left: -30px;
+  width: 90px; height: 90px;
+  background: rgba(246,173,85,0.2); border-radius: 50%;
+}
+.game-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(14,124,102,0.4);
+}
+.game-card .gc-emoji {
+  font-size: 2.2rem; margin-bottom: 8px;
+  display: block; position: relative; z-index: 2;
+}
+.game-card .gc-title {
+  font-size: 1.1rem; font-weight: 900;
+  margin-bottom: 4px; position: relative; z-index: 2;
+}
+.game-card .gc-desc {
+  font-size: 0.85rem; opacity: 0.92;
+  line-height: 1.6; position: relative; z-index: 2;
+}
+.game-card .gc-badge {
+  position: absolute; top: 14px; left: 14px;
+  background: var(--acc); color: var(--p);
+  padding: 3px 10px; border-radius: 12px;
+  font-size: 0.7rem; font-weight: 900;
+  z-index: 2;
+}
+
+.back-btn {
+  background: transparent; border: 2px solid var(--p);
+  color: var(--p); border-radius: 10px;
+  padding: 6px 14px; cursor: pointer;
+  font-family: 'Cairo', sans-serif;
+  font-size: 0.85rem; font-weight: 700;
+  margin-bottom: 12px;
+  transition: all 0.2s;
+}
+.back-btn:hover { background: var(--p); color: white; }
+
+.game-title-bar {
+  display: flex; justify-content: space-between; align-items: center;
+  background: linear-gradient(135deg, var(--p), var(--pl));
+  color: white; border-radius: 12px;
+  padding: 12px 18px; margin-bottom: 14px;
+  flex-wrap: wrap; gap: 8px;
+}
+.game-title-bar h2 { font-size: 1.02rem; font-weight: 900; }
+.score-display {
+  background: var(--acc); color: var(--p);
+  border-radius: 9px; padding: 5px 14px;
+  font-weight: 900; font-size: 0.95rem;
+}
+.progress-bar-wrap {
+  background: #b8dfd2; border-radius: 20px;
+  height: 9px; margin-bottom: 14px; overflow: hidden;
+}
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--acc), var(--acc2));
+  border-radius: 20px;
+  transition: width 0.5s ease;
+}
+
+.game-question-box {
+  background: linear-gradient(135deg, var(--p), var(--pl));
+  color: white; border-radius: 16px;
+  padding: 18px; margin-bottom: 14px;
+  text-align: center;
+  position: relative; overflow: hidden;
+}
+.q-label { font-size: 0.85rem; opacity: 0.85; margin-bottom: 8px; }
+.gq-cylinder { margin: 10px 0; }
+.gq-cylinder svg { width: 110px; height: auto; }
+.gq-info {
+  background: rgba(0,0,0,0.18); border-radius: 10px;
+  padding: 8px 12px; margin: 10px auto;
+  font-family: 'Tajawal', sans-serif;
+  font-weight: 800; font-size: 0.92rem;
+  line-height: 1.7; max-width: 280px;
+}
+.gq-info b { color: var(--acc); }
+.gq-question {
+  font-size: 1rem; font-weight: 900;
+  margin-top: 6px;
+}
+
+.choices-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 10px; margin-bottom: 14px;
+}
+.choice-btn {
+  background: white; border: 3px solid #b8dfd2;
+  border-radius: 12px; padding: 14px 10px;
+  cursor: pointer; transition: all 0.22s;
+  font-family: 'Tajawal', sans-serif;
+  font-weight: 800; font-size: 0.95rem;
+  color: var(--p);
+}
+.choice-btn:hover {
+  border-color: var(--p); background: var(--light);
+  transform: translateY(-2px);
+}
+.choice-btn.ok {
+  border-color: var(--g); background: #d4f5e2; color: #1a6b3a;
+  animation: pulseGood 0.5s ease;
+}
+.choice-btn.err {
+  border-color: var(--r); background: #fde8e8; color: #a01a1a;
+  animation: shakeX 0.5s ease;
+}
+.choice-btn.dis { pointer-events: none; opacity: 0.6; }
+
+/* Game 3 - object cards */
+.objects-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 10px; margin-bottom: 14px;
+}
+.obj-btn {
+  background: white; border: 3px solid #b8dfd2;
+  border-radius: 14px; padding: 16px 8px;
+  cursor: pointer; transition: all 0.22s;
+  text-align: center;
+}
+.obj-btn:hover {
+  border-color: var(--p);
+  transform: translateY(-2px);
+  background: var(--light);
+}
+.obj-btn .obj-emoji {
+  font-size: 3rem; display: block; margin-bottom: 6px;
+}
+.obj-btn .obj-name {
+  font-family: 'Cairo', sans-serif;
+  font-weight: 700; font-size: 0.88rem;
+  color: var(--p);
+}
+.obj-btn.ok {
+  border-color: var(--g); background: #d4f5e2;
+  animation: pulseGood 0.5s ease;
+}
+.obj-btn.err {
+  border-color: var(--r); background: #fde8e8;
+  animation: shakeX 0.5s ease;
+}
+.obj-btn.dis { pointer-events: none; opacity: 0.55; }
+
+.game-feedback {
+  background: var(--light); border-radius: 10px;
+  padding: 12px 16px; font-weight: 700;
+  font-size: 0.93rem; min-height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 14px;
+  text-align: center;
+}
+.game-feedback.correct-fb { background: #d4f5e2; color: #1a6b3a; }
+.game-feedback.wrong-fb { background: #fde8e8; color: #a01a1a; }
+
+.next-btn, .restart-btn {
+  background: linear-gradient(135deg, var(--acc), var(--acc2));
+  color: var(--p); border: none;
+  border-radius: 11px; padding: 11px 28px;
+  font-family: 'Cairo', sans-serif;
+  font-weight: 900; font-size: 0.98rem;
+  cursor: pointer; transition: all 0.22s;
+  box-shadow: 0 4px 12px rgba(246,173,85,0.4);
+}
+.next-btn:hover, .restart-btn:hover { transform: translateY(-2px); }
+
+.result-screen {
+  text-align: center; padding: 24px 0;
+}
+.result-screen .big-emoji {
+  font-size: 76px; margin-bottom: 14px;
+  display: block;
+  animation: popIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.result-screen h2 {
+  font-size: 1.4rem; font-weight: 900;
+  color: var(--p); margin-bottom: 6px;
+}
+.result-screen p { font-size: 0.94rem; color: #555; margin-bottom: 18px; }
+.result-score {
+  display: inline-block;
+  background: var(--p); color: var(--acc);
+  border-radius: 14px; padding: 12px 28px;
+  font-size: 1.6rem; font-weight: 900; margin-bottom: 18px;
+}
+
+.footer-credit {
+  text-align: center; padding: 18px 16px 24px;
+  font-size: 0.82rem; color: var(--p); font-weight: 700;
+}
+.footer-credit .name {
+  color: var(--p); font-weight: 900;
+  background: var(--acc); padding: 3px 14px;
+  border-radius: 14px; display: inline-block; margin: 0 4px;
+}
+
+.confetti-piece {
+  position: fixed; width: 10px; height: 10px; top: -20px;
+  z-index: 1000; pointer-events: none;
+  animation: confettiFall linear forwards;
+}
+@keyframes confettiFall {
+  to { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+}
+
+@media (max-width: 500px) {
+  main { padding: 18px 14px; margin: 0 8px 18px; }
+  .tabs { padding: 12px 8px 0; }
+  header { padding: 12px 14px; }
+  header h1 { font-size: 1.05rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ WELCOME ══ -->
+<div id="welcome">
+  <span class="float-shape s1">🥫</span>
+  <span class="float-shape s2">🛢️</span>
+  <span class="float-shape s3">🥤</span>
+  <span class="float-shape s4">🕯️</span>
+  <span class="float-shape s5">🥫</span>
+  <span class="float-shape s6">🛢️</span>
+
+  <div class="wc">
+    <span class="wc-emoji">🥫</span>
+    <h1>الأسطوانة</h1>
+    <div class="wc-teacher">✨ المعلمة: <span>نور حجاج</span> ✨</div>
+    <p class="lesson-info">رياضيات • الصف الثامن</p>
+    <input type="text" id="nameInput" placeholder="اكتب اسمك هنا..." maxlength="40" oninput="toggleStart()">
+    <button class="go-btn" id="goBtn" disabled onclick="startLesson()">ابدأ الدرس ←</button>
+  </div>
+</div>
+
+<!-- ══ HEADER ══ -->
+<header>
+  <div class="h-left">
+    <div class="header-icon">🥫</div>
+    <div>
+      <h1>الأسطوانة</h1>
+      <div class="sub">رياضيات • الصف الثامن</div>
+    </div>
+  </div>
+  <div class="h-right">
+    <button id="soundToggle" onclick="toggleSound()">🔊</button>
+    <div id="studentBadge">👤 <span id="badgeName">—</span></div>
+  </div>
+</header>
+
+<div class="teacher-banner">
+  <span class="icon">👩‍🏫</span> المعلمة: نور حجاج
+</div>
+
+<div class="tabs">
+  <button class="tab-btn active" onclick="showTab('theory', this)">📚 الشرح</button>
+  <button class="tab-btn" onclick="showTab('examples', this)">✏️ أمثلة</button>
+  <button class="tab-btn" onclick="showTab('worksheet', this)">📄 ورقة العمل</button>
+  <button class="tab-btn" onclick="showTab('games', this)">🎮 الألعاب</button>
+</div>
+
+<main>
+
+<!-- ═══ THEORY ═══ -->
+<div class="section active" id="theory">
+
+  <div class="intro-box">
+    <h2>🥫 ما هي الأسطوانة؟</h2>
+    <p>الأسطوانة شكل مجسّم نراه كثيراً في حياتنا اليومية: علبة المشروب، الشمعة، أنبوب الورق... كلها أسطوانات!</p>
+  </div>
+
+  <!-- Story -->
+  <div class="story-box">
+    <div class="story-icon">📖</div>
+    <div class="story-text">
+      <b>تخيّل:</b> لو أخذت ورقة مستطيلة ولفّيتها لتصبح أنبوباً، ثم وضعت دائرتين في الأعلى والأسفل، ستحصل على <b>أسطوانة</b>! 🎁
+    </div>
+  </div>
+
+  <!-- Real examples -->
+  <h3 class="parts-title">🌍 أمثلة من حياتنا</h3>
+  <div class="real-row">
+    <div class="real-item">
+      <span class="ri-emoji">🥫</span>
+      <div class="ri-name">علبة طعام</div>
+    </div>
+    <div class="real-item">
+      <span class="ri-emoji">🛢️</span>
+      <div class="ri-name">برميل</div>
+    </div>
+    <div class="real-item">
+      <span class="ri-emoji">🥤</span>
+      <div class="ri-name">كوب</div>
+    </div>
+    <div class="real-item">
+      <span class="ri-emoji">🕯️</span>
+      <div class="ri-name">شمعة</div>
+    </div>
+  </div>
+
+  <!-- Cylinder visual -->
+  <div class="cylinder-showcase">
+    <svg viewBox="0 0 200 220">
+      <!-- Body -->
+      <rect x="40" y="40" width="120" height="140" fill="#0e7c66" fill-opacity="0.3" stroke="#0e7c66" stroke-width="2.5"/>
+      <!-- Top ellipse -->
+      <ellipse cx="100" cy="40" rx="60" ry="14" fill="#14a085" stroke="#0e7c66" stroke-width="2.5"/>
+      <!-- Bottom ellipse (dashed back) -->
+      <path d="M 40,180 a 60,14 0 0 0 120,0" fill="none" stroke="#0e7c66" stroke-width="2.5"/>
+      <path d="M 40,180 a 60,14 0 0 1 120,0" fill="none" stroke="#0e7c66" stroke-width="2" stroke-dasharray="4,3"/>
+      <!-- Radius -->
+      <line x1="100" y1="40" x2="160" y2="40" stroke="#e74c3c" stroke-width="2"/>
+      <text x="128" y="32" fill="#e74c3c" font-size="13" font-weight="900" text-anchor="middle">نق</text>
+      <circle cx="100" cy="40" r="2.5" fill="#e74c3c"/>
+      <!-- Height -->
+      <line x1="170" y1="40" x2="170" y2="180" stroke="#f6ad55" stroke-width="2"/>
+      <text x="180" y="115" fill="#ed8936" font-size="13" font-weight="900">ع</text>
+      <line x1="166" y1="40" x2="174" y2="40" stroke="#f6ad55" stroke-width="2"/>
+      <line x1="166" y1="180" x2="174" y2="180" stroke="#f6ad55" stroke-width="2"/>
+      <!-- Labels -->
+      <text x="100" y="208" text-anchor="middle" fill="#0e7c66" font-size="13" font-weight="900">القاعدة</text>
+    </svg>
+    <div class="cyl-label">⬆️ نق = نصف القطر  |  ع = الارتفاع</div>
+  </div>
+
+  <!-- Definition -->
+  <div class="formula-card">
+    <div class="fc-label">💡 تعريف الأسطوانة</div>
+    <div style="font-size:0.94rem; line-height:1.85; color:#5a3a1a; font-weight:700;">
+      الأسطوانة هي مجسّم له <strong style="color:var(--p);">قاعدتان دائريّتان متطابقتان</strong> ومتوازيتان، ومتّصلتان بسطح جانبي منحنٍ.
+    </div>
+  </div>
+
+  <!-- Parts -->
+  <h3 class="parts-title">🔍 أجزاء الأسطوانة</h3>
+  <div class="part-card">
+    <div class="pc-icon">⭕</div>
+    <div class="pc-content">
+      <div class="pc-name">القاعدتان</div>
+      <div class="pc-desc">دائرتان متطابقتان، واحدة في الأعلى وأخرى في الأسفل.</div>
+    </div>
+  </div>
+  <div class="part-card">
+    <div class="pc-icon">📏</div>
+    <div class="pc-content">
+      <div class="pc-name">الارتفاع (ع)</div>
+      <div class="pc-desc">المسافة العمودية بين القاعدتين.</div>
+    </div>
+  </div>
+  <div class="part-card">
+    <div class="pc-icon">➖</div>
+    <div class="pc-content">
+      <div class="pc-name">نصف القطر (نق)</div>
+      <div class="pc-desc">المسافة من مركز القاعدة إلى محيطها.</div>
+    </div>
+  </div>
+  <div class="part-card">
+    <div class="pc-icon">🎁</div>
+    <div class="pc-content">
+      <div class="pc-name">السطح الجانبي</div>
+      <div class="pc-desc">السطح المنحني الذي يربط القاعدتين (لو فردنّاه يصبح مستطيلاً!).</div>
+    </div>
+  </div>
+
+  <!-- Story: opening cylinder -->
+  <div class="story-box">
+    <div class="story-icon">✂️</div>
+    <div class="story-text">
+      <b>سر مهم:</b> لو قُصِصْنا الأسطوانة وفرشناها، نجد:<br>
+      🟦 <b>السطح الجانبي = مستطيل</b> طوله = محيط القاعدة، وعرضه = الارتفاع<br>
+      ⭕ <b>القاعدتان = دائرتان</b>
+    </div>
+  </div>
+
+  <!-- Formulas -->
+  <h3 class="parts-title">🧮 القوانين</h3>
+  <div class="formulas-grid">
+    <div class="formula-row">
+      <div class="fr-title">📐 مساحة القاعدة (الدائرة)</div>
+      <div class="fr-eq">المساحة = <em>π</em> × نق²</div>
+    </div>
+    <div class="formula-row">
+      <div class="fr-title">⭕ محيط القاعدة</div>
+      <div class="fr-eq">المحيط = 2 × <em>π</em> × نق</div>
+    </div>
+    <div class="formula-row">
+      <div class="fr-title">🟦 المساحة الجانبية</div>
+      <div class="fr-eq">المساحة الجانبية = 2 × <em>π</em> × نق × ع</div>
+    </div>
+    <div class="formula-row">
+      <div class="fr-title">📦 المساحة الكلّية</div>
+      <div class="fr-eq">الكلّية = المساحة الجانبية + 2 × مساحة القاعدة</div>
+      <div class="fr-eq" style="margin-top:6px;">= 2<em>π</em> نق ع + 2<em>π</em> نق²</div>
+    </div>
+    <div class="formula-row">
+      <div class="fr-title">🧊 حجم الأسطوانة</div>
+      <div class="fr-eq">الحجم = <em>π</em> × نق² × ع</div>
+    </div>
+  </div>
+
+  <div class="tip-box">
+    <span style="font-size:1.4rem;">💡</span>
+    <span><strong>طريقة سهلة للتذكّر:</strong><br>
+    • <b>المساحة الجانبية</b> = محيط القاعدة × الارتفاع<br>
+    • <b>الحجم</b> = مساحة القاعدة × الارتفاع<br>
+    • <b>π ≈ 3.14</b> أو <b>22/7</b></span>
+  </div>
+
+</div>
+
+<!-- ═══ EXAMPLES ═══ -->
+<div class="section" id="examples">
+  <h2 style="color:var(--p); margin-bottom:18px; font-size:1.2rem; font-weight:900;">✏️ أمثلة محلولة خطوة بخطوة</h2>
+
+  <!-- Example 1 -->
+  <div class="example-card">
+    <div class="ex-header">
+      📝 مثال 1 — المساحة الجانبية
+      <span class="ex-badge">سهل</span>
+    </div>
+    <div class="ex-body">
+      <div class="ex-given">
+        <svg viewBox="0 0 100 130">
+          <rect x="25" y="25" width="50" height="80" fill="#0e7c66" fill-opacity="0.3" stroke="#0e7c66" stroke-width="2"/>
+          <ellipse cx="50" cy="25" rx="25" ry="6" fill="#14a085" stroke="#0e7c66" stroke-width="2"/>
+          <path d="M 25,105 a 25,6 0 0 0 50,0" fill="none" stroke="#0e7c66" stroke-width="2"/>
+          <path d="M 25,105 a 25,6 0 0 1 50,0" fill="none" stroke="#0e7c66" stroke-width="1.5" stroke-dasharray="3,2"/>
+          <text x="50" y="125" text-anchor="middle" fill="#e74c3c" font-size="9" font-weight="900">نق=3</text>
+          <text x="85" y="68" fill="#ed8936" font-size="9" font-weight="900">ع=7</text>
+        </svg>
+        <span>أسطوانة نصف قطر قاعدتها <strong>3 سم</strong> وارتفاعها <strong>7 سم</strong>. أوجد مساحتها الجانبية.</span>
+      </div>
+
+      <div class="ex-step">
+        <div class="step-num">1</div>
+        <div class="step-text">نكتب القانون: <strong>المساحة الجانبية = 2 × π × نق × ع</strong></div>
+      </div>
+      <div class="ex-step">
+        <div class="step-num">2</div>
+        <div class="step-text">نعوّض الأرقام: <strong>= 2 × π × 3 × 7</strong></div>
+      </div>
+      <div class="ex-step">
+        <div class="step-num">3</div>
+        <div class="step-text">نضرب: <strong>= 42 × π = 42π سم²</strong></div>
+      </div>
+
+      <div class="big-arrow">⬇️</div>
+      <div class="ex-answer">✅ المساحة الجانبية = 42π سم² ≈ 131.88 سم²</div>
+    </div>
+  </div>
+
+  <!-- Example 2 -->
+  <div class="example-card">
+    <div class="ex-header">
+      📝 مثال 2 — المساحة الكلّية
+      <span class="ex-badge">متوسط</span>
+    </div>
+    <div class="ex-body">
+      <div class="ex-given">
+        <svg viewBox="0 0 100 130">
+          <rect x="20" y="25" width="60" height="80" fill="#0e7c66" fill-opacity="0.3" stroke="#0e7c66" stroke-width="2"/>
+          <ellipse cx="50" cy="25" rx="30" ry="7" fill="#14a085" stroke="#0e7c66" stroke-width="2"/>
+          <path d="M 20,105 a 30,7 0 0 0 60,0" fill="none" stroke="#0e7c66" stroke-width="2"/>
+          <text x="50" y="125" text-anchor="middle" fill="#e74c3c" font-size="9" font-weight="900">نق=3.5</text>
+          <text x="88" y="68" fill="#ed8936" font-size="9" font-weight="900">ع=8</text>
+        </svg>
+        <span>أسطوانة نصف قطر قاعدتها <strong>3.5 سم</strong> وارتفاعها <strong>8 سم</strong>. أوجد مساحتها الكلّية.</span>
+      </div>
+
+      <div class="ex-step">
+        <div class="step-num">1</div>
+        <div class="step-text">القانون: <strong>الكلّية = 2π نق ع + 2π نق²</strong></div>
+      </div>
+      <div class="ex-step">
+        <div class="step-num">2</div>
+        <div class="step-text">نحسب المساحة الجانبية: <strong>2 × π × 3.5 × 8 = 56π</strong></div>
+      </div>
+      <div class="ex-step">
+        <div class="step-num">3</div>
+        <div class="step-text">نحسب مساحة القاعدتين: <strong>2 × π × (3.5)² = 24.5π</strong></div>
+      </div>
+      <div class="ex-step">
+        <div class="step-num">4</div>
+        <div class="step-text">نجمع: <strong>56π + 24.5π = 80.5π سم²</strong></div>
+      </div>
+
+      <div class="big-arrow">⬇️</div>
+      <div class="ex-answer">✅ المساحة الكلّية = 80.5π سم²</div>
+    </div>
+  </div>
+
+  <!-- Example 3 -->
+  <div class="example-card">
+    <div class="ex-header">
+      📝 مثال 3 — الحجم
+      <span class="ex-badge">متوسط</span>
+    </div>
+    <div class="ex-body">
+      <div class="ex-given">
+        <svg viewBox="0 0 100 130">
+          <rect x="25" y="30" width="50" height="75" fill="#3498db" fill-opacity="0.3" stroke="#0e7c66" stroke-width="2"/>
+          <ellipse cx="50" cy="30" rx="25" ry="6" fill="#14a085" stroke="#0e7c66" stroke-width="2"/>
+          <path d="M 25,105 a 25,6 0 0 0 50,0" fill="none" stroke="#0e7c66" stroke-width="2"/>
+          <text x="20" y="68" fill="#3498db" font-size="11" font-weight="900">💧</text>
+          <text x="50" y="125" text-anchor="middle" fill="#e74c3c" font-size="9" font-weight="900">نق=4</text>
+          <text x="85" y="70" fill="#ed8936" font-size="9" font-weight="900">ع=11</text>
+        </svg>
+        <span>وعاء على شكل أسطوانة نصف قطره <strong>4 سم</strong> وارتفاعه <strong>11 سم</strong>. ما حجم الماء الذي يسعه؟ (π = 22/7)</span>
+      </div>
+
+      <div class="ex-step">
+        <div class="step-num">1</div>
+        <div class="step-text">القانون: <strong>الحجم = π × نق² × ع</strong></div>
+      </div>
+      <div class="ex-step">
+        <div class="step-num">2</div>
+        <div class="step-text">نعوّض: <strong>= (22/7) × (4)² × 11</strong></div>
+      </div>
+      <div class="ex-step">
+        <div class="step-num">3</div>
+        <div class="step-text">نحسب: <strong>= (22/7) × 16 × 11 ≈ 553.14 سم³</strong></div>
+      </div>
+
+      <div class="big-arrow">⬇️</div>
+      <div class="ex-answer">✅ الحجم ≈ 553 سم³ من الماء</div>
+    </div>
+  </div>
+
+  <!-- Example 4 -->
+  <div class="example-card">
+    <div class="ex-header">
+      📝 مثال 4 — تطبيق حياتي
+      <span class="ex-badge">متقدم</span>
+    </div>
+    <div class="ex-body">
+      <div class="ex-given">
+        <span style="font-size:2.5rem;">🥫</span>
+        <span>علبة عصير على شكل أسطوانة، نصف قطر قاعدتها <strong>5 سم</strong> وارتفاعها <strong>10 سم</strong>. كم متراً مربعاً من الورق نحتاج لتغطية السطح الجانبي فقط؟</span>
+      </div>
+
+      <div class="ex-step">
+        <div class="step-num">1</div>
+        <div class="step-text">المطلوب: <strong>المساحة الجانبية فقط</strong> (بدون القاعدتين).</div>
+      </div>
+      <div class="ex-step">
+        <div class="step-num">2</div>
+        <div class="step-text">القانون: <strong>= 2π × نق × ع = 2π × 5 × 10</strong></div>
+      </div>
+      <div class="ex-step">
+        <div class="step-num">3</div>
+        <div class="step-text">نحسب: <strong>= 100π سم² ≈ 314 سم²</strong></div>
+      </div>
+
+      <div class="big-arrow">⬇️</div>
+      <div class="ex-answer">✅ نحتاج 100π سم² ≈ 314 سم² من الورق</div>
+    </div>
+  </div>
+
+  <div class="tip-box" style="margin-top:18px;">
+    <span style="font-size:1.4rem;">🌟</span>
+    <span><strong>خلاصة سريعة للحلّ:</strong><br>
+    • تأكّد من معطياتك (نق، ع)<br>
+    • اختر القانون المناسب (جانبية / كلّية / حجم)<br>
+    • عوّض في القانون واحسب<br>
+    • اكتب الوحدة المناسبة (سم² للمساحة، سم³ للحجم)</span>
+  </div>
+</div>
+
+<!-- ═══ WORKSHEET ═══ -->
+<div class="section" id="worksheet">
+  <div class="ws-header">
+    <h2>📄 ورقة العمل</h2>
+    <div class="ws-info">👩‍🏫 إعداد المعلمة: <strong style="color:var(--p)">نور حجاج</strong></div>
+  </div>
+
+  <div id="wsResultBar">
+    <h3>🎯 نتيجتك</h3>
+    <div class="ws-score" id="wsScoreText">—</div>
+    <p id="wsMsg">—</p>
+  </div>
+
+  <div class="question-card">
+    <div class="q-header">
+      <div class="q-num">1</div>
+      <div class="q-text">🥫 ما قانون المساحة الجانبية للأسطوانة؟</div>
+      <span class="q-level level-easy">سهل</span>
+    </div>
+    <div class="mcq-options">
+      <button class="mcq-btn" onclick="chkMCQ(this, 1, true)">2 × π × نق × ع</button>
+      <button class="mcq-btn" onclick="chkMCQ(this, 1, false)">π × نق²</button>
+      <button class="mcq-btn" onclick="chkMCQ(this, 1, false)">π × نق × ع</button>
+    </div>
+    <div class="feedback" id="fb1"></div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-header">
+      <div class="q-num">2</div>
+      <div class="q-text">📐 أسطوانة نصف قطرها 2 سم وارتفاعها 5 سم. ما مساحتها الجانبية؟</div>
+      <span class="q-level level-easy">سهل</span>
+    </div>
+    <div class="mcq-options">
+      <button class="mcq-btn" onclick="chkMCQ(this, 2, true)">20π سم²</button>
+      <button class="mcq-btn" onclick="chkMCQ(this, 2, false)">10π سم²</button>
+      <button class="mcq-btn" onclick="chkMCQ(this, 2, false)">4π سم²</button>
+    </div>
+    <div class="feedback" id="fb2"></div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-header">
+      <div class="q-num">3</div>
+      <div class="q-text">🧊 ما قانون حجم الأسطوانة؟</div>
+      <span class="q-level level-easy">سهل</span>
+    </div>
+    <div class="mcq-options">
+      <button class="mcq-btn" onclick="chkMCQ(this, 3, true)">π × نق² × ع</button>
+      <button class="mcq-btn" onclick="chkMCQ(this, 3, false)">2π × نق × ع</button>
+      <button class="mcq-btn" onclick="chkMCQ(this, 3, false)">π × نق × ع</button>
+    </div>
+    <div class="feedback" id="fb3"></div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-header">
+      <div class="q-num">4</div>
+      <div class="q-text">⭕ كم عدد قواعد الأسطوانة؟</div>
+      <span class="q-level level-easy">سهل</span>
+    </div>
+    <div class="mcq-options">
+      <button class="mcq-btn" onclick="chkMCQ(this, 4, false)">واحدة</button>
+      <button class="mcq-btn" onclick="chkMCQ(this, 4, true)">اثنتان</button>
+      <button class="mcq-btn" onclick="chkMCQ(this, 4, false)">ثلاث</button>
+    </div>
+    <div class="feedback" id="fb4"></div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-header">
+      <div class="q-num">5</div>
+      <div class="q-text">🥤 أسطوانة نصف قطرها 3 سم وارتفاعها 4 سم. ما حجمها؟</div>
+      <span class="q-level level-med">متوسط</span>
+    </div>
+    <div class="mcq-options">
+      <button class="mcq-btn" onclick="chkMCQ(this, 5, true)">36π سم³</button>
+      <button class="mcq-btn" onclick="chkMCQ(this, 5, false)">24π سم³</button>
+      <button class="mcq-btn" onclick="chkMCQ(this, 5, false)">12π سم³</button>
+    </div>
+    <div class="feedback" id="fb5"></div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-header">
+      <div class="q-num">6</div>
+      <div class="q-text">📏 شكل قاعدة الأسطوانة هو:</div>
+      <span class="q-level level-easy">سهل</span>
+    </div>
+    <div class="mcq-options">
+      <button class="mcq-btn" onclick="chkMCQ(this, 6, true)">دائرة</button>
+      <button class="mcq-btn" onclick="chkMCQ(this, 6, false)">مستطيل</button>
+      <button class="mcq-btn" onclick="chkMCQ(this, 6, false)">مثلث</button>
+    </div>
+    <div class="feedback" id="fb6"></div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-header">
+      <div class="q-num">7</div>
+      <div class="q-text">🎁 لو فردنا السطح الجانبي للأسطوانة، ما الشكل الناتج؟</div>
+      <span class="q-level level-med">متوسط</span>
+    </div>
+    <div class="mcq-options">
+      <button class="mcq-btn" onclick="chkMCQ(this, 7, true)">مستطيل</button>
+      <button class="mcq-btn" onclick="chkMCQ(this, 7, false)">مثلث</button>
+      <button class="mcq-btn" onclick="chkMCQ(this, 7, false)">دائرة</button>
+    </div>
+    <div class="feedback" id="fb7"></div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-header">
+      <div class="q-num">8</div>
+      <div class="q-text">🛢️ أسطوانة قاعدتها مساحتها 25π سم² وارتفاعها 6 سم. ما حجمها؟</div>
+      <span class="q-level level-hard">متقدم</span>
+    </div>
+    <div class="mcq-options">
+      <button class="mcq-btn" onclick="chkMCQ(this, 8, true)">150π سم³</button>
+      <button class="mcq-btn" onclick="chkMCQ(this, 8, false)">31π سم³</button>
+      <button class="mcq-btn" onclick="chkMCQ(this, 8, false)">75π سم³</button>
+    </div>
+    <div class="feedback" id="fb8"></div>
+  </div>
+
+  <div style="text-align:center; margin-top:22px;">
+    <button class="submit-btn" onclick="submitWS()">📤 عرض النتيجة</button>
+  </div>
+</div>
+
+<!-- ═══ GAMES MENU ═══ -->
+<div class="section" id="games">
+  <div id="gamesMenu">
+    <h2 style="color:var(--p); margin-bottom:6px; font-size:1.18rem; font-weight:900;">🎮 اختر لعبتك!</h2>
+    <p style="color:#777; font-size:0.88rem; margin-bottom:16px;">٣ ألعاب لتعلّم الأسطوانة بطرق ممتعة 🎯</p>
+
+    <div class="games-menu">
+      <div class="game-card" onclick="openGame(1)">
+        <span class="gc-badge">لعبة 1</span>
+        <span class="gc-emoji">🧮</span>
+        <div class="gc-title">احسب المساحة أو الحجم</div>
+        <div class="gc-desc">تظهر أسطوانة بأبعاد، احسب المطلوب واختر الإجابة الصحيحة.</div>
+      </div>
+
+      <div class="game-card" onclick="openGame(2)">
+        <span class="gc-badge">لعبة 2</span>
+        <span class="gc-emoji">🔍</span>
+        <div class="gc-title">حدّد القانون المناسب</div>
+        <div class="gc-desc">تظهر مسألة بكلمات، اختر القانون المناسب لحلّها.</div>
+      </div>
+
+      <div class="game-card" onclick="openGame(3)">
+        <span class="gc-badge">لعبة 3</span>
+        <span class="gc-emoji">🥫</span>
+        <div class="gc-title">هل هي أسطوانة؟</div>
+        <div class="gc-desc">شاهد أجساماً من حياتنا اليومية، وحدّد أيها أسطوانة.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Game 1 -->
+  <div id="game1Area" style="display:none;">
+    <button class="back-btn" onclick="backToMenu()">← رجوع</button>
+    <div class="game-title-bar">
+      <h2>🧮 احسب المساحة أو الحجم</h2>
+      <div class="score-display">النقاط: <span id="g1Score">0</span></div>
+    </div>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" id="g1Progress" style="width:0%"></div></div>
+    <div class="game-question-box">
+      <div class="q-label" id="g1Counter">سؤال 1 من 6</div>
+      <div class="gq-cylinder" id="g1Cyl"></div>
+      <div class="gq-info" id="g1Info">—</div>
+      <div class="gq-question" id="g1QText">—</div>
+    </div>
+    <div class="choices-grid" id="g1Options"></div>
+    <div class="game-feedback" id="g1Feedback">اختر الإجابة الصحيحة 👆</div>
+    <div style="text-align:center">
+      <button class="next-btn" id="g1Next" onclick="g1NextQ()" style="display:none">التالي ←</button>
+    </div>
+    <div class="result-screen" id="g1Result" style="display:none;">
+      <div class="big-emoji" id="g1ResultEmoji">🎉</div>
+      <h2 id="g1ResultTitle">—</h2>
+      <p id="g1ResultMsg">—</p>
+      <div class="result-score" id="g1ResultScore">0 / 6</div><br>
+      <button class="restart-btn" onclick="g1Restart()">🔄 العب مجدداً</button>
+      <button class="restart-btn" onclick="backToMenu()" style="background:var(--p);color:white;margin-right:8px;">🏠 القائمة</button>
+    </div>
+  </div>
+
+  <!-- Game 2 -->
+  <div id="game2Area" style="display:none;">
+    <button class="back-btn" onclick="backToMenu()">← رجوع</button>
+    <div class="game-title-bar">
+      <h2>🔍 حدّد القانون المناسب</h2>
+      <div class="score-display">النقاط: <span id="g2Score">0</span></div>
+    </div>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" id="g2Progress" style="width:0%"></div></div>
+    <div class="game-question-box">
+      <div class="q-label" id="g2Counter">سؤال 1 من 6</div>
+      <div style="font-size:2.4rem; margin:8px 0;" id="g2Emoji">📝</div>
+      <div class="gq-info" id="g2Question">—</div>
+      <div class="gq-question">ما القانون المناسب لحلّ هذه المسألة؟</div>
+    </div>
+    <div class="choices-grid" id="g2Options"></div>
+    <div class="game-feedback" id="g2Feedback">اختر القانون الصحيح 👆</div>
+    <div style="text-align:center">
+      <button class="next-btn" id="g2Next" onclick="g2NextQ()" style="display:none">التالي ←</button>
+    </div>
+    <div class="result-screen" id="g2Result" style="display:none;">
+      <div class="big-emoji" id="g2ResultEmoji">🎉</div>
+      <h2 id="g2ResultTitle">—</h2>
+      <p id="g2ResultMsg">—</p>
+      <div class="result-score" id="g2ResultScore">0 / 6</div><br>
+      <button class="restart-btn" onclick="g2Restart()">🔄 العب مجدداً</button>
+      <button class="restart-btn" onclick="backToMenu()" style="background:var(--p);color:white;margin-right:8px;">🏠 القائمة</button>
+    </div>
+  </div>
+
+  <!-- Game 3 -->
+  <div id="game3Area" style="display:none;">
+    <button class="back-btn" onclick="backToMenu()">← رجوع</button>
+    <div class="game-title-bar">
+      <h2>🥫 هل هي أسطوانة؟</h2>
+      <div class="score-display">النقاط: <span id="g3Score">0</span></div>
+    </div>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" id="g3Progress" style="width:0%"></div></div>
+    <div class="game-question-box">
+      <div class="q-label" id="g3Counter">سؤال 1 من 6</div>
+      <div class="gq-question" style="font-size:1.08rem; margin-top:12px;">أيّ هذه الأجسام على شكل أسطوانة؟</div>
+    </div>
+    <div class="objects-grid" id="g3Objects"></div>
+    <div class="game-feedback" id="g3Feedback">اختر الجسم الأسطواني 👆</div>
+    <div style="text-align:center">
+      <button class="next-btn" id="g3Next" onclick="g3NextQ()" style="display:none">التالي ←</button>
+    </div>
+    <div class="result-screen" id="g3Result" style="display:none;">
+      <div class="big-emoji" id="g3ResultEmoji">🎉</div>
+      <h2 id="g3ResultTitle">—</h2>
+      <p id="g3ResultMsg">—</p>
+      <div class="result-score" id="g3ResultScore">0 / 6</div><br>
+      <button class="restart-btn" onclick="g3Restart()">🔄 العب مجدداً</button>
+      <button class="restart-btn" onclick="backToMenu()" style="background:var(--p);color:white;margin-right:8px;">🏠 القائمة</button>
+    </div>
+  </div>
+
+</div>
+
+</main>
+
+<div class="footer-credit">
+  ✨ من إعداد المعلمة <span class="name">نور حجاج</span> ✨
+</div>
+
+<script>
+// 🎵 SOUND ENGINE
+let soundOn = true;
+let audioCtx = null;
+function initAudio() {
+  if (!audioCtx) {
+    try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch(e) {}
+  }
+}
+function playTone(freq, duration, type='sine', volume=0.15) {
+  if (!soundOn || !audioCtx) return;
+  try {
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = type; osc.frequency.value = freq;
+    gain.gain.setValueAtTime(volume, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+    osc.connect(gain); gain.connect(audioCtx.destination);
+    osc.start(); osc.stop(audioCtx.currentTime + duration);
+  } catch(e) {}
+}
+function soundCorrect() {
+  playTone(523, 0.12); setTimeout(()=>playTone(659, 0.12), 100);
+  setTimeout(()=>playTone(784, 0.18), 200);
+}
+function soundWrong() {
+  playTone(280, 0.15, 'square', 0.1);
+  setTimeout(()=>playTone(200, 0.25, 'square', 0.1), 130);
+}
+function soundTransition() { playTone(440, 0.08); setTimeout(()=>playTone(660, 0.1), 60); }
+function soundClick() { playTone(800, 0.04, 'sine', 0.06); }
+function soundVictory() {
+  [523,659,784,1047].forEach((n,i)=>setTimeout(()=>playTone(n,0.2,'sine',0.18), i*130));
+  setTimeout(()=>playTone(1047, 0.35, 'sine', 0.18), 750);
+}
+function soundSubmit() { playTone(660, 0.1); setTimeout(()=>playTone(880, 0.18), 100); }
+function toggleSound() {
+  soundOn = !soundOn;
+  document.getElementById('soundToggle').textContent = soundOn ? '🔊' : '🔇';
+  if (soundOn) { initAudio(); soundClick(); }
+}
+
+// CONFETTI
+function confetti(count=50) {
+  const colors = ['#f6ad55','#0e7c66','#2ecc71','#ecc94b','#9b59b6','#3498db'];
+  for (let i=0; i<count; i++) {
+    const piece = document.createElement('div');
+    piece.className = 'confetti-piece';
+    piece.style.left = Math.random()*100 + 'vw';
+    piece.style.background = colors[Math.floor(Math.random()*colors.length)];
+    piece.style.animationDuration = (2 + Math.random()*2) + 's';
+    piece.style.transform = `rotate(${Math.random()*360}deg)`;
+    if (Math.random()>0.5) piece.style.borderRadius = '50%';
+    document.body.appendChild(piece);
+    setTimeout(()=>piece.remove(), 4500);
+  }
+}
+
+// WELCOME
+let studentName = '';
+function toggleStart() {
+  document.getElementById('goBtn').disabled = document.getElementById('nameInput').value.trim().length < 2;
+}
+function startLesson() {
+  initAudio(); soundTransition();
+  studentName = document.getElementById('nameInput').value.trim();
+  document.getElementById('badgeName').textContent = studentName;
+  document.getElementById('welcome').style.animation = 'fadeOut 0.4s ease forwards';
+  setTimeout(()=>document.getElementById('welcome').style.display='none', 380);
+}
+const fadeStyle = document.createElement('style');
+fadeStyle.textContent = '@keyframes fadeOut { to { opacity:0; transform:scale(0.95); } }';
+document.head.appendChild(fadeStyle);
+
+// TABS
+function showTab(id, btn) {
+  soundTransition();
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  if (id === 'games') backToMenu();
+}
+
+// WORKSHEET
+const wsTotals = 8;
+let wsResults = {};
+const wsHints = {
+  1: 'المساحة الجانبية = 2 × π × نق × ع',
+  2: '2 × π × 2 × 5 = 20π سم²',
+  3: 'الحجم = π × نق² × ع',
+  4: 'الأسطوانة لها قاعدتان: علوية وسفلية',
+  5: 'π × 3² × 4 = π × 9 × 4 = 36π سم³',
+  6: 'قاعدة الأسطوانة دائرة',
+  7: 'لو فردنا السطح الجانبي يصبح مستطيلاً',
+  8: 'الحجم = مساحة القاعدة × الارتفاع = 25π × 6 = 150π'
+};
+function chkMCQ(btn, num, isCorrect) {
+  if (wsResults[num]) return;
+  const fb = document.getElementById('fb' + num);
+  const allBtns = btn.parentElement.querySelectorAll('.mcq-btn');
+  allBtns.forEach(b=>b.classList.add('dis'));
+  if (isCorrect) {
+    soundCorrect(); btn.classList.add('ok');
+    fb.className = 'feedback correct';
+    fb.innerHTML = '✅ صحيح! ' + wsHints[num];
+    wsResults[num] = 'correct';
+  } else {
+    soundWrong(); btn.classList.add('err');
+    allBtns.forEach(b=>{
+      if (b.getAttribute('onclick').includes('true')) b.classList.add('ok');
+    });
+    fb.className = 'feedback wrong';
+    fb.innerHTML = '❌ خطأ — التلميح: ' + wsHints[num];
+    wsResults[num] = 'wrong';
+  }
+}
+function submitWS() {
+  for (let i=1; i<=wsTotals; i++) if (!wsResults[i]) wsResults[i]='skipped';
+  const correct = Object.values(wsResults).filter(v=>v==='correct').length;
+  const pct = Math.round((correct/wsTotals)*100);
+  const msg = pct >= 80 ? '🌟 ممتاز يا بطل!' : pct >= 60 ? '👍 جيد، استمر!' : '📚 راجع الدرس مرة أخرى';
+  const bar = document.getElementById('wsResultBar');
+  bar.style.display = 'block';
+  document.getElementById('wsScoreText').textContent = correct + ' / ' + wsTotals + ' (' + pct + '%)';
+  document.getElementById('wsMsg').textContent = msg;
+  bar.scrollIntoView({behavior:'smooth', block:'center'});
+  soundSubmit();
+  if (pct >= 80) confetti(40);
+}
+
+// ════════════════════════════════════════════════
+// 🎮 GAMES
+// ════════════════════════════════════════════════
+function openGame(num) {
+  soundClick();
+  document.getElementById('gamesMenu').style.display = 'none';
+  document.getElementById('game' + num + 'Area').style.display = 'block';
+  if (num === 1) g1Start();
+  else if (num === 2) g2Start();
+  else if (num === 3) g3Start();
+}
+function backToMenu() {
+  soundTransition();
+  document.getElementById('gamesMenu').style.display = 'block';
+  document.getElementById('game1Area').style.display = 'none';
+  document.getElementById('game2Area').style.display = 'none';
+  document.getElementById('game3Area').style.display = 'none';
+  document.getElementById('g1Result').style.display = 'none';
+  document.getElementById('g2Result').style.display = 'none';
+  document.getElementById('g3Result').style.display = 'none';
+}
+
+function endResult(score, total, prefix, titles) {
+  document.getElementById(prefix + 'ResultScore').textContent = score + ' / ' + total;
+  const pct = score / total;
+  if (pct >= 0.85) {
+    document.getElementById(prefix + 'ResultEmoji').textContent = '🏆';
+    document.getElementById(prefix + 'ResultTitle').textContent = titles[0];
+    document.getElementById(prefix + 'ResultMsg').textContent = 'أداء ممتاز جداً 💪';
+    soundVictory(); confetti(80);
+  } else if (pct >= 0.5) {
+    document.getElementById(prefix + 'ResultEmoji').textContent = '⭐';
+    document.getElementById(prefix + 'ResultTitle').textContent = 'أحسنت!';
+    document.getElementById(prefix + 'ResultMsg').textContent = 'أداء جيد، استمر';
+    soundVictory(); confetti(40);
+  } else {
+    document.getElementById(prefix + 'ResultEmoji').textContent = '📚';
+    document.getElementById(prefix + 'ResultTitle').textContent = 'تحتاج مراجعة';
+    document.getElementById(prefix + 'ResultMsg').textContent = 'راجع الشرح وحاول مجدداً';
+    soundSubmit();
+  }
+}
+
+function makeCylinderSVG(nq, h) {
+  // simple cylinder SVG, with labels
+  return `<svg viewBox="0 0 100 130">
+    <rect x="25" y="25" width="50" height="80" fill="#0e7c66" fill-opacity="0.3" stroke="#0e7c66" stroke-width="2"/>
+    <ellipse cx="50" cy="25" rx="25" ry="6" fill="#14a085" stroke="#0e7c66" stroke-width="2"/>
+    <path d="M 25,105 a 25,6 0 0 0 50,0" fill="none" stroke="#0e7c66" stroke-width="2"/>
+    <path d="M 25,105 a 25,6 0 0 1 50,0" fill="none" stroke="#0e7c66" stroke-width="1.5" stroke-dasharray="3,2"/>
+    <text x="50" y="120" text-anchor="middle" fill="#e74c3c" font-size="9" font-weight="900">نق=${nq}</text>
+    <text x="85" y="68" fill="#ed8936" font-size="9" font-weight="900">ع=${h}</text>
+  </svg>`;
+}
+
+// ──── GAME 1: Calculate ────
+const g1Questions = [
+  { nq:2, h:5, type:'جانبية', answer:'20π', distractors:['10π','40π','4π'] },
+  { nq:3, h:4, type:'جانبية', answer:'24π', distractors:['12π','36π','9π'] },
+  { nq:3, h:7, type:'حجم', answer:'63π', distractors:['42π','21π','126π'] },
+  { nq:2, h:10, type:'حجم', answer:'40π', distractors:['20π','80π','100π'] },
+  { nq:5, h:2, type:'جانبية', answer:'20π', distractors:['50π','10π','25π'] },
+  { nq:4, h:3, type:'حجم', answer:'48π', distractors:['24π','12π','64π'] },
+  { nq:1, h:6, type:'جانبية', answer:'12π', distractors:['6π','36π','3π'] },
+  { nq:5, h:4, type:'حجم', answer:'100π', distractors:['40π','50π','20π'] },
+];
+let g1Idx=0, g1Score=0, g1Order=[];
+
+function g1Start() {
+  g1Idx=0; g1Score=0;
+  document.getElementById('g1Score').textContent = 0;
+  document.getElementById('g1Result').style.display='none';
+  document.querySelector('#game1Area .game-question-box').style.display='';
+  document.getElementById('g1Options').style.display='';
+  document.querySelector('#game1Area .game-feedback').style.display='';
+  g1Order = [...Array(g1Questions.length).keys()].sort(()=>Math.random()-0.5).slice(0,6);
+  g1LoadQ();
+}
+function g1LoadQ() {
+  const q = g1Questions[g1Order[g1Idx]];
+  document.getElementById('g1Counter').textContent = `سؤال ${g1Idx+1} من 6`;
+  document.getElementById('g1Cyl').innerHTML = makeCylinderSVG(q.nq, q.h);
+  document.getElementById('g1Info').innerHTML = `نصف القطر: <b>${q.nq} سم</b><br>الارتفاع: <b>${q.h} سم</b>`;
+  const unit = q.type === 'حجم' ? 'سم³' : 'سم²';
+  document.getElementById('g1QText').textContent = `احسب الـ${q.type} (بـ ${unit})`;
+  document.getElementById('g1Progress').style.width = (g1Idx/6)*100 + '%';
+  document.getElementById('g1Feedback').textContent = 'اختر الإجابة الصحيحة 👆';
+  document.getElementById('g1Feedback').className = 'game-feedback';
+  document.getElementById('g1Next').style.display = 'none';
+
+  const opts = [q.answer + ' ' + unit, ...q.distractors.map(d => d + ' ' + unit)].sort(()=>Math.random()-0.5);
+  const optsDiv = document.getElementById('g1Options');
+  optsDiv.innerHTML = '';
+  opts.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'choice-btn';
+    btn.textContent = opt;
+    btn.onclick = () => g1Pick(btn, opt, q.answer + ' ' + unit);
+    optsDiv.appendChild(btn);
+  });
+}
+function g1Pick(btn, chosen, correct) {
+  document.querySelectorAll('#g1Options .choice-btn').forEach(b => {
+    b.classList.add('dis');
+    if (b.textContent === correct) b.classList.add('ok');
+  });
+  const fb = document.getElementById('g1Feedback');
+  if (chosen === correct) {
+    soundCorrect(); g1Score++;
+    document.getElementById('g1Score').textContent = g1Score;
+    btn.classList.add('ok');
+    fb.className = 'game-feedback correct-fb';
+    fb.textContent = '🎉 ممتاز!';
+  } else {
+    soundWrong(); btn.classList.add('err');
+    fb.className = 'game-feedback wrong-fb';
+    fb.textContent = '❌ الصحيح: ' + correct;
+  }
+  document.getElementById('g1Next').style.display = 'inline-block';
+}
+function g1NextQ() {
+  soundClick();
+  g1Idx++;
+  if (g1Idx >= 6) g1End();
+  else g1LoadQ();
+}
+function g1End() {
+  document.querySelector('#game1Area .game-question-box').style.display='none';
+  document.getElementById('g1Options').style.display='none';
+  document.querySelector('#game1Area .game-feedback').style.display='none';
+  document.getElementById('g1Next').style.display='none';
+  document.getElementById('g1Result').style.display='block';
+  endResult(g1Score, 6, 'g1', ['عبقري الحسابات!']);
+}
+function g1Restart() { g1Start(); }
+
+// ──── GAME 2: Choose formula ────
+const g2Questions = [
+  { emoji:'🥫', q:'أريد معرفة كم لتراً من العصير تسعه هذه العلبة الأسطوانية', correct:'π × نق² × ع', wrong:['2π × نق × ع','π × نق²','2π × نق'] },
+  { emoji:'🎁', q:'أريد تغليف السطح الجانبي لعلبة هدايا أسطوانية بالورق', correct:'2π × نق × ع', wrong:['π × نق² × ع','π × نق²','2π × نق'] },
+  { emoji:'🛢️', q:'أريد حساب الماء الذي يملأ برميلاً أسطوانياً', correct:'π × نق² × ع', wrong:['2π × نق × ع','π × نق²','2π × نق'] },
+  { emoji:'⭕', q:'أريد حساب مساحة قاعدة دائرية لأسطوانة', correct:'π × نق²', wrong:['2π × نق × ع','π × نق² × ع','2π × نق'] },
+  { emoji:'📦', q:'أريد طلاء كل سطوح الأسطوانة (الجانبي والقاعدتين)', correct:'2π نق ع + 2π نق²', wrong:['π × نق² × ع','2π × نق × ع','π × نق²'] },
+  { emoji:'🎀', q:'أريد لفّ شريط حول قاعدة أسطوانية مرة واحدة', correct:'2π × نق', wrong:['π × نق²','2π × نق × ع','π × نق² × ع'] },
+];
+let g2Idx=0, g2Score=0, g2Order=[];
+
+function g2Start() {
+  g2Idx=0; g2Score=0;
+  document.getElementById('g2Score').textContent = 0;
+  document.getElementById('g2Result').style.display='none';
+  document.querySelector('#game2Area .game-question-box').style.display='';
+  document.getElementById('g2Options').style.display='';
+  document.querySelector('#game2Area .game-feedback').style.display='';
+  g2Order = [...Array(g2Questions.length).keys()].sort(()=>Math.random()-0.5).slice(0,6);
+  g2LoadQ();
+}
+function g2LoadQ() {
+  const q = g2Questions[g2Order[g2Idx]];
+  document.getElementById('g2Counter').textContent = `سؤال ${g2Idx+1} من 6`;
+  document.getElementById('g2Emoji').textContent = q.emoji;
+  document.getElementById('g2Question').textContent = q.q;
+  document.getElementById('g2Progress').style.width = (g2Idx/6)*100 + '%';
+  document.getElementById('g2Feedback').textContent = 'اختر القانون الصحيح 👆';
+  document.getElementById('g2Feedback').className = 'game-feedback';
+  document.getElementById('g2Next').style.display = 'none';
+
+  const opts = [q.correct, ...q.wrong].sort(()=>Math.random()-0.5);
+  const optsDiv = document.getElementById('g2Options');
+  optsDiv.innerHTML = '';
+  opts.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'choice-btn';
+    btn.textContent = opt;
+    btn.onclick = () => g2Pick(btn, opt, q.correct);
+    optsDiv.appendChild(btn);
+  });
+}
+function g2Pick(btn, chosen, correct) {
+  document.querySelectorAll('#g2Options .choice-btn').forEach(b => {
+    b.classList.add('dis');
+    if (b.textContent === correct) b.classList.add('ok');
+  });
+  const fb = document.getElementById('g2Feedback');
+  if (chosen === correct) {
+    soundCorrect(); g2Score++;
+    document.getElementById('g2Score').textContent = g2Score;
+    btn.classList.add('ok');
+    fb.className = 'game-feedback correct-fb';
+    fb.textContent = '🎉 صحيح!';
+  } else {
+    soundWrong(); btn.classList.add('err');
+    fb.className = 'game-feedback wrong-fb';
+    fb.textContent = '❌ الصحيح: ' + correct;
+  }
+  document.getElementById('g2Next').style.display = 'inline-block';
+}
+function g2NextQ() {
+  soundClick();
+  g2Idx++;
+  if (g2Idx >= 6) g2End();
+  else g2LoadQ();
+}
+function g2End() {
+  document.querySelector('#game2Area .game-question-box').style.display='none';
+  document.getElementById('g2Options').style.display='none';
+  document.querySelector('#game2Area .game-feedback').style.display='none';
+  document.getElementById('g2Next').style.display='none';
+  document.getElementById('g2Result').style.display='block';
+  endResult(g2Score, 6, 'g2', ['خبير القوانين!']);
+}
+function g2Restart() { g2Start(); }
+
+// ──── GAME 3: Is it a cylinder? ────
+// Each round shows 4 objects (1 cylinder + 3 non-cylinders), pick the cylinder
+const g3Items = {
+  cylinders: [
+    { e:'🥫', n:'علبة طعام' },
+    { e:'🛢️', n:'برميل' },
+    { e:'🥤', n:'كوب ورقي' },
+    { e:'🕯️', n:'شمعة' },
+    { e:'🔋', n:'بطارية' },
+    { e:'🪵', n:'جذع شجرة' },
+    { e:'🧴', n:'زجاجة' },
+    { e:'🎺', n:'أنبوب' },
+  ],
+  others: [
+    { e:'⚽', n:'كرة قدم (كرة)' },
+    { e:'📦', n:'صندوق (مكعّب)' },
+    { e:'🎲', n:'حجر نرد (مكعّب)' },
+    { e:'🍕', n:'بيتزا (دائرة)' },
+    { e:'🎂', n:'قطعة كعك' },
+    { e:'📕', n:'كتاب' },
+    { e:'🍎', n:'تفاحة (كرة)' },
+    { e:'🎈', n:'بالون' },
+    { e:'🔺', n:'مثلث' },
+    { e:'⭐', n:'نجمة' },
+    { e:'🍦', n:'مخروط' },
+    { e:'🎩', n:'قبعة' },
+  ]
+};
+let g3Idx=0, g3Score=0;
+let g3Rounds = [];
+
+function g3Start() {
+  g3Idx=0; g3Score=0;
+  document.getElementById('g3Score').textContent = 0;
+  document.getElementById('g3Result').style.display='none';
+  document.querySelector('#game3Area .game-question-box').style.display='';
+  document.getElementById('g3Objects').style.display='';
+  document.querySelector('#game3Area .game-feedback').style.display='';
+  // Build 6 rounds: each has 1 cylinder + 3 others, shuffled
+  const cylShuffled = [...g3Items.cylinders].sort(()=>Math.random()-0.5);
+  const otherShuffled = [...g3Items.others].sort(()=>Math.random()-0.5);
+  g3Rounds = [];
+  for (let i=0; i<6; i++) {
+    const cyl = cylShuffled[i];
+    const others = otherShuffled.slice(i*3, i*3+3);
+    const opts = [cyl, ...others].sort(()=>Math.random()-0.5);
+    g3Rounds.push({ correct: cyl, options: opts });
+  }
+  g3LoadQ();
+}
+function g3LoadQ() {
+  const r = g3Rounds[g3Idx];
+  document.getElementById('g3Counter').textContent = `سؤال ${g3Idx+1} من 6`;
+  document.getElementById('g3Progress').style.width = (g3Idx/6)*100 + '%';
+  document.getElementById('g3Feedback').textContent = 'اختر الجسم الأسطواني 👆';
+  document.getElementById('g3Feedback').className = 'game-feedback';
+  document.getElementById('g3Next').style.display = 'none';
+
+  const grid = document.getElementById('g3Objects');
+  grid.innerHTML = '';
+  r.options.forEach(item => {
+    const btn = document.createElement('button');
+    btn.className = 'obj-btn';
+    btn.innerHTML = `<span class="obj-emoji">${item.e}</span><span class="obj-name">${item.n}</span>`;
+    btn.onclick = () => g3Pick(btn, item, r.correct);
+    grid.appendChild(btn);
+  });
+}
+function g3Pick(btn, chosen, correct) {
+  document.querySelectorAll('#g3Objects .obj-btn').forEach(b => {
+    b.classList.add('dis');
+    if (b.querySelector('.obj-name').textContent === correct.n) b.classList.add('ok');
+  });
+  const fb = document.getElementById('g3Feedback');
+  if (chosen.n === correct.n) {
+    soundCorrect(); g3Score++;
+    document.getElementById('g3Score').textContent = g3Score;
+    btn.classList.add('ok');
+    fb.className = 'game-feedback correct-fb';
+    fb.innerHTML = `🎉 رائع! ${correct.e} ${correct.n} أسطوانة فعلاً`;
+  } else {
+    soundWrong(); btn.classList.add('err');
+    fb.className = 'game-feedback wrong-fb';
+    fb.innerHTML = `❌ الصحيح: ${correct.e} ${correct.n}`;
+  }
+  document.getElementById('g3Next').style.display = 'inline-block';
+}
+function g3NextQ() {
+  soundClick();
+  g3Idx++;
+  if (g3Idx >= 6) g3End();
+  else g3LoadQ();
+}
+function g3End() {
+  document.querySelector('#game3Area .game-question-box').style.display='none';
+  document.getElementById('g3Objects').style.display='none';
+  document.querySelector('#game3Area .game-feedback').style.display='none';
+  document.getElementById('g3Next').style.display='none';
+  document.getElementById('g3Result').style.display='block';
+  endResult(g3Score, 6, 'g3', ['مستكشف الأشكال!']);
+}
+function g3Restart() { g3Start(); }
+</script>
+</body>
+</html>
