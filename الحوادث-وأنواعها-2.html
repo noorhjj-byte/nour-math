@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الحوادث وأنواعها — رياضيات 7</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Tajawal:wght@400;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --p: #8b1e5b;
+  --pl: #b53a7d;
+  --acc: #ffc857;
+  --g: #2ecc71;
+  --r: #e74c3c;
+  --b: #3498db;
+  --pu: #9b59b6;
+  --light: #fdf2f8;
+  --shadow: 0 8px 32px rgba(139,30,91,0.15);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Cairo', sans-serif;
+  background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);
+  min-height: 100vh; color: #222;
+}
+
+/* ══ WELCOME ══ */
+#welcome {
+  position: fixed; inset: 0; z-index: 999;
+  background: linear-gradient(145deg, var(--p) 0%, #5a0d3a 100%);
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px; overflow: hidden;
+}
+.float-shape {
+  position: absolute; opacity: 0.2;
+  animation: floatUp 8s ease-in-out infinite;
+}
+.float-shape.s1 { top: 10%; left: 8%; font-size: 50px; animation-delay: 0s; }
+.float-shape.s2 { top: 22%; right: 10%; font-size: 40px; animation-delay: 1s; }
+.float-shape.s3 { bottom: 18%; left: 12%; font-size: 48px; animation-delay: 2s; }
+.float-shape.s4 { bottom: 28%; right: 8%; font-size: 44px; animation-delay: 3s; }
+.float-shape.s5 { top: 50%; left: 4%; font-size: 36px; animation-delay: 1.5s; }
+.float-shape.s6 { top: 55%; right: 5%; font-size: 50px; animation-delay: 2.5s; }
+@keyframes floatUp {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-30px) rotate(15deg); }
+}
+.wc {
+  background: white; border-radius: 28px;
+  padding: 36px 30px 30px; width: 100%; max-width: 420px;
+  text-align: center; box-shadow: 0 24px 64px rgba(0,0,0,0.3);
+  position: relative; z-index: 2;
+  animation: popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes popIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.wc-emoji {
+  font-size: 64px; display: block; margin-bottom: 8px;
+  animation: bounce 2s ease-in-out infinite;
+}
+@keyframes bounce {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-10px) rotate(8deg); }
+}
+.wc h1 {
+  font-family: 'Tajawal', sans-serif; font-size: 1.6rem;
+  font-weight: 900; color: var(--p); margin-bottom: 4px;
+}
+.wc-teacher {
+  background: linear-gradient(135deg, var(--p), var(--pl));
+  color: white; padding: 8px 18px; border-radius: 20px;
+  font-size: 0.88rem; font-weight: 700;
+  display: inline-block; margin-bottom: 14px;
+}
+.wc-teacher span { color: var(--acc); }
+.lesson-info { font-size: 0.85rem; color: #888; margin-bottom: 22px; }
+.wc input {
+  width: 100%; padding: 14px 16px; font-family: 'Cairo', sans-serif;
+  font-size: 1rem; border: 2.5px solid #f5cce0; border-radius: 14px;
+  color: var(--p); text-align: center; outline: none;
+  transition: border 0.2s; margin-bottom: 16px; background: #fef7fb;
+}
+.wc input:focus { border-color: var(--p); }
+.go-btn {
+  width: 100%; padding: 15px;
+  background: linear-gradient(135deg, var(--p), var(--pl));
+  color: white; border: none; border-radius: 14px;
+  font-family: 'Cairo', sans-serif; font-size: 1.05rem; font-weight: 900;
+  cursor: pointer; transition: all 0.25s;
+  box-shadow: 0 6px 18px rgba(139,30,91,0.4);
+}
+.go-btn:hover { transform: translateY(-2px); }
+.go-btn:disabled { background: #ccc; box-shadow: none; cursor: not-allowed; }
+
+/* ══ HEADER ══ */
+header {
+  background: linear-gradient(135deg, var(--p), var(--pl));
+  color: white; padding: 16px 22px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; box-shadow: 0 4px 18px rgba(139,30,91,0.3);
+  position: sticky; top: 0; z-index: 10; overflow: hidden;
+}
+header::before {
+  content: ''; position: absolute; top: -40px; left: -40px;
+  width: 180px; height: 180px;
+  background: rgba(255,200,87,0.18); border-radius: 50%;
+}
+.h-left { display: flex; align-items: center; gap: 12px; position: relative; z-index: 2; }
+.header-icon {
+  font-size: 32px; background: var(--acc); color: var(--p);
+  border-radius: 14px; padding: 4px 10px;
+  box-shadow: 0 4px 12px rgba(255,200,87,0.5);
+  animation: pulse 3s ease-in-out infinite;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+header h1 { font-family: 'Tajawal', sans-serif; font-size: 1.2rem; font-weight: 900; }
+header .sub { font-size: 0.75rem; opacity: 0.9; margin-top: 1px; }
+
+.h-right { display: flex; align-items: center; gap: 6px; position: relative; z-index: 2; }
+#studentBadge {
+  background: rgba(255,255,255,0.2); border: 1.5px solid rgba(255,255,255,0.35);
+  border-radius: 25px; padding: 5px 14px; font-size: 0.82rem;
+  color: white; font-weight: 700; max-width: 140px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+#soundToggle {
+  background: rgba(255,255,255,0.2); border: 1.5px solid rgba(255,255,255,0.35);
+  border-radius: 50%; width: 36px; height: 36px; cursor: pointer;
+  color: white; font-size: 1rem;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* Teacher banner below header */
+.teacher-banner {
+  background: linear-gradient(90deg, var(--acc), #ffd47a);
+  color: var(--p); padding: 8px 22px;
+  font-weight: 800; font-size: 0.88rem;
+  text-align: center;
+  border-bottom: 2px solid rgba(139,30,91,0.15);
+}
+.teacher-banner .icon { font-size: 1rem; margin-left: 4px; }
+
+/* ══ TABS ══ */
+.tabs {
+  display: flex; gap: 5px; padding: 14px 16px 0;
+  overflow-x: auto; scrollbar-width: none;
+}
+.tabs::-webkit-scrollbar { display: none; }
+.tab-btn {
+  padding: 9px 16px; border: 2px solid var(--p);
+  background: white; color: var(--p);
+  border-radius: 20px 20px 0 0; font-family: 'Cairo', sans-serif;
+  font-size: 0.85rem; font-weight: 700; cursor: pointer;
+  transition: all 0.22s; white-space: nowrap; flex-shrink: 0;
+}
+.tab-btn.active { background: var(--p); color: white; }
+
+/* ══ MAIN ══ */
+main {
+  background: white; margin: 0 16px 24px;
+  border-radius: 0 14px 14px 14px;
+  box-shadow: var(--shadow); padding: 22px;
+  min-height: 460px;
+}
+.section { display: none; animation: fadeUp 0.4s ease; }
+.section.active { display: block; }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ══ THEORY ══ */
+.intro-box {
+  background: linear-gradient(135deg, var(--p), var(--pl));
+  color: white; border-radius: 16px;
+  padding: 18px 20px; margin-bottom: 18px;
+  position: relative; overflow: hidden;
+}
+.intro-box::after {
+  content: '🎲'; position: absolute; right: -10px; bottom: -25px;
+  font-size: 110px; opacity: 0.12;
+}
+.intro-box h2 { font-size: 1.18rem; font-weight: 900; margin-bottom: 8px; }
+.intro-box p { font-size: 0.95rem; line-height: 1.85; }
+
+/* Simple definition card */
+.def-card {
+  background: white;
+  border: 3px solid var(--acc);
+  border-radius: 14px;
+  padding: 16px 18px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 12px rgba(255,200,87,0.2);
+}
+.def-card .def-title {
+  display: inline-block;
+  background: var(--acc); color: var(--p);
+  padding: 4px 14px; border-radius: 20px;
+  font-weight: 900; font-size: 0.85rem;
+  margin-bottom: 10px;
+}
+.def-card .def-body {
+  font-size: 0.98rem; line-height: 1.85; color: #333;
+}
+.def-card .def-body strong { color: var(--p); }
+.def-card .symbol {
+  background: var(--p); color: white;
+  padding: 2px 10px; border-radius: 6px;
+  font-weight: 900; display: inline-block;
+}
+
+/* Example illustration */
+.example-illust {
+  background: linear-gradient(135deg, #fff8e7, #fff3d0);
+  border-right: 5px solid var(--acc);
+  border-radius: 12px;
+  padding: 14px 16px; margin: 12px 0;
+  font-size: 0.92rem; line-height: 1.85;
+}
+.example-illust .ex-title {
+  font-weight: 900; color: var(--p);
+  margin-bottom: 6px; display: flex; align-items: center; gap: 6px;
+}
+
+/* Dice visual */
+.dice-row {
+  display: flex; justify-content: center; gap: 8px;
+  margin: 14px 0; flex-wrap: wrap;
+}
+.dice {
+  width: 50px; height: 50px;
+  background: white; border: 2.5px solid var(--p);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem; font-weight: 900; color: var(--p);
+  box-shadow: 0 3px 8px rgba(139,30,91,0.15);
+  transition: transform 0.3s;
+}
+.dice:hover { transform: translateY(-3px) rotate(-5deg); }
+
+/* Types of events - cards grid */
+.types-title {
+  color: var(--p); font-size: 1.15rem;
+  font-weight: 900; margin: 18px 0 12px;
+  text-align: center;
+}
+.type-card {
+  border-radius: 14px; padding: 14px 16px;
+  margin-bottom: 12px;
+  display: flex; gap: 12px; align-items: flex-start;
+  transition: transform 0.2s;
+}
+.type-card:hover { transform: translateX(-4px); }
+.type-card.simple { background: #e3f2fd; border-right: 5px solid var(--b); }
+.type-card.complex { background: #f3e5f5; border-right: 5px solid var(--pu); }
+.type-card.certain { background: #e8f5e9; border-right: 5px solid var(--g); }
+.type-card.impossible { background: #ffebee; border-right: 5px solid var(--r); }
+
+.type-icon {
+  font-size: 2rem; flex-shrink: 0;
+  width: 50px; height: 50px;
+  display: flex; align-items: center; justify-content: center;
+  background: white; border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+.type-content { flex: 1; }
+.type-name {
+  font-weight: 900; font-size: 1rem;
+  margin-bottom: 4px;
+}
+.type-card.simple .type-name { color: var(--b); }
+.type-card.complex .type-name { color: var(--pu); }
+.type-card.certain .type-name { color: var(--g); }
+.type-card.impossible .type-name { color: var(--r); }
+.type-desc { font-size: 0.88rem; line-height: 1.7; color: #555; margin-bottom: 6px; }
+.type-example {
+  background: white; border-radius: 8px;
+  padding: 8px 12px; font-size: 0.85rem;
+  color: #444; line-height: 1.7;
+}
+.type-example b { color: var(--p); }
+
+/* Tip box */
+.tip-box {
+  background: #fff8e1; border-right: 5px solid var(--acc);
+  border-radius: 12px; padding: 14px 16px; margin: 14px 0;
+  font-size: 0.92rem; line-height: 1.8;
+  display: flex; gap: 10px; align-items: flex-start;
+}
+
+/* ══ EXAMPLES ══ */
+.example-card {
+  background: white;
+  border: 2px solid #f5cce0;
+  border-radius: 14px; margin-bottom: 18px;
+  overflow: hidden; transition: all 0.25s;
+}
+.example-card:hover {
+  border-color: var(--p);
+  box-shadow: 0 6px 20px rgba(139,30,91,0.12);
+}
+.ex-header {
+  background: linear-gradient(135deg, var(--p), var(--pl));
+  color: white; padding: 11px 16px;
+  font-weight: 800; font-size: 0.95rem;
+  display: flex; align-items: center; gap: 8px;
+}
+.ex-header .ex-badge {
+  background: var(--acc); color: var(--p);
+  padding: 2px 10px; border-radius: 14px;
+  font-size: 0.72rem; font-weight: 900;
+  margin-right: auto;
+}
+.ex-body { padding: 16px; }
+.ex-given {
+  background: linear-gradient(135deg, #fff8e7, #fff3d0);
+  border-right: 4px solid var(--acc);
+  border-radius: 10px;
+  padding: 12px 14px; margin-bottom: 14px;
+  font-size: 0.93rem; line-height: 1.85;
+  display: flex; align-items: center; gap: 12px;
+}
+.ex-given .ex-emoji { font-size: 2rem; flex-shrink: 0; }
+.ex-step {
+  display: flex; gap: 10px;
+  margin-bottom: 10px;
+  align-items: flex-start;
+}
+.ex-step .step-num {
+  background: var(--p); color: white;
+  border-radius: 50%; width: 26px; height: 26px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 900; font-size: 0.82rem;
+  flex-shrink: 0;
+}
+.ex-step .step-text {
+  font-size: 0.92rem; line-height: 1.85;
+  padding-top: 2px;
+}
+.ex-step .step-text strong { color: var(--p); }
+.ex-answer {
+  background: linear-gradient(135deg, #d4f5e2, #c4ecd0);
+  border: 2px solid var(--g);
+  border-radius: 10px;
+  padding: 11px 14px; margin-top: 12px;
+  font-weight: 800; color: #1a6b3a;
+  font-size: 0.93rem;
+}
+
+/* Dice visualization in examples */
+.ex-dice-row {
+  display: flex; justify-content: center; gap: 6px;
+  margin: 10px 0; flex-wrap: wrap;
+}
+.ex-dice {
+  width: 38px; height: 38px;
+  background: white; border: 2px solid var(--p);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; font-weight: 900; color: var(--p);
+}
+.ex-dice.highlight {
+  background: var(--acc); color: var(--p);
+  border-color: var(--acc);
+  transform: scale(1.1);
+  box-shadow: 0 3px 8px rgba(255,200,87,0.5);
+}
+.ex-dice.dim { opacity: 0.3; }
+
+/* ══ WORKSHEET ══ */
+.ws-header { margin-bottom: 18px; }
+.ws-header h2 {
+  font-size: 1.18rem; color: var(--p);
+  font-weight: 900; margin-bottom: 3px;
+}
+.ws-info { font-size: 0.82rem; color: #999; }
+
+.question-card {
+  border: 2px solid #f5cce0;
+  border-radius: 14px;
+  padding: 16px 18px; margin-bottom: 14px;
+  transition: border 0.2s;
+}
+.question-card:hover { border-color: var(--p); }
+.q-header {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 10px; flex-wrap: wrap;
+}
+.q-num {
+  background: var(--p); color: white;
+  border-radius: 50%; width: 30px; height: 30px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 900; font-size: 0.85rem; flex-shrink: 0;
+}
+.q-text { font-size: 0.95rem; font-weight: 700; line-height: 1.65; flex: 1; }
+.q-level {
+  padding: 3px 10px; border-radius: 18px;
+  font-size: 0.72rem; font-weight: 700;
+  margin-right: auto; flex-shrink: 0;
+}
+.level-easy { background: #d4f5e2; color: #1a6b3a; }
+.level-med { background: #fff3d0; color: #a07000; }
+
+/* MCQ options */
+.mcq-options {
+  display: grid; gap: 8px; margin-top: 10px;
+}
+.mcq-btn {
+  background: white; border: 2.5px solid #f5cce0;
+  border-radius: 12px; padding: 11px 16px;
+  font-family: 'Cairo', sans-serif;
+  font-size: 0.92rem; font-weight: 700;
+  cursor: pointer; transition: all 0.22s;
+  color: #333; text-align: right;
+}
+.mcq-btn:hover {
+  border-color: var(--p); background: var(--light);
+  transform: translateY(-1px);
+}
+.mcq-btn.ok {
+  border-color: var(--g); background: #d4f5e2; color: #1a6b3a;
+  animation: pulseGood 0.5s ease;
+}
+.mcq-btn.err {
+  border-color: var(--r); background: #fde8e8; color: #a01a1a;
+  animation: shakeX 0.5s ease;
+}
+.mcq-btn.dis { pointer-events: none; opacity: 0.65; }
+@keyframes pulseGood {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+}
+@keyframes shakeX {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+.feedback {
+  margin-top: 10px; border-radius: 10px;
+  padding: 10px 14px; font-weight: 700;
+  display: none; font-size: 0.88rem;
+}
+.feedback.correct { background: #d4f5e2; color: #1a6b3a; display: block; }
+.feedback.wrong { background: #fde8e8; color: #a01a1a; display: block; }
+
+/* Worksheet result */
+#wsResultBar {
+  display: none;
+  background: linear-gradient(135deg, var(--p), var(--pl));
+  color: white; border-radius: 14px;
+  padding: 20px 22px; margin-bottom: 18px;
+  text-align: center;
+}
+#wsResultBar h3 { font-size: 1.2rem; font-weight: 900; margin-bottom: 6px; }
+#wsResultBar .ws-score {
+  font-size: 2.2rem; font-weight: 900; color: var(--acc);
+}
+#wsResultBar p { font-size: 0.9rem; opacity: 0.9; margin-top: 4px; }
+
+.submit-btn {
+  background: linear-gradient(135deg, var(--acc), #ff9020);
+  color: var(--p); border: none;
+  border-radius: 12px; padding: 13px 30px;
+  font-family: 'Cairo', sans-serif;
+  font-weight: 900; font-size: 0.95rem;
+  cursor: pointer; box-shadow: 0 5px 16px rgba(255,200,87,0.4);
+  transition: all 0.25s;
+}
+.submit-btn:hover { transform: translateY(-2px); }
+
+/* ══ GAME ══ */
+.game-title-bar {
+  display: flex; justify-content: space-between; align-items: center;
+  background: linear-gradient(135deg, var(--p), var(--pl));
+  color: white; border-radius: 12px;
+  padding: 12px 18px; margin-bottom: 16px;
+  flex-wrap: wrap; gap: 8px;
+}
+.game-title-bar h2 { font-size: 1.05rem; font-weight: 900; }
+.score-display {
+  background: var(--acc); color: var(--p);
+  border-radius: 9px; padding: 5px 14px;
+  font-weight: 900; font-size: 0.95rem;
+}
+.progress-bar-wrap {
+  background: #f5cce0; border-radius: 20px;
+  height: 9px; margin-bottom: 16px; overflow: hidden;
+}
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--acc), #ff9020);
+  border-radius: 20px;
+  transition: width 0.5s ease;
+}
+.game-question-box {
+  background: linear-gradient(135deg, var(--p), var(--pl));
+  color: white; border-radius: 16px;
+  padding: 22px; margin-bottom: 16px;
+  min-height: 130px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 10px; text-align: center;
+  position: relative; overflow: hidden;
+}
+.game-question-box::before {
+  content: ''; position: absolute; top: -30px; left: -30px;
+  width: 90px; height: 90px;
+  background: rgba(255,200,87,0.12); border-radius: 50%;
+}
+.q-label { font-size: 0.8rem; opacity: 0.78; position: relative; z-index: 2; }
+.q-visual { position: relative; z-index: 2; }
+.q-visual svg { width: 52px; height: 52px; }
+.q-main {
+  font-size: 1.05rem; font-weight: 900;
+  line-height: 1.7; position: relative; z-index: 2;
+}
+
+.choices-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 10px; margin-bottom: 14px;
+}
+@media (max-width: 480px) { .choices-grid { grid-template-columns: 1fr; } }
+.choice-btn {
+  background: white; border: 3px solid #f5cce0;
+  border-radius: 12px; padding: 14px 10px;
+  font-family: 'Cairo', sans-serif;
+  font-size: 0.93rem; font-weight: 700;
+  cursor: pointer; transition: all 0.22s;
+  color: var(--p);
+}
+.choice-btn:hover {
+  border-color: var(--p); background: var(--light);
+  transform: translateY(-2px);
+}
+.choice-btn.ok {
+  border-color: var(--g); background: #d4f5e2; color: #1a6b3a;
+  animation: pulseGood 0.5s ease;
+}
+.choice-btn.err {
+  border-color: var(--r); background: #fde8e8; color: #a01a1a;
+  animation: shakeX 0.5s ease;
+}
+.choice-btn.dis { pointer-events: none; opacity: 0.65; }
+
+.game-feedback {
+  background: var(--light); border-radius: 10px;
+  padding: 12px 16px; font-weight: 700;
+  font-size: 0.92rem; min-height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 14px;
+}
+.game-feedback.correct-fb { background: #d4f5e2; color: #1a6b3a; }
+.game-feedback.wrong-fb { background: #fde8e8; color: #a01a1a; }
+
+.next-btn, .restart-btn {
+  background: linear-gradient(135deg, var(--acc), #ff9020);
+  color: var(--p); border: none;
+  border-radius: 11px; padding: 11px 28px;
+  font-family: 'Cairo', sans-serif;
+  font-weight: 900; font-size: 0.98rem;
+  cursor: pointer; transition: all 0.22s;
+  box-shadow: 0 4px 12px rgba(255,200,87,0.4);
+}
+.next-btn:hover, .restart-btn:hover { transform: translateY(-2px); }
+
+.result-screen {
+  text-align: center; padding: 24px 0;
+  animation: fadeUp 0.5s ease;
+}
+.result-screen .big-emoji {
+  font-size: 76px; margin-bottom: 14px;
+  display: block;
+  animation: popIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.result-screen h2 {
+  font-size: 1.5rem; font-weight: 900;
+  color: var(--p); margin-bottom: 6px;
+}
+.result-screen p { font-size: 0.98rem; color: #555; margin-bottom: 20px; }
+.result-score {
+  display: inline-block;
+  background: var(--p); color: var(--acc);
+  border-radius: 14px; padding: 14px 32px;
+  font-size: 1.7rem; font-weight: 900; margin-bottom: 20px;
+}
+
+/* Footer with teacher name */
+.footer {
+  text-align: center; padding: 18px 16px 22px;
+  font-size: 0.82rem; color: var(--p);
+  font-weight: 700;
+}
+.footer .name {
+  color: var(--p); font-weight: 900;
+  background: var(--acc); padding: 3px 12px;
+  border-radius: 14px; display: inline-block;
+  margin: 0 4px;
+}
+
+/* ══ CONFETTI ══ */
+.confetti-piece {
+  position: fixed; width: 10px; height: 10px; top: -20px;
+  z-index: 1000; pointer-events: none;
+  animation: confettiFall linear forwards;
+}
+@keyframes confettiFall {
+  to { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+}
+
+@media (max-width: 500px) {
+  main { padding: 18px 16px; margin: 0 8px 18px; }
+  .tabs { padding: 12px 8px 0; }
+  header { padding: 12px 14px; }
+  header h1 { font-size: 1.05rem; }
+  .type-card { padding: 12px; }
+  .type-icon { width: 44px; height: 44px; font-size: 1.6rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ WELCOME ══ -->
+<div id="welcome">
+  <span class="float-shape s1">🎲</span>
+  <span class="float-shape s2">🎯</span>
+  <span class="float-shape s3">🪙</span>
+  <span class="float-shape s4">🎲</span>
+  <span class="float-shape s5">🔢</span>
+  <span class="float-shape s6">🎯</span>
+
+  <div class="wc">
+    <span class="wc-emoji">🎲</span>
+    <h1>الحوادث وأنواعها</h1>
+    <div class="wc-teacher">✨ المعلمة: <span>نور حجاج</span> ✨</div>
+    <p class="lesson-info">رياضيات الصف السابع</p>
+    <input type="text" id="nameInput" placeholder="اكتب اسمك هنا..." maxlength="40" oninput="toggleStart()">
+    <button class="go-btn" id="goBtn" disabled onclick="startLesson()">ابدأ الدرس ←</button>
+  </div>
+</div>
+
+<!-- ══ HEADER ══ -->
+<header>
+  <div class="h-left">
+    <div class="header-icon">🎲</div>
+    <div>
+      <h1>الحوادث وأنواعها</h1>
+      <div class="sub">رياضيات • الصف السابع</div>
+    </div>
+  </div>
+  <div class="h-right">
+    <button id="soundToggle" onclick="toggleSound()">🔊</button>
+    <div id="studentBadge">👤 <span id="badgeName">—</span></div>
+  </div>
+</header>
+
+<div class="teacher-banner">
+  <span class="icon">👩‍🏫</span> المعلمة: نور حجاج
+</div>
+
+<div class="tabs">
+  <button class="tab-btn active" onclick="showTab('theory', this)">📚 الشرح</button>
+  <button class="tab-btn" onclick="showTab('examples', this)">✏️ أمثلة</button>
+  <button class="tab-btn" onclick="showTab('worksheet', this)">📄 ورقة العمل</button>
+  <button class="tab-btn" onclick="showTab('game', this)">🎮 اللعبة</button>
+</div>
+
+<main>
+
+  <!-- ═══ THEORY ═══ -->
+  <div class="section active" id="theory">
+
+    <div class="intro-box">
+      <h2>🎲 ما هو الحادث؟</h2>
+      <p>تخيّل أنك ترمي حجر النرد 🎲. كل النتائج الممكنة (1,2,3,4,5,6) تُسمّى <strong>الفضاء العيني</strong>. أمّا أي مجموعة من هذه النتائج (مثل: ظهور رقم زوجي) فهي <strong>حادث</strong>.</p>
+    </div>
+
+    <!-- Definition: Sample Space -->
+    <div class="def-card">
+      <div class="def-title">💡 تعريف 1: الفضاء العيني</div>
+      <div class="def-body">
+        <p><strong>الفضاء العيني</strong> هو مجموعة <strong>كل النتائج الممكنة</strong> في التجربة، ونرمز له بالرمز <span class="symbol">Ω</span> (أوميجا).</p>
+      </div>
+    </div>
+
+    <div class="example-illust">
+      <div class="ex-title">🎲 مثال: عند رمي حجر نرد</div>
+      <div class="dice-row">
+        <div class="dice">1</div>
+        <div class="dice">2</div>
+        <div class="dice">3</div>
+        <div class="dice">4</div>
+        <div class="dice">5</div>
+        <div class="dice">6</div>
+      </div>
+      <p style="text-align:center;font-weight:700;color:var(--p);">Ω = {1, 2, 3, 4, 5, 6}</p>
+      <p style="text-align:center;font-size:0.85rem;color:#666;margin-top:4px;">عدد عناصر Ω = 6</p>
+    </div>
+
+    <!-- Definition: Event -->
+    <div class="def-card">
+      <div class="def-title">💡 تعريف 2: الحادث</div>
+      <div class="def-body">
+        <p><strong>الحادث</strong> هو <strong>جزء</strong> من الفضاء العيني، ونرمز له بالرمز <span class="symbol">ح</span>.</p>
+      </div>
+    </div>
+
+    <div class="example-illust">
+      <div class="ex-title">🎯 مثال: حادث ظهور رقم زوجي</div>
+      <div class="dice-row">
+        <div class="dice" style="opacity:.3">1</div>
+        <div class="dice" style="background:var(--acc);">2</div>
+        <div class="dice" style="opacity:.3">3</div>
+        <div class="dice" style="background:var(--acc);">4</div>
+        <div class="dice" style="opacity:.3">5</div>
+        <div class="dice" style="background:var(--acc);">6</div>
+      </div>
+      <p style="text-align:center;font-weight:700;color:var(--p);">ح = {2, 4, 6}</p>
+      <p style="text-align:center;font-size:0.85rem;color:#666;margin-top:4px;">عدد عناصر ح = 3</p>
+    </div>
+
+    <!-- Types of Events -->
+    <h3 class="types-title">📌 أنواع الحوادث الأربعة</h3>
+
+    <div class="type-card simple">
+      <div class="type-icon">①</div>
+      <div class="type-content">
+        <div class="type-name">الحادث البسيط</div>
+        <div class="type-desc">هو الحادث الذي يحتوي على <strong>عنصر واحد فقط</strong>.</div>
+        <div class="type-example">🎲 <b>مثال:</b> ظهور الرقم 5 عند رمي النرد → ح = {5}</div>
+      </div>
+    </div>
+
+    <div class="type-card complex">
+      <div class="type-icon">②</div>
+      <div class="type-content">
+        <div class="type-name">الحادث المركّب</div>
+        <div class="type-desc">هو الحادث الذي يحتوي على <strong>أكثر من عنصر</strong>.</div>
+        <div class="type-example">🎲 <b>مثال:</b> ظهور رقم زوجي → ح = {2, 4, 6}</div>
+      </div>
+    </div>
+
+    <div class="type-card certain">
+      <div class="type-icon">③</div>
+      <div class="type-content">
+        <div class="type-name">الحادث المؤكد</div>
+        <div class="type-desc">هو الحادث الذي <strong>سيقع دائماً</strong> (يحتوي على كل عناصر Ω).</div>
+        <div class="type-example">🎲 <b>مثال:</b> ظهور رقم أقل من 7 → ح = {1,2,3,4,5,6} = Ω</div>
+      </div>
+    </div>
+
+    <div class="type-card impossible">
+      <div class="type-icon">④</div>
+      <div class="type-content">
+        <div class="type-name">الحادث المستحيل</div>
+        <div class="type-desc">هو الحادث الذي <strong>لا يقع أبداً</strong> (لا يحتوي على أي عنصر).</div>
+        <div class="type-example">🎲 <b>مثال:</b> ظهور الرقم 8 → ح = { } (فارغ)</div>
+      </div>
+    </div>
+
+    <div class="tip-box">
+      <span style="font-size:1.3rem;">💡</span>
+      <span><strong>تذكّر:</strong> الحادث البسيط فيه <strong>عنصر واحد</strong>، والمركّب فيه <strong>أكثر من عنصر</strong>، والمؤكد <strong>يساوي Ω</strong>، والمستحيل <strong>فارغ</strong>.</span>
+    </div>
+
+  </div>
+
+  <!-- ═══ EXAMPLES ═══ -->
+  <div class="section" id="examples">
+    <h2 style="color:var(--p); margin-bottom:18px; font-size:1.2rem; font-weight:900;">✏️ أمثلة محلولة خطوة بخطوة</h2>
+
+    <!-- Example 1: Sample Space -->
+    <div class="example-card">
+      <div class="ex-header">
+        📝 مثال 1 — كتابة الفضاء العيني
+        <span class="ex-badge">سهل</span>
+      </div>
+      <div class="ex-body">
+        <div class="ex-given">
+          <span class="ex-emoji">🎲</span>
+          <span>عند رمي حجر النرد مرة واحدة، اكتب الفضاء العيني Ω واحسب عدد عناصره.</span>
+        </div>
+        <div class="ex-step">
+          <div class="step-num">1</div>
+          <div class="step-text">نفكّر: ما الأرقام التي يمكن أن تظهر على النرد؟<br>الأرقام من <strong>1 إلى 6</strong>.</div>
+        </div>
+        <div class="ex-dice-row">
+          <div class="ex-dice">1</div>
+          <div class="ex-dice">2</div>
+          <div class="ex-dice">3</div>
+          <div class="ex-dice">4</div>
+          <div class="ex-dice">5</div>
+          <div class="ex-dice">6</div>
+        </div>
+        <div class="ex-step">
+          <div class="step-num">2</div>
+          <div class="step-text">نكتب الفضاء العيني: <strong>Ω = {1, 2, 3, 4, 5, 6}</strong></div>
+        </div>
+        <div class="ex-step">
+          <div class="step-num">3</div>
+          <div class="step-text">نعدّ العناصر: <strong>عدد عناصر Ω = 6</strong></div>
+        </div>
+        <div class="ex-answer">✅ الإجابة: Ω = {1, 2, 3, 4, 5, 6} وعدد عناصره = 6</div>
+      </div>
+    </div>
+
+    <!-- Example 2: Simple Event -->
+    <div class="example-card">
+      <div class="ex-header">
+        📝 مثال 2 — الحادث البسيط
+        <span class="ex-badge">سهل</span>
+      </div>
+      <div class="ex-body">
+        <div class="ex-given">
+          <span class="ex-emoji">①</span>
+          <span>عند رمي النرد، اكتب حادث "ظهور الرقم 4" وحدّد نوعه.</span>
+        </div>
+        <div class="ex-step">
+          <div class="step-num">1</div>
+          <div class="step-text">الرقم المطلوب هو <strong>4 فقط</strong>.</div>
+        </div>
+        <div class="ex-dice-row">
+          <div class="ex-dice dim">1</div>
+          <div class="ex-dice dim">2</div>
+          <div class="ex-dice dim">3</div>
+          <div class="ex-dice highlight">4</div>
+          <div class="ex-dice dim">5</div>
+          <div class="ex-dice dim">6</div>
+        </div>
+        <div class="ex-step">
+          <div class="step-num">2</div>
+          <div class="step-text">نكتب الحادث: <strong>ح = {4}</strong></div>
+        </div>
+        <div class="ex-step">
+          <div class="step-num">3</div>
+          <div class="step-text">نعدّ العناصر: <strong>عنصر واحد فقط</strong> → إذن هو حادث <strong>بسيط</strong>.</div>
+        </div>
+        <div class="ex-answer">✅ الإجابة: ح = {4} وهو حادث بسيط</div>
+      </div>
+    </div>
+
+    <!-- Example 3: Compound Event -->
+    <div class="example-card">
+      <div class="ex-header">
+        📝 مثال 3 — الحادث المركّب
+        <span class="ex-badge">متوسط</span>
+      </div>
+      <div class="ex-body">
+        <div class="ex-given">
+          <span class="ex-emoji">②</span>
+          <span>عند رمي النرد، اكتب حادث "ظهور رقم زوجي" وحدّد نوعه.</span>
+        </div>
+        <div class="ex-step">
+          <div class="step-num">1</div>
+          <div class="step-text">الأرقام الزوجية في النرد هي: <strong>2 و 4 و 6</strong>.</div>
+        </div>
+        <div class="ex-dice-row">
+          <div class="ex-dice dim">1</div>
+          <div class="ex-dice highlight">2</div>
+          <div class="ex-dice dim">3</div>
+          <div class="ex-dice highlight">4</div>
+          <div class="ex-dice dim">5</div>
+          <div class="ex-dice highlight">6</div>
+        </div>
+        <div class="ex-step">
+          <div class="step-num">2</div>
+          <div class="step-text">نكتب الحادث: <strong>ح = {2, 4, 6}</strong></div>
+        </div>
+        <div class="ex-step">
+          <div class="step-num">3</div>
+          <div class="step-text">نعدّ العناصر: <strong>3 عناصر (أكثر من واحد)</strong> → إذن هو حادث <strong>مركّب</strong>.</div>
+        </div>
+        <div class="ex-answer">✅ الإجابة: ح = {2, 4, 6} وهو حادث مركّب</div>
+      </div>
+    </div>
+
+    <!-- Example 4: Certain Event -->
+    <div class="example-card">
+      <div class="ex-header">
+        📝 مثال 4 — الحادث المؤكد
+        <span class="ex-badge">متوسط</span>
+      </div>
+      <div class="ex-body">
+        <div class="ex-given">
+          <span class="ex-emoji">✅</span>
+          <span>عند رمي النرد، حدّد نوع حادث "ظهور رقم أقل من 7".</span>
+        </div>
+        <div class="ex-step">
+          <div class="step-num">1</div>
+          <div class="step-text">نفكّر: ما الأرقام في النرد الأقل من 7؟<br>كل الأرقام: <strong>1, 2, 3, 4, 5, 6</strong> كلها أقل من 7!</div>
+        </div>
+        <div class="ex-dice-row">
+          <div class="ex-dice highlight">1</div>
+          <div class="ex-dice highlight">2</div>
+          <div class="ex-dice highlight">3</div>
+          <div class="ex-dice highlight">4</div>
+          <div class="ex-dice highlight">5</div>
+          <div class="ex-dice highlight">6</div>
+        </div>
+        <div class="ex-step">
+          <div class="step-num">2</div>
+          <div class="step-text">نكتب الحادث: <strong>ح = {1, 2, 3, 4, 5, 6} = Ω</strong></div>
+        </div>
+        <div class="ex-step">
+          <div class="step-num">3</div>
+          <div class="step-text">الحادث يساوي Ω → الحادث <strong>يحدث دائماً</strong> → إذن هو حادث <strong>مؤكد</strong>.</div>
+        </div>
+        <div class="ex-answer">✅ الإجابة: حادث مؤكد (يقع 100%)</div>
+      </div>
+    </div>
+
+    <!-- Example 5: Impossible Event -->
+    <div class="example-card">
+      <div class="ex-header">
+        📝 مثال 5 — الحادث المستحيل
+        <span class="ex-badge">متوسط</span>
+      </div>
+      <div class="ex-body">
+        <div class="ex-given">
+          <span class="ex-emoji">❌</span>
+          <span>عند رمي النرد، حدّد نوع حادث "ظهور الرقم 9".</span>
+        </div>
+        <div class="ex-step">
+          <div class="step-num">1</div>
+          <div class="step-text">نفكّر: هل يوجد الرقم 9 على النرد؟<br><strong>لا</strong>! النرد فيه أرقام من 1 إلى 6 فقط.</div>
+        </div>
+        <div class="ex-dice-row">
+          <div class="ex-dice dim">1</div>
+          <div class="ex-dice dim">2</div>
+          <div class="ex-dice dim">3</div>
+          <div class="ex-dice dim">4</div>
+          <div class="ex-dice dim">5</div>
+          <div class="ex-dice dim">6</div>
+        </div>
+        <div class="ex-step">
+          <div class="step-num">2</div>
+          <div class="step-text">نكتب الحادث: <strong>ح = { }</strong> (مجموعة فارغة)</div>
+        </div>
+        <div class="ex-step">
+          <div class="step-num">3</div>
+          <div class="step-text">الحادث فارغ → <strong>لا يحدث أبداً</strong> → إذن هو حادث <strong>مستحيل</strong>.</div>
+        </div>
+        <div class="ex-answer">✅ الإجابة: حادث مستحيل (لا يقع أبداً)</div>
+      </div>
+    </div>
+
+    <div class="tip-box" style="margin-top:18px;">
+      <span style="font-size:1.4rem;">🌟</span>
+      <span><strong>خلاصة سريعة:</strong><br>
+      • عنصر واحد = <strong style="color:var(--b)">بسيط</strong><br>
+      • أكثر من عنصر = <strong style="color:var(--pu)">مركّب</strong><br>
+      • يساوي Ω = <strong style="color:var(--g)">مؤكد</strong><br>
+      • فارغ { } = <strong style="color:var(--r)">مستحيل</strong></span>
+    </div>
+  </div>
+
+  <!-- ═══ WORKSHEET ═══ -->
+  <div class="section" id="worksheet">
+    <div class="ws-header">
+      <h2>📄 ورقة العمل</h2>
+      <div class="ws-info">👩‍🏫 إعداد المعلمة: <strong style="color:var(--p)">نور حجاج</strong></div>
+    </div>
+
+    <div id="wsResultBar">
+      <h3>🎯 نتيجتك</h3>
+      <div class="ws-score" id="wsScoreText">—</div>
+      <p id="wsMsg">—</p>
+    </div>
+
+    <!-- Q1 -->
+    <div class="question-card">
+      <div class="q-header">
+        <div class="q-num">1</div>
+        <div class="q-text">🎲 عند رمي حجر نرد، الفضاء العيني Ω يساوي؟</div>
+        <span class="q-level level-easy">سهل</span>
+      </div>
+      <div class="mcq-options">
+        <button class="mcq-btn" onclick="chkMCQ(this, 1, true)">{1, 2, 3, 4, 5, 6}</button>
+        <button class="mcq-btn" onclick="chkMCQ(this, 1, false)">{1, 2, 3}</button>
+        <button class="mcq-btn" onclick="chkMCQ(this, 1, false)">{2, 4, 6}</button>
+      </div>
+      <div class="feedback" id="fb1"></div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="question-card">
+      <div class="q-header">
+        <div class="q-num">2</div>
+        <div class="q-text">🎯 ح = {3} هو حادث:</div>
+        <span class="q-level level-easy">سهل</span>
+      </div>
+      <div class="mcq-options">
+        <button class="mcq-btn" onclick="chkMCQ(this, 2, true)">بسيط (فيه عنصر واحد)</button>
+        <button class="mcq-btn" onclick="chkMCQ(this, 2, false)">مركّب (فيه أكثر من عنصر)</button>
+        <button class="mcq-btn" onclick="chkMCQ(this, 2, false)">مستحيل</button>
+      </div>
+      <div class="feedback" id="fb2"></div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="question-card">
+      <div class="q-header">
+        <div class="q-num">3</div>
+        <div class="q-text">⭐ ح = {1, 3, 5} (ظهور رقم فردي) هو حادث:</div>
+        <span class="q-level level-easy">سهل</span>
+      </div>
+      <div class="mcq-options">
+        <button class="mcq-btn" onclick="chkMCQ(this, 3, false)">بسيط</button>
+        <button class="mcq-btn" onclick="chkMCQ(this, 3, true)">مركّب</button>
+        <button class="mcq-btn" onclick="chkMCQ(this, 3, false)">مؤكد</button>
+      </div>
+      <div class="feedback" id="fb3"></div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="question-card">
+      <div class="q-header">
+        <div class="q-num">4</div>
+        <div class="q-text">🚀 ظهور الرقم 10 عند رمي نرد عادي، هذا حادث:</div>
+        <span class="q-level level-med">متوسط</span>
+      </div>
+      <div class="mcq-options">
+        <button class="mcq-btn" onclick="chkMCQ(this, 4, false)">بسيط</button>
+        <button class="mcq-btn" onclick="chkMCQ(this, 4, false)">مؤكد</button>
+        <button class="mcq-btn" onclick="chkMCQ(this, 4, true)">مستحيل (لا يحدث)</button>
+      </div>
+      <div class="feedback" id="fb4"></div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="question-card">
+      <div class="q-header">
+        <div class="q-num">5</div>
+        <div class="q-text">✅ ظهور رقم أقل من 10 عند رمي نرد، هذا حادث:</div>
+        <span class="q-level level-med">متوسط</span>
+      </div>
+      <div class="mcq-options">
+        <button class="mcq-btn" onclick="chkMCQ(this, 5, true)">مؤكد (يحدث دائماً)</button>
+        <button class="mcq-btn" onclick="chkMCQ(this, 5, false)">مستحيل</button>
+        <button class="mcq-btn" onclick="chkMCQ(this, 5, false)">بسيط</button>
+      </div>
+      <div class="feedback" id="fb5"></div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="question-card">
+      <div class="q-header">
+        <div class="q-num">6</div>
+        <div class="q-text">🔢 إذا كان Ω = {1,2,3,4,5,6} فعدد عناصر Ω =</div>
+        <span class="q-level level-easy">سهل</span>
+      </div>
+      <div class="mcq-options">
+        <button class="mcq-btn" onclick="chkMCQ(this, 6, false)">3</button>
+        <button class="mcq-btn" onclick="chkMCQ(this, 6, true)">6</button>
+        <button class="mcq-btn" onclick="chkMCQ(this, 6, false)">12</button>
+      </div>
+      <div class="feedback" id="fb6"></div>
+    </div>
+
+    <div style="text-align:center; margin-top:22px;">
+      <button class="submit-btn" onclick="submitWS()">📤 عرض النتيجة</button>
+    </div>
+  </div>
+
+  <!-- ═══ GAME ═══ -->
+  <div class="section" id="game">
+    <div id="gamePlayArea">
+      <div class="game-title-bar">
+        <h2>🎮 تحدي الحوادث</h2>
+        <div class="score-display">النقاط: <span id="scoreVal">0</span></div>
+      </div>
+
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-fill" id="progressBar" style="width:0%"></div>
+      </div>
+
+      <div class="game-question-box">
+        <div class="q-label" id="qCounter">سؤال 1 من 8</div>
+        <div class="q-visual" id="qVisual"></div>
+        <div class="q-main" id="gameQ">...</div>
+      </div>
+
+      <div class="choices-grid" id="choicesGrid"></div>
+      <div class="game-feedback" id="gameFeedback">اختر الإجابة الصحيحة 👆</div>
+      <div style="text-align:center">
+        <button class="next-btn" id="nextBtn" onclick="nextQuestion()" style="display:none">التالي ←</button>
+      </div>
+    </div>
+
+    <div class="result-screen" id="resultScreen" style="display:none">
+      <div class="big-emoji" id="resultEmoji">🎉</div>
+      <h2 id="resultTitle">أحسنت!</h2>
+      <p id="resultMsg">لقد أكملت التحدي</p>
+      <div class="result-score" id="resultScore">0 / 8</div>
+      <br>
+      <button class="restart-btn" onclick="restartGame()">🔄 العب مجدداً</button>
+    </div>
+  </div>
+
+</main>
+
+<div class="footer">
+  ✨ من إعداد المعلمة <span class="name">نور حجاج</span> ✨
+</div>
+
+<script>
+// 🎵 SOUND ENGINE
+let soundOn = true;
+let audioCtx = null;
+function initAudio() {
+  if (!audioCtx) {
+    try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch(e) {}
+  }
+}
+function playTone(freq, duration, type = 'sine', volume = 0.15) {
+  if (!soundOn || !audioCtx) return;
+  try {
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = type;
+    osc.frequency.value = freq;
+    gain.gain.setValueAtTime(volume, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+    osc.connect(gain); gain.connect(audioCtx.destination);
+    osc.start(); osc.stop(audioCtx.currentTime + duration);
+  } catch(e) {}
+}
+function soundCorrect() {
+  playTone(523, 0.12); setTimeout(() => playTone(659, 0.12), 100);
+  setTimeout(() => playTone(784, 0.18), 200);
+}
+function soundWrong() {
+  playTone(280, 0.15, 'square', 0.10);
+  setTimeout(() => playTone(200, 0.25, 'square', 0.10), 130);
+}
+function soundTransition() { playTone(440, 0.08, 'sine', 0.08); setTimeout(() => playTone(660, 0.10), 60); }
+function soundClick() { playTone(800, 0.04, 'sine', 0.06); }
+function soundVictory() {
+  [523, 659, 784, 1047].forEach((n, i) => setTimeout(() => playTone(n, 0.2, 'sine', 0.18), i * 130));
+  setTimeout(() => playTone(1047, 0.35, 'sine', 0.18), 750);
+}
+function soundSubmit() {
+  playTone(660, 0.1); setTimeout(() => playTone(880, 0.18), 100);
+}
+function toggleSound() {
+  soundOn = !soundOn;
+  document.getElementById('soundToggle').textContent = soundOn ? '🔊' : '🔇';
+  if (soundOn) { initAudio(); soundClick(); }
+}
+
+// 🎊 CONFETTI
+function confetti(count = 50) {
+  const colors = ['#ffc857', '#8b1e5b', '#2ecc71', '#e74c3c', '#9b59b6', '#3498db'];
+  for (let i = 0; i < count; i++) {
+    const piece = document.createElement('div');
+    piece.className = 'confetti-piece';
+    piece.style.left = Math.random() * 100 + 'vw';
+    piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+    piece.style.animationDuration = (2 + Math.random() * 2) + 's';
+    piece.style.transform = `rotate(${Math.random() * 360}deg)`;
+    if (Math.random() > 0.5) piece.style.borderRadius = '50%';
+    document.body.appendChild(piece);
+    setTimeout(() => piece.remove(), 4500);
+  }
+}
+
+// 👤 WELCOME
+let studentName = '';
+function toggleStart() {
+  const v = document.getElementById('nameInput').value.trim();
+  document.getElementById('goBtn').disabled = v.length < 2;
+}
+function startLesson() {
+  initAudio();
+  soundTransition();
+  studentName = document.getElementById('nameInput').value.trim();
+  document.getElementById('badgeName').textContent = studentName;
+  document.getElementById('welcome').style.animation = 'fadeOut 0.4s ease forwards';
+  setTimeout(() => document.getElementById('welcome').style.display = 'none', 380);
+}
+const fadeStyle = document.createElement('style');
+fadeStyle.textContent = '@keyframes fadeOut { to { opacity: 0; transform: scale(0.95); } }';
+document.head.appendChild(fadeStyle);
+
+// 📑 TABS
+function showTab(id, btn) {
+  soundTransition();
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// 📝 WORKSHEET
+const wsTotals = 6;
+let wsResults = {};
+const wsHints = {
+  1: 'Ω = {1,2,3,4,5,6} لأن النرد فيه 6 أرقام',
+  2: 'ح = {3} فيه عنصر واحد فقط → بسيط',
+  3: 'ح = {1,3,5} فيه 3 عناصر → مركّب',
+  4: 'النرد ما فيه رقم 10 → مستحيل',
+  5: 'كل أرقام النرد أقل من 10 → مؤكد',
+  6: 'Ω = {1,2,3,4,5,6} يحتوي 6 عناصر'
+};
+
+function chkMCQ(btn, num, isCorrect) {
+  if (wsResults[num]) return;
+  const fb = document.getElementById('fb' + num);
+  const allBtns = btn.parentElement.querySelectorAll('.mcq-btn');
+  allBtns.forEach(b => b.classList.add('dis'));
+
+  if (isCorrect) {
+    soundCorrect();
+    btn.classList.add('ok');
+    fb.className = 'feedback correct';
+    fb.textContent = '✅ صحيح! ' + wsHints[num];
+    wsResults[num] = 'correct';
+  } else {
+    soundWrong();
+    btn.classList.add('err');
+    // Highlight correct
+    allBtns.forEach(b => {
+      if (b.getAttribute('onclick').includes('true')) b.classList.add('ok');
+    });
+    fb.className = 'feedback wrong';
+    fb.textContent = '❌ خطأ — التلميح: ' + wsHints[num];
+    wsResults[num] = 'wrong';
+  }
+}
+
+function submitWS() {
+  for (let i = 1; i <= wsTotals; i++) {
+    if (!wsResults[i]) wsResults[i] = 'skipped';
+  }
+  const correct = Object.values(wsResults).filter(v => v === 'correct').length;
+  const pct = Math.round((correct / wsTotals) * 100);
+  const msg = pct >= 80 ? '🌟 ممتاز يا بطل!' : pct >= 60 ? '👍 جيد، استمر!' : '📚 راجع الدرس مرة أخرى';
+  const bar = document.getElementById('wsResultBar');
+  bar.style.display = 'block';
+  document.getElementById('wsScoreText').textContent = correct + ' / ' + wsTotals + ' (' + pct + '%)';
+  document.getElementById('wsMsg').textContent = msg;
+  bar.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  soundSubmit();
+  if (pct >= 80) confetti(40);
+}
+
+// 🎮 GAME
+const questions = [
+  { q: 'حادث ح = {4} هو حادث:', choices: ['بسيط', 'مركّب', 'مستحيل', 'مؤكد'], ans: 0, icon: 'dice1' },
+  { q: 'حادث ح = {2,4,6} هو حادث:', choices: ['مركّب', 'بسيط', 'مستحيل', 'فارغ'], ans: 0, icon: 'dice2' },
+  { q: 'الحادث الذي يحتوي عنصراً واحداً فقط يُسمّى:', choices: ['البسيط', 'المركّب', 'المؤكد', 'المستحيل'], ans: 0, icon: 'one' },
+  { q: 'عند رمي نرد، ظهور رقم 9 هو حادث:', choices: ['مستحيل', 'مؤكد', 'بسيط', 'مركّب'], ans: 0, icon: 'no' },
+  { q: 'عند رمي نرد، ظهور رقم بين 1 و 6 هو حادث:', choices: ['مؤكد', 'مستحيل', 'بسيط', 'فارغ'], ans: 0, icon: 'check' },
+  { q: 'رمز الفضاء العيني هو:', choices: ['Ω', 'ح', 'ل', 'م'], ans: 0, icon: 'omega' },
+  { q: 'عدد عناصر Ω عند رمي حجر نرد:', choices: ['6', '3', '2', '12'], ans: 0, icon: 'dice2' },
+  { q: 'الحادث المستحيل يكون:', choices: ['فارغ { }', 'يساوي Ω', 'فيه عنصر واحد', 'فيه عنصرين'], ans: 0, icon: 'empty' },
+];
+
+const iconSVG = {
+  dice1: '<svg viewBox="0 0 60 60"><rect x="8" y="8" width="44" height="44" rx="8" fill="#fff" stroke="#ffc857" stroke-width="2"/><circle cx="30" cy="30" r="4" fill="#8b1e5b"/></svg>',
+  dice2: '<svg viewBox="0 0 60 60"><rect x="8" y="8" width="44" height="44" rx="8" fill="#fff" stroke="#ffc857" stroke-width="2"/><circle cx="18" cy="18" r="3.5" fill="#8b1e5b"/><circle cx="42" cy="18" r="3.5" fill="#8b1e5b"/><circle cx="18" cy="42" r="3.5" fill="#8b1e5b"/><circle cx="42" cy="42" r="3.5" fill="#8b1e5b"/><circle cx="30" cy="30" r="3.5" fill="#8b1e5b"/></svg>',
+  one: '<svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="22" fill="#fff" fill-opacity="0.3" stroke="#fff" stroke-width="2"/><text x="30" y="40" text-anchor="middle" fill="#fff" font-size="26" font-weight="900">1</text></svg>',
+  no: '<svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="22" fill="none" stroke="#fff" stroke-width="3"/><line x1="14" y1="14" x2="46" y2="46" stroke="#fff" stroke-width="3"/></svg>',
+  check: '<svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="22" fill="#fff" fill-opacity="0.3" stroke="#fff" stroke-width="2"/><path d="M18 30 L26 38 L42 22" fill="none" stroke="#ffc857" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  omega: '<svg viewBox="0 0 60 60"><rect x="6" y="6" width="48" height="48" rx="6" fill="#fff" fill-opacity="0.25" stroke="#fff" stroke-width="2"/><text x="30" y="42" text-anchor="middle" fill="#fff" font-size="30" font-weight="900">Ω</text></svg>',
+  empty: '<svg viewBox="0 0 60 60"><text x="30" y="40" text-anchor="middle" fill="#fff" font-size="30" font-weight="900">{ }</text></svg>'
+};
+
+const shuffled = questions.map(q => {
+  const correctText = q.choices[q.ans];
+  const all = [...q.choices].sort(() => Math.random() - 0.5);
+  return { q: q.q, choices: all, correctText, icon: q.icon };
+});
+
+let currentQ = 0, score = 0, answered = false;
+
+function loadQuestion() {
+  const data = shuffled[currentQ];
+  document.getElementById('qCounter').textContent = `سؤال ${currentQ + 1} من ${shuffled.length}`;
+  document.getElementById('gameQ').textContent = data.q;
+  document.getElementById('qVisual').innerHTML = iconSVG[data.icon] || '';
+  document.getElementById('progressBar').style.width = `${(currentQ / shuffled.length) * 100}%`;
+  document.getElementById('gameFeedback').textContent = 'اختر الإجابة الصحيحة 👆';
+  document.getElementById('gameFeedback').className = 'game-feedback';
+  document.getElementById('nextBtn').style.display = 'none';
+  answered = false;
+
+  const grid = document.getElementById('choicesGrid');
+  grid.innerHTML = '';
+  data.choices.forEach(ch => {
+    const btn = document.createElement('button');
+    btn.className = 'choice-btn';
+    btn.textContent = ch;
+    btn.onclick = () => selectChoice(btn, ch, data.correctText);
+    grid.appendChild(btn);
+  });
+}
+
+function selectChoice(btn, chosen, correct) {
+  if (answered) return;
+  answered = true;
+  const btns = document.querySelectorAll('.choice-btn');
+  btns.forEach(b => {
+    b.classList.add('dis');
+    if (b.textContent === correct) b.classList.add('ok');
+  });
+  const fb = document.getElementById('gameFeedback');
+  if (chosen === correct) {
+    soundCorrect();
+    score++;
+    document.getElementById('scoreVal').textContent = score;
+    btn.classList.add('ok');
+    fb.className = 'game-feedback correct-fb';
+    fb.textContent = '🎉 رائع! إجابة صحيحة';
+  } else {
+    soundWrong();
+    btn.classList.add('err');
+    fb.className = 'game-feedback wrong-fb';
+    fb.textContent = `❌ الصحيحة: ${correct}`;
+  }
+  document.getElementById('nextBtn').style.display = 'inline-block';
+}
+
+function nextQuestion() {
+  soundClick();
+  currentQ++;
+  if (currentQ >= shuffled.length) showResult();
+  else loadQuestion();
+}
+
+function showResult() {
+  document.getElementById('gamePlayArea').style.display = 'none';
+  const rs = document.getElementById('resultScreen');
+  rs.style.display = 'block';
+  const pct = score / shuffled.length;
+  document.getElementById('resultScore').textContent = `${score} / ${shuffled.length}`;
+
+  if (pct >= 0.875) {
+    document.getElementById('resultEmoji').textContent = '🏆';
+    document.getElementById('resultTitle').textContent = 'بطل الرياضيات!';
+    document.getElementById('resultMsg').textContent = 'أداء ممتاز يا نجم! 💪';
+    soundVictory();
+    confetti(80);
+  } else if (pct >= 0.625) {
+    document.getElementById('resultEmoji').textContent = '⭐';
+    document.getElementById('resultTitle').textContent = 'أحسنت!';
+    document.getElementById('resultMsg').textContent = 'أداء جيد، حاول المرة القادمة الأفضل';
+    soundVictory();
+    confetti(40);
+  } else {
+    document.getElementById('resultEmoji').textContent = '📚';
+    document.getElementById('resultTitle').textContent = 'تحتاج مراجعة';
+    document.getElementById('resultMsg').textContent = 'راجع الشرح من جديد ثم حاول مرة أخرى';
+    soundSubmit();
+  }
+}
+
+function restartGame() {
+  soundClick();
+  currentQ = 0; score = 0;
+  document.getElementById('scoreVal').textContent = 0;
+  document.getElementById('gamePlayArea').style.display = 'block';
+  document.getElementById('resultScreen').style.display = 'none';
+  shuffled.forEach((q, i) => {
+    shuffled[i].choices = [...questions[i].choices].sort(() => Math.random() - 0.5);
+  });
+  loadQuestion();
+}
+
+loadQuestion();
+</script>
+</body>
+</html>
