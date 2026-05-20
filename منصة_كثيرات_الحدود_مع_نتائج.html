@@ -1,0 +1,3769 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>عالم كثيرات الحدود ✨</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Tajawal:wght@400;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --p1: #2563eb; --p1l: #3b82f6; --p1d: #1e3a8a;
+  --p2: #7c3aed; --p2l: #a855f7; --p2d: #4c1d95;
+  --p3: #db2777; --p3l: #ec4899; --p3d: #831843;
+  --acc: #f59e0b; --acc2: #f97316; --accd: #b45309;
+  --g: #10b981; --gd: #047857;
+  --r: #ef4444; --rd: #b91c1c;
+  --y: #eab308;
+  --shadow: 0 8px 32px rgba(0,0,0,0.12);
+  --shadow-lg: 0 16px 48px rgba(0,0,0,0.2);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Cairo', sans-serif;
+  background: linear-gradient(135deg, #eff6ff 0%, #f3e8ff 50%, #fce7f3 100%);
+  min-height: 100vh; color: #1e293b;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ════ CONFETTI ════ */
+.confetti {
+  position: fixed; width: 10px; height: 10px;
+  z-index: 9999; pointer-events: none;
+  animation: confettiFall 3s linear forwards;
+}
+@keyframes confettiFall {
+  0% { transform: translateY(-100vh) rotate(0); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+
+/* ════ SHAKE ════ */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-8px); }
+  75% { transform: translateX(8px); }
+}
+.shake { animation: shake 0.4s ease-in-out; }
+
+/* ════ POP ════ */
+@keyframes pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+.pop { animation: pop 0.4s ease-out; }
+
+/* ════ WELCOME ════ */
+#welcome {
+  position: fixed; inset: 0; z-index: 999;
+  background: linear-gradient(145deg, var(--p1) 0%, var(--p2) 50%, var(--p3) 100%);
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px; overflow: hidden;
+}
+.float-shape {
+  position: absolute; opacity: 0.18;
+  animation: floatUp 8s ease-in-out infinite;
+  font-size: 55px; color: white;
+  font-weight: 900;
+}
+.float-shape.s1 { top: 8%; left: 8%; animation-delay: 0s; }
+.float-shape.s2 { top: 22%; right: 10%; animation-delay: 1s; }
+.float-shape.s3 { bottom: 18%; left: 12%; animation-delay: 2s; }
+.float-shape.s4 { bottom: 28%; right: 8%; animation-delay: 3s; }
+.float-shape.s5 { top: 50%; left: 4%; animation-delay: 1.5s; }
+.float-shape.s6 { top: 55%; right: 5%; animation-delay: 2.5s; }
+.float-shape.s7 { top: 30%; left: 45%; animation-delay: 0.5s; }
+.float-shape.s8 { bottom: 40%; right: 45%; animation-delay: 3.5s; }
+@keyframes floatUp {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-30px) rotate(15deg); }
+}
+.wc {
+  background: white; border-radius: 28px;
+  padding: 38px 32px 32px; width: 100%; max-width: 440px;
+  text-align: center; box-shadow: 0 24px 64px rgba(0,0,0,0.35);
+  position: relative; z-index: 2;
+  animation: popIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes popIn { from { transform: scale(0.7); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.wc-emoji {
+  font-size: 75px; display: block; margin-bottom: 8px;
+  animation: bounce 2s ease-in-out infinite;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+}
+@keyframes bounce {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-12px) rotate(8deg); }
+}
+.wc h1 {
+  font-family: 'Tajawal', sans-serif; font-size: 1.8rem;
+  font-weight: 900; margin-bottom: 4px;
+  background: linear-gradient(135deg, var(--p1), var(--p2), var(--p3));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.wc-teacher {
+  background: linear-gradient(135deg, var(--p1), var(--p2));
+  color: white; padding: 8px 18px; border-radius: 20px;
+  font-size: 0.88rem; font-weight: 700;
+  display: inline-block; margin-bottom: 14px;
+  box-shadow: 0 4px 12px rgba(124,58,237,0.4);
+}
+.wc-teacher span { color: var(--y); }
+.lesson-info { font-size: 0.85rem; color: #888; margin-bottom: 22px; }
+.wc input {
+  width: 100%; padding: 14px 16px; font-family: 'Cairo', sans-serif;
+  font-size: 1rem; border: 2.5px solid #c7d2fe; border-radius: 14px;
+  color: var(--p1); text-align: center; outline: none;
+  transition: all 0.2s; margin-bottom: 16px; background: #f8faff;
+}
+.wc input:focus { 
+  border-color: var(--p1); 
+  box-shadow: 0 0 0 4px rgba(37,99,235,0.15);
+  transform: translateY(-1px);
+}
+.go-btn {
+  width: 100%; padding: 15px;
+  background: linear-gradient(135deg, var(--p1), var(--p2));
+  color: white; border: none; border-radius: 14px;
+  font-family: 'Cairo', sans-serif; font-size: 1.05rem; font-weight: 900;
+  cursor: pointer; transition: all 0.25s;
+  box-shadow: 0 6px 18px rgba(37,99,235,0.4);
+}
+.go-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(37,99,235,0.5); }
+.go-btn:active { transform: translateY(0); }
+
+/* ════ SOUND TOGGLE ════ */
+.sound-toggle {
+  position: fixed; top: 70px; left: 12px; z-index: 100;
+  background: white; border: 2px solid var(--p1);
+  width: 48px; height: 48px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; box-shadow: 0 6px 16px rgba(37,99,235,0.25);
+  font-size: 22px; transition: all 0.2s;
+}
+.sound-toggle:hover { transform: scale(1.1) rotate(10deg); }
+
+/* ════ HEADER ════ */
+header {
+  background: linear-gradient(135deg, var(--p1), var(--p2));
+  color: white; padding: 16px 22px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; box-shadow: 0 4px 18px rgba(37,99,235,0.3);
+  position: sticky; top: 0; z-index: 10; overflow: hidden;
+}
+header::before {
+  content: ''; position: absolute; top: -40px; left: -40px;
+  width: 180px; height: 180px;
+  background: rgba(245,158,11,0.2); border-radius: 50%;
+}
+header::after {
+  content: ''; position: absolute; bottom: -50px; right: -50px;
+  width: 150px; height: 150px;
+  background: rgba(255,255,255,0.1); border-radius: 50%;
+}
+.h-left { display: flex; align-items: center; gap: 12px; position: relative; z-index: 2; cursor: pointer; transition: transform 0.2s; }
+.h-left:hover { transform: scale(1.02); }
+.header-icon {
+  font-size: 28px; background: var(--acc);
+  border-radius: 14px; padding: 4px 12px;
+  box-shadow: 0 4px 12px rgba(245,158,11,0.5);
+  animation: pulse 3s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+header h1 { font-family: 'Tajawal', sans-serif; font-size: 1.15rem; font-weight: 900; }
+header .sub { font-size: 0.72rem; opacity: 0.9; margin-top: 1px; }
+.h-right { display: flex; align-items: center; gap: 6px; position: relative; z-index: 2; }
+#studentBadge {
+  background: rgba(255,255,255,0.25); border: 1.5px solid rgba(255,255,255,0.4);
+  border-radius: 25px; padding: 6px 14px; font-size: 0.82rem;
+  color: white; font-weight: 700; max-width: 130px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+/* ════ HOME PAGE ════ */
+.home-container {
+  padding: 24px 16px;
+  max-width: 600px;
+  margin: 0 auto;
+  animation: fadeUp 0.5s ease;
+}
+.home-welcome {
+  text-align: center;
+  margin-bottom: 28px;
+  position: relative;
+}
+.home-welcome h2 {
+  font-family: 'Tajawal', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: #1e293b;
+  margin-bottom: 6px;
+}
+.home-welcome p {
+  font-size: 0.95rem;
+  color: #64748b;
+}
+.home-illustration {
+  font-size: 50px;
+  margin-bottom: 12px;
+  display: inline-block;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+.menu-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: white;
+  border-radius: 20px;
+  padding: 20px;
+  margin-bottom: 14px;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+  border-right: 6px solid;
+  position: relative;
+  overflow: hidden;
+}
+.menu-card::before {
+  content: ''; position: absolute; left: -30px; top: -30px;
+  width: 100px; height: 100px; border-radius: 50%;
+  opacity: 0.08;
+}
+.menu-card.m1::before { background: var(--p1); }
+.menu-card.m2::before { background: var(--p2); }
+.menu-card.m3::before { background: var(--p3); }
+.menu-card.m4::before { background: var(--acc); }
+.menu-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: var(--shadow-lg);
+}
+.menu-card:active {
+  transform: translateY(-2px) scale(1);
+}
+.menu-card.m1 { border-right-color: var(--p1); }
+.menu-card.m2 { border-right-color: var(--p2); }
+.menu-card.m3 { border-right-color: var(--p3); }
+.menu-card.m4 { border-right-color: var(--acc); }
+
+.menu-icon {
+  width: 70px; height: 70px;
+  border-radius: 18px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 36px; flex-shrink: 0;
+  color: white; position: relative; z-index: 2;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+}
+.menu-card.m1 .menu-icon { background: linear-gradient(135deg, var(--p1), var(--p1l)); }
+.menu-card.m2 .menu-icon { background: linear-gradient(135deg, var(--p2), var(--p2l)); }
+.menu-card.m3 .menu-icon { background: linear-gradient(135deg, var(--p3), var(--p3l)); }
+.menu-card.m4 .menu-icon { background: linear-gradient(135deg, var(--acc), var(--acc2)); }
+
+.menu-content { flex: 1; position: relative; z-index: 2; }
+.menu-title {
+  font-family: 'Tajawal', sans-serif;
+  font-size: 1.2rem; font-weight: 900;
+  margin-bottom: 4px;
+}
+.menu-card.m1 .menu-title { color: var(--p1); }
+.menu-card.m2 .menu-title { color: var(--p2); }
+.menu-card.m3 .menu-title { color: var(--p3); }
+.menu-card.m4 .menu-title { color: var(--acc2); }
+.menu-desc {
+  font-size: 0.85rem; color: #64748b; line-height: 1.5;
+}
+.menu-arrow {
+  font-size: 28px; color: #94a3b8;
+  flex-shrink: 0; transition: transform 0.2s;
+  position: relative; z-index: 2;
+}
+.menu-card:hover .menu-arrow { transform: translateX(-4px); }
+.menu-card.m1:hover .menu-arrow { color: var(--p1); }
+.menu-card.m2:hover .menu-arrow { color: var(--p2); }
+.menu-card.m3:hover .menu-arrow { color: var(--p3); }
+.menu-card.m4:hover .menu-arrow { color: var(--acc); }
+
+.progress-tag {
+  position: absolute; top: 12px; left: 12px;
+  background: var(--g); color: white;
+  padding: 4px 12px; border-radius: 14px;
+  font-size: 0.78rem; font-weight: 900;
+  display: none;
+  box-shadow: 0 3px 10px rgba(16,185,129,0.4);
+  animation: popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.progress-tag.show { display: inline-block; }
+.progress-tag.partial {
+  background: var(--acc);
+  box-shadow: 0 3px 10px rgba(245,158,11,0.4);
+}
+
+/* ════ BACK BUTTON ════ */
+.back-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: white; color: #475569;
+  border: 2px solid #e2e8f0; padding: 9px 16px;
+  border-radius: 12px; font-family: 'Cairo', sans-serif;
+  font-weight: 700; font-size: 0.88rem; cursor: pointer;
+  margin: 16px 16px 0; transition: all 0.2s;
+}
+.back-btn:hover {
+  background: #f1f5f9; transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* ════ LESSON HEADER ════ */
+.lesson-header {
+  text-align: center; padding: 24px 16px 28px;
+  color: white; border-radius: 0 0 28px 28px;
+  margin-bottom: 0; position: relative; overflow: hidden;
+}
+.lesson-header::before {
+  content: ''; position: absolute; top: -30px; left: -30px;
+  width: 150px; height: 150px;
+  background: rgba(255,255,255,0.1); border-radius: 50%;
+}
+.lesson-header::after {
+  content: ''; position: absolute; bottom: -50px; right: -30px;
+  width: 180px; height: 180px;
+  background: rgba(255,255,255,0.08); border-radius: 50%;
+}
+.lesson-header.h1 { background: linear-gradient(135deg, var(--p1), var(--p1l)); }
+.lesson-header.h2 { background: linear-gradient(135deg, var(--p2), var(--p2l)); }
+.lesson-header.h3 { background: linear-gradient(135deg, var(--p3), var(--p3l)); }
+.lesson-header.h4 { background: linear-gradient(135deg, var(--acc), var(--acc2)); }
+.lesson-header h2 {
+  font-family: 'Tajawal', sans-serif;
+  font-size: 1.55rem; font-weight: 900;
+  margin-bottom: 4px; position: relative; z-index: 2;
+}
+.lesson-header .lesson-emoji {
+  font-size: 56px; display: block;
+  margin-bottom: 6px; position: relative; z-index: 2;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+  animation: bounce 2.5s ease-in-out infinite;
+}
+
+/* ════ INNER TABS ════ */
+.inner-tabs {
+  display: flex; gap: 5px; padding: 14px 16px 0;
+  overflow-x: auto; scrollbar-width: none;
+  background: white;
+}
+.inner-tabs::-webkit-scrollbar { display: none; }
+.inner-tab {
+  padding: 10px 16px; border: 2px solid;
+  background: white; border-radius: 16px 16px 0 0;
+  font-family: 'Cairo', sans-serif; font-size: 0.82rem; font-weight: 800;
+  cursor: pointer; transition: all 0.25s; white-space: nowrap; flex-shrink: 0;
+  user-select: none; position: relative;
+}
+.inner-tab:hover { transform: translateY(-2px); }
+.inner-tab.t1 { border-color: var(--p1); color: var(--p1); }
+.inner-tab.t1.active { background: var(--p1); color: white; box-shadow: 0 -4px 12px rgba(37,99,235,0.3); }
+.inner-tab.t2 { border-color: var(--p2); color: var(--p2); }
+.inner-tab.t2.active { background: var(--p2); color: white; box-shadow: 0 -4px 12px rgba(124,58,237,0.3); }
+.inner-tab.t3 { border-color: var(--p3); color: var(--p3); }
+.inner-tab.t3.active { background: var(--p3); color: white; box-shadow: 0 -4px 12px rgba(219,39,119,0.3); }
+
+/* ════ LESSON CONTENT ════ */
+.lesson-content {
+  background: white; margin: 0 16px 24px;
+  border-radius: 0 16px 16px 16px;
+  box-shadow: var(--shadow); padding: 22px;
+  min-height: 460px;
+}
+
+.tab-pane { display: none; animation: fadeUp 0.4s ease; }
+.tab-pane.active { display: block; }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ════ INTRO BOX ════ */
+.intro-box {
+  border-radius: 18px; padding: 20px;
+  margin-bottom: 18px; position: relative; overflow: hidden;
+  color: white;
+}
+.intro-box.b1 { background: linear-gradient(135deg, var(--p1), var(--p1l)); }
+.intro-box.b2 { background: linear-gradient(135deg, var(--p2), var(--p2l)); }
+.intro-box.b3 { background: linear-gradient(135deg, var(--p3), var(--p3l)); }
+.intro-box::after {
+  content: ''; position: absolute; right: -30px; bottom: -40px;
+  width: 130px; height: 130px; border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+}
+.intro-box h2 { font-size: 1.2rem; font-weight: 900; margin-bottom: 10px; position: relative; z-index: 2; display: flex; align-items: center; gap: 8px; }
+.intro-box p { font-size: 0.95rem; line-height: 1.85; position: relative; z-index: 2; }
+
+/* ════ VISUAL CARDS ════ */
+.visual-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 12px; margin: 16px 0;
+}
+.visual-card {
+  background: white; padding: 14px 10px;
+  border-radius: 14px; text-align: center;
+  border: 2px solid; transition: transform 0.2s;
+  cursor: default;
+}
+.visual-card:hover { transform: translateY(-3px) scale(1.03); }
+.visual-card.v1 { border-color: var(--p1); }
+.visual-card.v2 { border-color: var(--p2); }
+.visual-card.v3 { border-color: var(--p3); }
+.visual-emoji { font-size: 40px; display: block; margin-bottom: 6px; }
+.visual-title { font-size: 0.85rem; font-weight: 800; }
+.visual-card.v1 .visual-title { color: var(--p1); }
+.visual-card.v2 .visual-title { color: var(--p2); }
+.visual-card.v3 .visual-title { color: var(--p3); }
+.visual-value {
+  display: block; font-weight: 900; font-size: 1.1rem;
+  margin-top: 4px; color: #1e293b;
+}
+
+/* ════ STORY BOX ════ */
+.story-box {
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  border: 2px solid var(--acc);
+  border-radius: 16px;
+  padding: 16px 18px; margin: 14px 0;
+  position: relative;
+}
+.story-box .story-icon {
+  position: absolute; top: -18px; right: 16px;
+  background: var(--acc2); color: white;
+  width: 40px; height: 40px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem;
+  box-shadow: 0 4px 12px rgba(245,158,11,0.5);
+  animation: pulse 2s ease-in-out infinite;
+}
+.story-box .story-text {
+  font-size: 0.94rem; line-height: 1.9;
+  color: #78350f; padding-right: 30px;
+}
+.story-box .story-text b { color: #92400e; }
+
+/* ════ MATH ILLUSTRATION ════ */
+.math-illustration {
+  background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+  border: 2px solid #7dd3fc;
+  border-radius: 16px;
+  padding: 20px;
+  text-align: center;
+  margin: 14px 0;
+}
+.math-formula-big {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--p1);
+  margin: 8px 0;
+  letter-spacing: 1px;
+}
+.math-breakdown {
+  display: flex; justify-content: center;
+  gap: 8px; flex-wrap: wrap;
+  margin-top: 12px;
+}
+.math-piece {
+  background: white; padding: 8px 14px;
+  border-radius: 10px; font-weight: 800;
+  border: 2px solid;
+  font-size: 0.95rem;
+}
+.math-piece.coeff { border-color: var(--p3); color: var(--p3); }
+.math-piece.var { border-color: var(--p1); color: var(--p1); }
+.math-piece.exp { border-color: var(--p2); color: var(--p2); }
+.math-piece-label {
+  display: block; font-size: 0.7rem;
+  color: #64748b; margin-top: 2px;
+}
+
+/* ════ FORMULA CARDS ════ */
+.formula-card {
+  background: white; border: 3px solid;
+  border-radius: 16px;
+  padding: 16px 18px; margin: 14px 0;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.2s;
+}
+.formula-card:hover { transform: translateY(-2px); }
+.formula-card.c1 { border-color: var(--p1); }
+.formula-card.c2 { border-color: var(--p2); }
+.formula-card.c3 { border-color: var(--p3); }
+.formula-card .formula-title {
+  font-size: 0.92rem; font-weight: 800; color: #475569;
+  margin-bottom: 10px; display: flex; align-items: center;
+  justify-content: center; gap: 6px;
+}
+.formula-card .formula-text {
+  font-size: 1.2rem; font-weight: 900;
+}
+.formula-card.c1 .formula-text { color: var(--p1); }
+.formula-card.c2 .formula-text { color: var(--p2); }
+.formula-card.c3 .formula-text { color: var(--p3); }
+
+/* ════ EXAMPLES ════ */
+.example-section {
+  background: #f8fafc;
+  border-right: 5px solid;
+  border-radius: 14px;
+  padding: 18px; margin: 16px 0;
+}
+.example-section.e1 { border-right-color: var(--p1); background: linear-gradient(to left, #eff6ff, #f8fafc); }
+.example-section.e2 { border-right-color: var(--p2); background: linear-gradient(to left, #faf5ff, #f8fafc); }
+.example-section.e3 { border-right-color: var(--p3); background: linear-gradient(to left, #fdf2f8, #f8fafc); }
+.example-section h3 {
+  font-size: 1.1rem; font-weight: 800; margin-bottom: 12px;
+  display: flex; align-items: center; gap: 8px;
+}
+.example-section.e1 h3 { color: var(--p1); }
+.example-section.e2 h3 { color: var(--p2); }
+.example-section.e3 h3 { color: var(--p3); }
+.example-item {
+  background: white; padding: 14px 16px; margin: 10px 0;
+  border-radius: 12px; font-size: 0.95rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  line-height: 1.8; transition: transform 0.2s;
+}
+.example-item:hover { transform: translateX(-4px); }
+.example-item .label {
+  display: inline-block; padding: 3px 12px;
+  border-radius: 14px; font-size: 0.75rem; font-weight: 800;
+  margin-left: 8px; color: white;
+}
+.example-section.e1 .label { background: var(--p1); }
+.example-section.e2 .label { background: var(--p2); }
+.example-section.e3 .label { background: var(--p3); }
+.example-item .ans {
+  color: var(--g); font-weight: 800;
+  background: #d1fae5; padding: 2px 10px;
+  border-radius: 8px;
+}
+
+/* ════ NOTE BOX ════ */
+.note-box {
+  background: linear-gradient(135deg, #fff7ed, #ffedd5);
+  border: 2px solid var(--acc2);
+  border-radius: 14px; padding: 14px 18px; margin: 14px 0;
+  font-size: 0.93rem; line-height: 1.9;
+  color: #7c2d12; position: relative;
+}
+.note-box b { color: #9a3412; }
+.note-box::before {
+  content: '💡 ملاحظة: ';
+  font-weight: 900; color: var(--acc2);
+}
+
+/* ════ WORKSHEET ════ */
+.worksheet {
+  background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+  border: 2px dashed var(--g);
+  border-radius: 16px; padding: 18px;
+}
+.worksheet h3 {
+  font-size: 1.1rem; font-weight: 800; color: #065f46;
+  margin-bottom: 14px;
+  display: flex; align-items: center; gap: 8px;
+}
+.question {
+  background: white; padding: 14px 16px;
+  margin: 12px 0; border-radius: 12px;
+  font-size: 0.95rem; line-height: 1.8;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  border-right: 4px solid var(--g);
+  transition: all 0.2s;
+}
+.question:hover { transform: translateX(-4px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+.question b { color: var(--gd); }
+
+.q-input-row {
+  display: flex; gap: 8px; align-items: center;
+  margin-top: 10px; flex-wrap: wrap;
+}
+.q-input {
+  flex: 1; padding: 10px 14px;
+  border: 2px solid #d1d5db;
+  border-radius: 10px; font-family: 'Cairo', sans-serif;
+  font-size: 0.95rem; min-width: 120px;
+  outline: none; transition: all 0.2s;
+}
+.q-input:focus { border-color: var(--g); box-shadow: 0 0 0 3px rgba(16,185,129,0.15); }
+.q-input.correct { border-color: var(--g); background: #d1fae5; }
+.q-input.wrong { border-color: var(--r); background: #fee2e2; }
+
+.check-btn {
+  background: var(--g); color: white; border: none;
+  padding: 10px 18px; border-radius: 10px; font-family: inherit;
+  font-weight: 800; font-size: 0.88rem; cursor: pointer;
+  transition: all 0.2s;
+}
+.check-btn:hover { transform: translateY(-2px); }
+.show-ans-btn {
+  background: var(--acc); color: white; border: none;
+  padding: 8px 16px; border-radius: 10px; font-family: inherit;
+  font-weight: 700; font-size: 0.82rem; cursor: pointer;
+  margin-right: 6px; margin-top: 6px;
+  transition: all 0.2s;
+}
+.show-ans-btn:hover { transform: translateY(-2px); background: var(--acc2); }
+.answer-reveal {
+  display: none; margin-top: 10px; padding: 10px 14px;
+  background: #d1fae5; border-radius: 10px; color: #065f46;
+  font-weight: 800; animation: fadeUp 0.3s ease;
+}
+.answer-reveal.show { display: block; }
+
+/* ════ GAMES ════ */
+.game-section {
+  border-radius: 18px; padding: 20px;
+  border: 3px solid;
+  position: relative; overflow: hidden;
+}
+.game-section.gm1 { background: linear-gradient(135deg, #eff6ff, #dbeafe); border-color: var(--p1); }
+.game-section.gm2 { background: linear-gradient(135deg, #faf5ff, #ede9fe); border-color: var(--p2); }
+.game-section.gm3 { background: linear-gradient(135deg, #fdf2f8, #fce7f3); border-color: var(--p3); }
+
+.game-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 16px; flex-wrap: wrap; gap: 10px;
+}
+.game-title-text {
+  font-size: 1.15rem; font-weight: 900;
+  display: flex; align-items: center; gap: 6px;
+}
+.gm1 .game-title-text { color: var(--p1); }
+.gm2 .game-title-text { color: var(--p2); }
+.gm3 .game-title-text { color: var(--p3); }
+.score-pill {
+  background: white; padding: 6px 16px; border-radius: 20px;
+  font-weight: 800; font-size: 0.88rem;
+  border: 2px solid; box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.gm1 .score-pill { border-color: var(--p1); color: var(--p1); }
+.gm2 .score-pill { border-color: var(--p2); color: var(--p2); }
+.gm3 .score-pill { border-color: var(--p3); color: var(--p3); }
+
+.game-question-box {
+  background: white; border-radius: 14px; padding: 16px;
+  margin-bottom: 14px; box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  position: relative; overflow: hidden;
+}
+.game-counter { font-size: 0.82rem; color: #64748b; font-weight: 800; }
+.progress-bar {
+  width: 100%; height: 8px; background: #e2e8f0;
+  border-radius: 4px; margin: 10px 0 14px; overflow: hidden;
+}
+.progress-fill { height: 100%; width: 0%; transition: width 0.4s; border-radius: 4px; }
+.gm1 .progress-fill { background: linear-gradient(90deg, var(--p1), var(--p1l)); }
+.gm2 .progress-fill { background: linear-gradient(90deg, var(--p2), var(--p2l)); }
+.gm3 .progress-fill { background: linear-gradient(90deg, var(--p3), var(--p3l)); }
+
+.game-question-emoji { 
+  font-size: 50px; text-align: center; display: block;
+  margin-bottom: 6px; 
+  filter: drop-shadow(0 3px 6px rgba(0,0,0,0.15));
+  animation: bounce 2.5s ease-in-out infinite;
+}
+.game-question {
+  font-size: 1.05rem; font-weight: 800; color: #1e293b;
+  text-align: center; margin: 8px 0;
+  background: #f8fafc; padding: 12px; border-radius: 10px;
+}
+
+.game-options {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 10px; margin: 14px 0;
+}
+.choice-btn {
+  padding: 14px 10px; background: white; border: 2.5px solid #e2e8f0;
+  border-radius: 14px; font-family: 'Cairo', sans-serif;
+  font-size: 0.95rem; font-weight: 800; cursor: pointer;
+  transition: all 0.2s; color: #334155;
+  min-height: 56px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.choice-btn:hover:not(.dis) { transform: translateY(-3px); box-shadow: 0 6px 16px rgba(0,0,0,0.12); }
+.gm1 .choice-btn:hover:not(.dis) { border-color: var(--p1); background: #eff6ff; }
+.gm2 .choice-btn:hover:not(.dis) { border-color: var(--p2); background: #faf5ff; }
+.gm3 .choice-btn:hover:not(.dis) { border-color: var(--p3); background: #fdf2f8; }
+.choice-btn.ok { 
+  background: linear-gradient(135deg, #d1fae5, #a7f3d0); 
+  border-color: var(--g); color: var(--gd);
+  animation: pop 0.5s ease;
+}
+.choice-btn.err { 
+  background: linear-gradient(135deg, #fee2e2, #fecaca); 
+  border-color: var(--r); color: var(--rd);
+  animation: shake 0.4s ease;
+}
+.choice-btn.dis { opacity: 0.6; cursor: not-allowed; pointer-events: none; }
+
+.game-feedback {
+  padding: 14px; border-radius: 14px; font-weight: 800;
+  font-size: 1rem; text-align: center; margin: 12px 0;
+  background: #f1f5f9; color: #475569;
+  transition: all 0.3s;
+}
+.game-feedback.correct-fb { 
+  background: linear-gradient(135deg, #d1fae5, #a7f3d0); 
+  color: var(--gd);
+  border: 2px solid var(--g);
+  animation: pop 0.5s ease;
+}
+.game-feedback.wrong-fb { 
+  background: linear-gradient(135deg, #fee2e2, #fecaca); 
+  color: var(--rd);
+  border: 2px solid var(--r);
+}
+
+.game-btn {
+  padding: 12px 26px; color: white;
+  border: none; border-radius: 14px; font-family: 'Cairo', sans-serif;
+  font-weight: 800; cursor: pointer; transition: all 0.2s;
+  font-size: 0.95rem; display: block; margin: 10px auto 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.gm1 .game-btn { background: linear-gradient(135deg, var(--p1), var(--p1l)); }
+.gm2 .game-btn { background: linear-gradient(135deg, var(--p2), var(--p2l)); }
+.gm3 .game-btn { background: linear-gradient(135deg, var(--p3), var(--p3l)); }
+.game-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+
+/* ════ RESULT ════ */
+.result-box {
+  background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+  border: 3px solid var(--g); border-radius: 18px;
+  padding: 28px; text-align: center;
+  animation: popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.result-emoji {
+  font-size: 72px; display: block; margin-bottom: 12px;
+  animation: bounce 1.2s ease-in-out infinite;
+}
+.result-score {
+  font-size: 2.6rem; font-weight: 900; color: var(--gd);
+  margin: 10px 0;
+}
+.result-msg {
+  font-size: 1.1rem; color: var(--gd); font-weight: 800;
+  margin-bottom: 16px;
+}
+.restart-btn {
+  padding: 12px 28px; background: var(--g); color: white;
+  border: none; border-radius: 14px; font-family: 'Cairo', sans-serif;
+  font-weight: 800; font-size: 0.98rem; cursor: pointer;
+  box-shadow: 0 6px 16px rgba(16,185,129,0.4);
+  transition: all 0.2s;
+}
+.restart-btn:hover { transform: scale(1.05); }
+
+/* ════ GAME SWITCHER ════ */
+.game-switcher {
+  display: flex; gap: 8px; margin-bottom: 16px;
+  flex-wrap: wrap; justify-content: center;
+}
+.game-switch-btn {
+  padding: 10px 16px;
+  background: white;
+  border: 2px solid;
+  border-radius: 14px;
+  font-family: 'Cairo', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.game-switch-btn.gs1 { border-color: var(--p1); color: var(--p1); }
+.game-switch-btn.gs1.active { background: var(--p1); color: white; box-shadow: 0 4px 12px rgba(37,99,235,0.4); }
+.game-switch-btn.gs2 { border-color: var(--p2); color: var(--p2); }
+.game-switch-btn.gs2.active { background: var(--p2); color: white; box-shadow: 0 4px 12px rgba(124,58,237,0.4); }
+.game-switch-btn.gs3 { border-color: var(--p3); color: var(--p3); }
+.game-switch-btn.gs3.active { background: var(--p3); color: white; box-shadow: 0 4px 12px rgba(219,39,119,0.4); }
+.game-switch-btn:hover:not(.active) { transform: translateY(-2px); }
+
+.game-variant { display: none; animation: fadeUp 0.4s ease; }
+.game-variant.active { display: block; }
+
+/* ════ MATCHING GAME (السحب) ════ */
+.match-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 16px 0;
+}
+.match-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.match-col-title {
+  text-align: center; font-weight: 900; font-size: 0.9rem;
+  padding: 8px; border-radius: 10px; color: white;
+  margin-bottom: 4px;
+}
+.match-col-title.left { background: var(--p1); }
+.match-col-title.right { background: var(--p3); }
+
+.match-item {
+  padding: 12px;
+  background: white;
+  border: 2.5px solid;
+  border-radius: 12px;
+  font-weight: 800;
+  text-align: center;
+  cursor: grab;
+  transition: all 0.2s;
+  font-size: 0.95rem;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+}
+.match-item.left-item { border-color: var(--p1); color: var(--p1); }
+.match-item.right-item { border-color: var(--p3); color: var(--p3); background: #fdf2f8; }
+.match-item.dragging { opacity: 0.5; transform: scale(0.95); }
+.match-item.drag-over { background: #fef3c7; border-color: var(--acc); transform: scale(1.05); }
+.match-item.matched-left {
+  background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+  border-color: var(--g); color: var(--gd);
+  cursor: default;
+  animation: pop 0.4s ease;
+}
+.match-item.matched-right {
+  background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+  border-color: var(--g); color: var(--gd);
+  animation: pop 0.4s ease;
+}
+
+/* ════ FLASHCARDS ════ */
+.flashcard {
+  background: linear-gradient(135deg, var(--p1), var(--p1l));
+  color: white;
+  border-radius: 18px;
+  padding: 24px;
+  text-align: center;
+  margin: 16px 0;
+  min-height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+  box-shadow: 0 8px 24px rgba(37,99,235,0.3);
+  animation: cardFlip 0.5s ease;
+}
+@keyframes cardFlip {
+  0% { transform: rotateY(90deg); opacity: 0; }
+  100% { transform: rotateY(0); opacity: 1; }
+}
+.flashcard-num {
+  position: absolute; top: 12px; right: 14px;
+  background: rgba(255,255,255,0.25); padding: 4px 12px;
+  border-radius: 12px; font-size: 0.8rem; font-weight: 800;
+}
+.flashcard-q {
+  font-size: 1.4rem; font-weight: 900;
+  margin-bottom: 4px;
+  letter-spacing: 1px;
+}
+.flashcard-sub {
+  font-size: 0.95rem; opacity: 0.95;
+  font-weight: 700;
+}
+
+/* ════ DRAG ORDER ════ */
+.order-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 16px 0;
+  padding: 14px;
+  background: #f8fafc;
+  border-radius: 14px;
+  border: 2px dashed var(--p2);
+}
+.order-item {
+  padding: 14px 16px;
+  background: white;
+  border: 2.5px solid var(--p2);
+  border-radius: 12px;
+  font-weight: 800;
+  font-size: 1.05rem;
+  text-align: center;
+  cursor: grab;
+  transition: all 0.2s;
+  color: var(--p2);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+  position: relative;
+}
+.order-item::before {
+  content: '⋮⋮';
+  position: absolute;
+  right: 12px;
+  color: #94a3b8;
+  font-size: 1.2rem;
+}
+.order-item.dragging { opacity: 0.5; transform: scale(0.95); }
+.order-item.drag-target { border-color: var(--acc); background: #fef3c7; }
+.order-item.correct-pos {
+  background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+  border-color: var(--g); color: var(--gd);
+  animation: pop 0.4s ease;
+}
+.order-item.wrong-pos {
+  background: linear-gradient(135deg, #fee2e2, #fecaca);
+  border-color: var(--r); color: var(--rd);
+  animation: shake 0.4s ease;
+}
+
+/* ════ LIGHT BUTTONS ════ */
+.lights-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 16px 0;
+}
+.light-btn {
+  padding: 18px 10px;
+  background: white;
+  border: 3px solid #cbd5e1;
+  border-radius: 14px;
+  font-family: 'Cairo', sans-serif;
+  font-size: 1rem;
+  font-weight: 900;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: #475569;
+  min-height: 64px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.06);
+}
+.light-btn:hover:not(.lit-correct):not(.lit-wrong):not(.locked) {
+  transform: translateY(-3px);
+  border-color: var(--p2);
+  background: #faf5ff;
+}
+.light-btn.lit-correct {
+  background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+  border-color: var(--g); color: var(--gd);
+  box-shadow: 0 0 20px rgba(16,185,129,0.5);
+  animation: pop 0.4s ease;
+}
+.light-btn.lit-wrong {
+  background: linear-gradient(135deg, #fee2e2, #fecaca);
+  border-color: var(--r); color: var(--rd);
+  animation: shake 0.4s ease;
+}
+.light-btn.show-must {
+  background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+  border-color: var(--g); color: var(--gd);
+  border-width: 4px;
+  box-shadow: 0 0 15px rgba(16,185,129,0.4);
+}
+.light-btn.locked {
+  cursor: default; opacity: 0.7;
+}
+
+.lights-info {
+  text-align: center;
+  padding: 12px;
+  background: white;
+  border-radius: 12px;
+  margin: 12px 0;
+  font-weight: 800;
+  font-size: 0.92rem;
+  border: 2px solid var(--p2);
+  color: var(--p2);
+}
+
+/* ════ SLIDER GAME ════ */
+.slider-container {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  margin: 16px 0;
+  border: 2px solid var(--p3);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+.slider-question {
+  text-align: center;
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: var(--p3);
+  margin-bottom: 16px;
+  background: #fdf2f8;
+  padding: 14px;
+  border-radius: 12px;
+}
+.slider-value-display {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--p3);
+  margin: 16px 0;
+  background: linear-gradient(135deg, #fdf2f8, #fce7f3);
+  padding: 16px;
+  border-radius: 16px;
+  border: 3px solid var(--p3);
+  transition: all 0.2s;
+}
+.slider-value-display.correct {
+  background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+  border-color: var(--g); color: var(--gd);
+}
+.slider-value-display.wrong {
+  background: linear-gradient(135deg, #fee2e2, #fecaca);
+  border-color: var(--r); color: var(--rd);
+}
+.slider-input {
+  width: 100%;
+  height: 14px;
+  -webkit-appearance: none;
+  background: linear-gradient(90deg, #f3e8ff, #e9d5ff);
+  border-radius: 7px;
+  outline: none;
+  margin: 12px 0;
+}
+.slider-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 32px;
+  height: 32px;
+  background: var(--p3);
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(219,39,119,0.5);
+  border: 3px solid white;
+}
+.slider-input::-moz-range-thumb {
+  width: 32px;
+  height: 32px;
+  background: var(--p3);
+  border-radius: 50%;
+  cursor: pointer;
+  border: 3px solid white;
+}
+.slider-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--p3);
+  padding: 0 4px;
+}
+
+/* ════ CHALLENGE MODE ════ */
+.challenge-level {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 14px;
+  font-weight: 900;
+  font-size: 0.85rem;
+  color: white;
+  margin-bottom: 10px;
+}
+.challenge-level.easy { background: var(--g); }
+.challenge-level.medium { background: var(--acc); }
+.challenge-level.hard { background: var(--r); }
+.challenge-level.expert {
+  background: linear-gradient(135deg, var(--p3), var(--p2));
+}
+
+/* ════ TIMER GAME ════ */
+.timer-bar-container {
+  width: 100%;
+  height: 14px;
+  background: #e2e8f0;
+  border-radius: 7px;
+  overflow: hidden;
+  margin: 10px 0;
+  position: relative;
+}
+.timer-bar-fill {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, var(--g), var(--acc), var(--r));
+  border-radius: 7px;
+  transition: width 1s linear;
+}
+.timer-display {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 900;
+  margin: 8px 0;
+  color: var(--acc2);
+}
+.timer-display.urgent {
+  color: var(--r);
+  animation: pulse 0.5s infinite;
+}
+.bonus-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--acc), var(--y));
+  color: white;
+  padding: 4px 12px;
+  border-radius: 14px;
+  font-weight: 900;
+  font-size: 0.85rem;
+  margin: 4px 0;
+  box-shadow: 0 3px 10px rgba(245,158,11,0.4);
+  animation: pop 0.5s ease;
+}
+
+/* ════ TEST ════ */
+.test-q {
+  background: white; padding: 16px 18px; margin: 14px 0;
+  border-radius: 14px; border-right: 5px solid var(--acc);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  transition: transform 0.2s;
+}
+.test-q:hover { transform: translateX(-3px); }
+.test-q-num {
+  display: inline-block; background: var(--acc); color: white;
+  padding: 3px 12px; border-radius: 14px; font-size: 0.82rem;
+  font-weight: 800; margin-bottom: 10px;
+}
+.test-q-text {
+  font-weight: 800; margin-bottom: 12px; color: #1e293b;
+  font-size: 0.98rem; line-height: 1.7;
+}
+.test-options { display: grid; gap: 8px; }
+.test-option {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 14px; background: #f8fafc;
+  border: 2px solid #e2e8f0; border-radius: 12px;
+  cursor: pointer; transition: all 0.2s; font-size: 0.92rem;
+  font-weight: 700;
+}
+.test-option:hover { border-color: var(--acc); background: #fffbeb; transform: translateX(-3px); }
+.test-option input { cursor: pointer; accent-color: var(--acc); transform: scale(1.2); }
+.test-option.correct-option {
+  background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+  border-color: var(--g); color: var(--gd);
+}
+.test-option.wrong-option {
+  background: linear-gradient(135deg, #fee2e2, #fecaca);
+  border-color: var(--r); color: var(--rd);
+}
+.test-option.right-answer {
+  background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+  border-color: var(--g); color: var(--gd);
+  border-width: 3px;
+}
+
+.test-feedback {
+  margin-top: 12px; padding: 12px 14px;
+  border-radius: 10px; font-weight: 700;
+  font-size: 0.9rem; line-height: 1.7;
+  animation: fadeUp 0.3s ease;
+}
+.test-feedback.correct {
+  background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+  color: var(--gd); border: 2px solid var(--g);
+}
+.test-feedback.wrong {
+  background: linear-gradient(135deg, #fee2e2, #fecaca);
+  color: var(--rd); border: 2px solid var(--r);
+}
+.test-feedback.no-answer {
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  color: #92400e; border: 2px solid var(--acc);
+}
+
+/* ════ WORKSHEET OPTIONS ════ */
+.ws-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 10px;
+}
+.ws-option {
+  padding: 10px 12px;
+  background: white;
+  border: 2px solid #d1d5db;
+  border-radius: 10px;
+  font-family: 'Cairo', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+  color: #334155;
+}
+.ws-option:hover:not(.locked) {
+  border-color: var(--g);
+  background: #f0fdf4;
+  transform: translateY(-2px);
+}
+.ws-option.correct {
+  background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+  border-color: var(--g); color: var(--gd);
+  animation: pop 0.4s ease;
+}
+.ws-option.wrong {
+  background: linear-gradient(135deg, #fee2e2, #fecaca);
+  border-color: var(--r); color: var(--rd);
+  animation: shake 0.4s ease;
+}
+.ws-option.locked {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+.ws-option.show-correct {
+  background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+  border-color: var(--g); color: var(--gd);
+  border-width: 3px;
+}
+
+.ws-feedback {
+  margin-top: 10px; padding: 10px 12px;
+  border-radius: 10px; font-weight: 700;
+  font-size: 0.88rem;
+  display: none;
+  animation: fadeUp 0.3s ease;
+}
+.ws-feedback.show { display: block; }
+.ws-feedback.correct {
+  background: #d1fae5; color: var(--gd);
+  border: 1.5px solid var(--g);
+}
+.ws-feedback.wrong {
+  background: #fee2e2; color: var(--rd);
+  border: 1.5px solid var(--r);
+}
+
+.submit-test {
+  width: 100%; padding: 16px;
+  background: linear-gradient(135deg, var(--acc), var(--acc2));
+  color: white; border: none; border-radius: 14px;
+  font-family: 'Cairo', sans-serif; font-weight: 900;
+  font-size: 1.1rem; cursor: pointer; margin-top: 20px;
+  box-shadow: 0 8px 20px rgba(245,158,11,0.4);
+  transition: all 0.2s;
+}
+.submit-test:hover { transform: translateY(-2px); }
+
+.test-result {
+  margin-top: 24px; padding: 28px; border-radius: 18px;
+  text-align: center;
+}
+.test-result.excellent { background: linear-gradient(135deg, #d1fae5, #a7f3d0); border: 3px solid var(--g); }
+.test-result.good { background: linear-gradient(135deg, #dbeafe, #bfdbfe); border: 3px solid var(--p1); }
+.test-result.medium { background: linear-gradient(135deg, #fef3c7, #fde68a); border: 3px solid var(--acc); }
+.test-result.poor { background: linear-gradient(135deg, #fee2e2, #fecaca); border: 3px solid var(--r); }
+
+@media (max-width: 600px) {
+  .game-options { grid-template-columns: 1fr; }
+  .menu-card { padding: 16px; }
+  .menu-icon { width: 60px; height: 60px; font-size: 30px; }
+  .menu-title { font-size: 1.1rem; }
+  .visual-grid { grid-template-columns: 1fr 1fr; }
+  .lesson-header h2 { font-size: 1.3rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ SOUND TOGGLE ═══ -->
+<div class="sound-toggle" id="soundToggle" onclick="toggleSound()" title="تشغيل/إيقاف الصوت">
+  <span id="soundIcon">🔊</span>
+</div>
+
+<!-- ═══ WELCOME ═══ -->
+<div id="welcome">
+  <div class="float-shape s1">π</div>
+  <div class="float-shape s2">س²</div>
+  <div class="float-shape s3">∑</div>
+  <div class="float-shape s4">+</div>
+  <div class="float-shape s5">÷</div>
+  <div class="float-shape s6">س³</div>
+  <div class="float-shape s7">×</div>
+  <div class="float-shape s8">√</div>
+  <div class="wc">
+    <span class="wc-emoji">🧮</span>
+    <h1>عالم كثيرات الحدود</h1>
+    <div class="wc-teacher">المعلمة <span>✦</span> نور حجاج</div>
+    <div class="lesson-info">📚 رياضيات الصف التاسع</div>
+    <input type="text" id="studentName" placeholder="اكتب اسمك هنا..." maxlength="25">
+    <button class="go-btn" onclick="startApp()">دخول المنصة ✨</button>
+  </div>
+</div>
+
+<!-- ═══ HEADER ═══ -->
+<header>
+  <div class="h-left" onclick="goHome()">
+    <span class="header-icon">🧮</span>
+    <div>
+      <h1>عالم كثيرات الحدود</h1>
+      <div class="sub">اضغط للرئيسية</div>
+    </div>
+  </div>
+  <div class="h-right">
+    <div id="studentBadge">👤 الطالب</div>
+  </div>
+</header>
+
+<!-- ═══ HOME ═══ -->
+<div id="homePage" class="home-container">
+  <div class="home-welcome">
+    <span class="home-illustration">🎓</span>
+    <h2>أهلاً <span id="welcomeName">طالبنا</span>! 👋</h2>
+    <p>اختر الدرس الذي تريد البدء به</p>
+  </div>
+
+  <div class="menu-card m1" onclick="openLesson(1)">
+    <div class="menu-icon">📘</div>
+    <div class="menu-content">
+      <div class="menu-title">الدرس الأول</div>
+      <div class="menu-desc">كثيرات الحدود - التعريف</div>
+    </div>
+    <span class="progress-tag" id="prog1"></span>
+    <div class="menu-arrow">‹</div>
+  </div>
+
+  <div class="menu-card m2" onclick="openLesson(2)">
+    <div class="menu-icon">📗</div>
+    <div class="menu-content">
+      <div class="menu-title">الدرس الثاني</div>
+      <div class="menu-desc">جمع وطرح كثيرات الحدود</div>
+    </div>
+    <span class="progress-tag" id="prog2"></span>
+    <div class="menu-arrow">‹</div>
+  </div>
+
+  <div class="menu-card m3" onclick="openLesson(3)">
+    <div class="menu-icon">📙</div>
+    <div class="menu-content">
+      <div class="menu-title">الدرس الثالث</div>
+      <div class="menu-desc">ضرب وقسمة كثيرات الحدود</div>
+    </div>
+    <span class="progress-tag" id="prog3"></span>
+    <div class="menu-arrow">‹</div>
+  </div>
+
+  <div class="menu-card m4" onclick="openLesson(4)">
+    <div class="menu-icon">📝</div>
+    <div class="menu-content">
+      <div class="menu-title">الاختبار النهائي</div>
+      <div class="menu-desc">20 سؤال على كل الدروس</div>
+    </div>
+    <span class="progress-tag" id="prog4"></span>
+    <div class="menu-arrow">‹</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     LESSON 1
+═══════════════════════════════════ -->
+<div id="lesson1" style="display:none;">
+  <button class="back-btn" onclick="goHome()">⬅ العودة للرئيسية</button>
+  <div class="lesson-header h1">
+    <span class="lesson-emoji">📘</span>
+    <h2>الدرس الأول: كثيرات الحدود</h2>
+  </div>
+  <div class="inner-tabs">
+    <button class="inner-tab t1 active" onclick="switchTab(1,'theory')">📖 الشرح</button>
+    <button class="inner-tab t1" onclick="switchTab(1,'examples')">✏️ أمثلة</button>
+    <button class="inner-tab t1" onclick="switchTab(1,'worksheet')">📋 ورقة عمل</button>
+    <button class="inner-tab t1" onclick="switchTab(1,'game')">🎮 لعبة</button>
+  </div>
+  <div class="lesson-content">
+    
+    <!-- SHARH -->
+    <div class="tab-pane active" id="l1-theory">
+      <div class="intro-box b1">
+        <h2>🎯 ما هي كثيرات الحدود؟</h2>
+        <p>تخيل أنك في ماكينة الصراف الآلي ولديك فئات نقدية مختلفة (1، 5، 10، 20 شيكل). نفس الفكرة في الرياضيات: كثيرة الحدود هي مجموع حدود مختلفة!</p>
+      </div>
+      
+      <div class="visual-grid">
+        <div class="visual-card v1">
+          <span class="visual-emoji">💰</span>
+          <span class="visual-title">المعامل</span>
+          <span class="visual-value">3</span>
+        </div>
+        <div class="visual-card v2">
+          <span class="visual-emoji">📝</span>
+          <span class="visual-title">المتغير</span>
+          <span class="visual-value">س</span>
+        </div>
+        <div class="visual-card v3">
+          <span class="visual-emoji">⬆️</span>
+          <span class="visual-title">الأس</span>
+          <span class="visual-value">2</span>
+        </div>
+        <div class="visual-card v1">
+          <span class="visual-emoji">🔢</span>
+          <span class="visual-title">الحد</span>
+          <span class="visual-value">3س²</span>
+        </div>
+      </div>
+
+      <div class="math-illustration">
+        <div style="font-weight:800; color:#475569; margin-bottom:6px;">انظر كيف نحلل الحد:</div>
+        <div class="math-formula-big">3س²</div>
+        <div class="math-breakdown">
+          <div class="math-piece coeff">
+            3
+            <span class="math-piece-label">المعامل</span>
+          </div>
+          <div class="math-piece var">
+            س
+            <span class="math-piece-label">المتغير</span>
+          </div>
+          <div class="math-piece exp">
+            2
+            <span class="math-piece-label">الأس</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="story-box">
+        <div class="story-icon">🏦</div>
+        <div class="story-text">
+          <b>قصة:</b> إذا كان عندك 3 أوراق من فئة س² وورقتان من فئة س و5 شيكل نقداً، تكتبها هكذا:<br>
+          <b>3س² + 2س + 5</b><br>
+          هذه هي <b>كثيرة الحدود</b>! 🎯
+        </div>
+      </div>
+
+      <div class="formula-card c1">
+        <div class="formula-title">📌 تعريف كثيرة الحدود</div>
+        <div class="formula-text">aₙسⁿ + aₙ₋₁سⁿ⁻¹ + ... + a₁س + a₀</div>
+      </div>
+
+      <div class="note-box">
+        <b>درجة كثيرة الحدود</b> = أكبر أس في المتغير.<br>
+        مثال: درجة <b>2س³ + س² - 5</b> هي <b>3</b> لأن أكبر أس هو 3.
+      </div>
+
+      <div class="story-box" style="background: linear-gradient(135deg, #fee2e2, #fecaca); border-color: var(--r);">
+        <div class="story-icon" style="background: var(--r);">⚠️</div>
+        <div class="story-text" style="color: #7f1d1d;">
+          <b>تنبيه مهم لطلاب الصف التاسع:</b><br>
+          ✦ الأس يجب أن يكون <b>عدداً صحيحاً موجباً</b> (0، 1، 2، 3...)<br>
+          ✦ المتغير لا يأتي في <b>المقام</b> (مثل 1/س غير مقبول)<br>
+          ✦ المتغير لا يأتي تحت <b>الجذر</b> (مثل √س غير مقبول)<br>
+          ✦ المعامل يمكن أن يكون <b>أي عدد</b> (موجب، سالب، كسر)
+        </div>
+      </div>
+    </div>
+
+    <!-- EXAMPLES -->
+    <div class="tab-pane" id="l1-examples">
+      <div class="example-section e1">
+        <h3>✏️ أمثلة على كثيرات الحدود</h3>
+        <div class="example-item">
+          <span class="label">مثال 1</span>
+          <div style="margin-top:8px; font-size:1.05rem; font-weight:700;">ما درجة: 3س² + 2س + 5 ؟</div>
+          <div style="margin-top:10px; padding:8px 12px; background:#d1fae5; border-radius:8px; color:var(--gd); font-weight:800;">✅ درجة = 2</div>
+        </div>
+        <div class="example-item">
+          <span class="label">مثال 2</span>
+          <div style="margin-top:8px; font-size:1.05rem; font-weight:700;">ما درجة: س³ - 4س² + س - 7 ؟</div>
+          <div style="margin-top:10px; padding:8px 12px; background:#d1fae5; border-radius:8px; color:var(--gd); font-weight:800;">✅ درجة = 3</div>
+        </div>
+        <div class="example-item">
+          <span class="label">مثال 3</span>
+          <div style="margin-top:8px; font-size:1.05rem; font-weight:700;">ما درجة: 2س⁴ + 1 ؟</div>
+          <div style="margin-top:10px; padding:8px 12px; background:#d1fae5; border-radius:8px; color:var(--gd); font-weight:800;">✅ درجة = 4</div>
+        </div>
+        <div class="example-item">
+          <span class="label">مثال 4</span>
+          <div style="margin-top:8px; font-size:1.05rem; font-weight:700;">ما درجة: 7 ؟</div>
+          <div style="margin-top:10px; padding:8px 12px; background:#d1fae5; border-radius:8px; color:var(--gd); font-weight:800;">✅ درجة = 0 (حد ثابت)</div>
+        </div>
+      </div>
+
+      <div class="example-section e1">
+        <h3>🚫 ليست كثيرات حدود</h3>
+        <div class="example-item">
+          <div style="font-size:1.05rem; font-weight:700;">2س⁻¹ + 1</div>
+          <div style="margin-top:10px; padding:8px 12px; background:#fee2e2; border-radius:8px; color:var(--rd); font-weight:800;">❌ الأس سالب</div>
+        </div>
+        <div class="example-item">
+          <div style="font-size:1.05rem; font-weight:700;">√س + 3</div>
+          <div style="margin-top:10px; padding:8px 12px; background:#fee2e2; border-radius:8px; color:var(--rd); font-weight:800;">❌ الأس كسري (½)</div>
+        </div>
+        <div class="example-item">
+          <div style="font-size:1.05rem; font-weight:700;">3/س + 5</div>
+          <div style="margin-top:10px; padding:8px 12px; background:#fee2e2; border-radius:8px; color:var(--rd); font-weight:800;">❌ المتغير في المقام</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WORKSHEET -->
+    <div class="tab-pane" id="l1-worksheet">
+      <div class="worksheet">
+        <h3>📋 ورقة عمل (1)</h3>
+        
+        <div class="question">
+          <b>س1:</b> ما درجة كثيرة الحدود: 4س³ + 2س² - 5س + 1؟
+          <div class="ws-options">
+            <button class="ws-option" onclick="pickWS(this, 'ws1-q1', '3', 1)">2</button>
+            <button class="ws-option" onclick="pickWS(this, 'ws1-q1', '3', 1)">3</button>
+            <button class="ws-option" onclick="pickWS(this, 'ws1-q1', '3', 1)">4</button>
+            <button class="ws-option" onclick="pickWS(this, 'ws1-q1', '3', 1)">5</button>
+          </div>
+          <div class="ws-feedback" id="ws1-q1-fb"></div>
+        </div>
+        
+        <div class="question">
+          <b>س2:</b> ما المعامل في الحد 7س⁵؟
+          <div class="ws-options">
+            <button class="ws-option" onclick="pickWS(this, 'ws1-q2', '7', 1)">5</button>
+            <button class="ws-option" onclick="pickWS(this, 'ws1-q2', '7', 1)">7</button>
+            <button class="ws-option" onclick="pickWS(this, 'ws1-q2', '7', 1)">35</button>
+            <button class="ws-option" onclick="pickWS(this, 'ws1-q2', '7', 1)">1</button>
+          </div>
+          <div class="ws-feedback" id="ws1-q2-fb"></div>
+        </div>
+        
+        <div class="question">
+          <b>س3:</b> كم عدد حدود: 3س² - 2س + 7؟
+          <div class="ws-options">
+            <button class="ws-option" onclick="pickWS(this, 'ws1-q3', '3', 1)">1</button>
+            <button class="ws-option" onclick="pickWS(this, 'ws1-q3', '3', 1)">2</button>
+            <button class="ws-option" onclick="pickWS(this, 'ws1-q3', '3', 1)">3</button>
+            <button class="ws-option" onclick="pickWS(this, 'ws1-q3', '3', 1)">4</button>
+          </div>
+          <div class="ws-feedback" id="ws1-q3-fb"></div>
+        </div>
+        
+        <div class="question">
+          <b>س4:</b> هل المقدار: 2س⁻² + 5 كثيرة حدود؟
+          <div class="ws-options">
+            <button class="ws-option" onclick="pickWS(this, 'ws1-q4', 'لا', 1)">نعم</button>
+            <button class="ws-option" onclick="pickWS(this, 'ws1-q4', 'لا', 1)">لا</button>
+          </div>
+          <div class="ws-feedback" id="ws1-q4-fb"></div>
+        </div>
+
+        <div class="question">
+          <b>س5:</b> ما درجة الحد الثابت 8؟
+          <div class="ws-options">
+            <button class="ws-option" onclick="pickWS(this, 'ws1-q5', '0', 1)">0</button>
+            <button class="ws-option" onclick="pickWS(this, 'ws1-q5', '0', 1)">1</button>
+            <button class="ws-option" onclick="pickWS(this, 'ws1-q5', '0', 1)">8</button>
+            <button class="ws-option" onclick="pickWS(this, 'ws1-q5', '0', 1)">غير معرفة</button>
+          </div>
+          <div class="ws-feedback" id="ws1-q5-fb"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GAME -->
+    <div class="tab-pane" id="l1-game">
+      <div class="game-switcher">
+        <button class="game-switch-btn gs1 active" onclick="switchGame(1, 'match')">🔗 المطابقة</button>
+        <button class="game-switch-btn gs1" onclick="switchGame(1, 'flash')">🃏 البطاقات</button>
+        <button class="game-switch-btn gs1" onclick="switchGame(1, 'race')">⏱️ السباق</button>
+      </div>
+
+      <!-- لعبة المطابقة -->
+      <div class="game-variant active" id="l1-match">
+        <div class="game-section gm1">
+          <div class="game-header">
+            <div class="game-title-text">🔗 اسحب وطابق</div>
+            <div class="score-pill">المطابقات: <span id="m1Score">0</span>/4</div>
+          </div>
+          <div style="font-size:0.88rem; color:#475569; text-align:center; margin-bottom:10px; background:white; padding:10px; border-radius:10px;">
+            ✨ اسحب من اليمين إلى اليسار للمطابقة الصحيحة
+          </div>
+          <div class="match-container">
+            <div class="match-col">
+              <div class="match-col-title left">📌 الإجابات</div>
+              <div id="m1LeftCol"></div>
+            </div>
+            <div class="match-col">
+              <div class="match-col-title right">🎯 اسحب من هنا</div>
+              <div id="m1RightCol"></div>
+            </div>
+          </div>
+          <div id="m1Result" style="display:none;"></div>
+          <button class="game-btn" id="m1Restart" onclick="m1Start()" style="display:none;">🔄 العب مرة أخرى</button>
+        </div>
+      </div>
+
+      <!-- البطاقات السريعة -->
+      <div class="game-variant" id="l1-flash">
+        <div class="game-section gm1">
+          <div class="game-header">
+            <div class="game-title-text">🃏 البطاقات السريعة</div>
+            <div class="score-pill">النقاط: <span id="f1Score">0</span></div>
+          </div>
+          <div class="flashcard">
+            <div class="flashcard-num" id="f1Counter">1/6</div>
+            <div class="flashcard-q" id="f1Q">س²</div>
+            <div class="flashcard-sub" id="f1Sub">ما درجة هذا الحد؟</div>
+          </div>
+          <div class="game-options" id="f1Options"></div>
+          <div class="game-feedback" id="f1Feedback">اختر الإجابة 👆</div>
+          <button class="game-btn" id="f1Next" onclick="f1NextQ()" style="display:none;">السؤال التالي ➜</button>
+          <div id="f1Result" style="display:none;"></div>
+        </div>
+      </div>
+
+      <!-- السباق ضد الزمن -->
+      <div class="game-variant" id="l1-race">
+        <div class="game-section gm1">
+          <div class="game-header">
+            <div class="game-title-text">⏱️ السباق ضد الزمن</div>
+            <div class="score-pill">النقاط: <span id="r1Score">0</span></div>
+          </div>
+          <div class="timer-display" id="r1Timer">15</div>
+          <div class="timer-bar-container">
+            <div class="timer-bar-fill" id="r1TimerBar"></div>
+          </div>
+          <div class="game-question-box">
+            <div class="game-counter" id="r1Counter">سؤال 1 من 5</div>
+            <div class="game-question" id="r1Q">جاري التحميل...</div>
+          </div>
+          <div class="game-options" id="r1Options"></div>
+          <div class="game-feedback" id="r1Feedback">15 ثانية لكل سؤال ⚡</div>
+          <button class="game-btn" id="r1Start" onclick="r1Begin()">🚀 ابدأ السباق</button>
+          <div id="r1Result" style="display:none;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     LESSON 2
+═══════════════════════════════════ -->
+<div id="lesson2" style="display:none;">
+  <button class="back-btn" onclick="goHome()">⬅ العودة للرئيسية</button>
+  <div class="lesson-header h2">
+    <span class="lesson-emoji">📗</span>
+    <h2>الدرس الثاني: الجمع والطرح</h2>
+  </div>
+  <div class="inner-tabs">
+    <button class="inner-tab t2 active" onclick="switchTab(2,'theory')">📖 الشرح</button>
+    <button class="inner-tab t2" onclick="switchTab(2,'examples')">✏️ أمثلة</button>
+    <button class="inner-tab t2" onclick="switchTab(2,'worksheet')">📋 ورقة عمل</button>
+    <button class="inner-tab t2" onclick="switchTab(2,'game')">🎮 لعبة</button>
+  </div>
+  <div class="lesson-content">
+    
+    <div class="tab-pane active" id="l2-theory">
+      <div class="intro-box b2">
+        <h2>➕➖ جمع وطرح كثيرات الحدود</h2>
+        <p>تخيل أن لديك كرتين وقلمين في حقيبة، وأضفت إليها كرة وقلم. كم أصبح المجموع؟ نفس الفكرة هنا!</p>
+      </div>
+
+      <div class="visual-grid">
+        <div class="visual-card v2">
+          <span class="visual-emoji">🍎</span>
+          <span class="visual-title">2س</span>
+          <span class="visual-value" style="font-size:0.75rem; color:#64748b;">+</span>
+        </div>
+        <div class="visual-card v2">
+          <span class="visual-emoji">🍎</span>
+          <span class="visual-title">3س</span>
+          <span class="visual-value" style="font-size:0.75rem; color:#64748b;">=</span>
+        </div>
+        <div class="visual-card v1" style="grid-column: span 2; background: #f0fdf4; border-color: var(--g);">
+          <span class="visual-emoji">🎉</span>
+          <span class="visual-title" style="color: var(--g);">المجموع</span>
+          <span class="visual-value" style="color: var(--gd);">5س</span>
+        </div>
+      </div>
+
+      <div class="story-box">
+        <div class="story-icon">🎒</div>
+        <div class="story-text">
+          <b>قصة:</b> إذا كان عندك 2س + 3 وأضفت إليها س + 5، فإن المجموع = <b>3س + 8</b>.<br>
+          نجمع الـ س مع الـ س، والأرقام مع الأرقام! 🎯
+        </div>
+      </div>
+
+      <div class="formula-card c2">
+        <div class="formula-title">📌 القاعدة الذهبية</div>
+        <div class="formula-text">نجمع الحدود المتشابهة فقط!</div>
+        <div style="font-size:0.85rem; margin-top:10px; color:#475569;">
+          الحدود المتشابهة: لها نفس المتغير ونفس الأس
+        </div>
+      </div>
+
+      <div class="note-box">
+        <b>خطوات الحل:</b><br>
+        1️⃣ ضع الحدود المتشابهة معاً<br>
+        2️⃣ اجمع/اطرح <b>المعاملات فقط</b><br>
+        3️⃣ احتفظ بالمتغير والأس كما هو
+      </div>
+    </div>
+
+    <div class="tab-pane" id="l2-examples">
+      <div class="example-section e2">
+        <h3>➕ أمثلة على الجمع</h3>
+        <div class="example-item">
+          <span class="label">مثال 1</span>
+          <div style="margin-top:8px; font-size:1.05rem; font-weight:700;">(2س + 3) + (س + 5) = ؟</div>
+          <div style="margin-top:10px; padding:8px 12px; background:#d1fae5; border-radius:8px; color:var(--gd); font-weight:800;">✅ الناتج = 3س + 8</div>
+        </div>
+        <div class="example-item">
+          <span class="label">مثال 2</span>
+          <div style="margin-top:8px; font-size:1.05rem; font-weight:700;">(5س² + 2س) + (3س² - س) = ؟</div>
+          <div style="margin-top:10px; padding:8px 12px; background:#d1fae5; border-radius:8px; color:var(--gd); font-weight:800;">✅ الناتج = 8س² + س</div>
+        </div>
+        <div class="example-item">
+          <span class="label">مثال 3</span>
+          <div style="margin-top:8px; font-size:1.05rem; font-weight:700;">(س³ + 4) + (2س³ - 1) = ؟</div>
+          <div style="margin-top:10px; padding:8px 12px; background:#d1fae5; border-radius:8px; color:var(--gd); font-weight:800;">✅ الناتج = 3س³ + 3</div>
+        </div>
+      </div>
+
+      <div class="example-section e2">
+        <h3>➖ أمثلة على الطرح</h3>
+        <div class="example-item">
+          <span class="label">مثال 1</span>
+          <div style="margin-top:8px; font-size:1.05rem; font-weight:700;">(5س + 3) - (2س + 1) = ؟</div>
+          <div style="margin-top:10px; padding:8px 12px; background:#d1fae5; border-radius:8px; color:var(--gd); font-weight:800;">✅ الناتج = 3س + 2</div>
+        </div>
+        <div class="example-item">
+          <span class="label">مثال 2</span>
+          <div style="margin-top:8px; font-size:1.05rem; font-weight:700;">(7س² + 4س) - (3س² + س) = ؟</div>
+          <div style="margin-top:10px; padding:8px 12px; background:#d1fae5; border-radius:8px; color:var(--gd); font-weight:800;">✅ الناتج = 4س² + 3س</div>
+        </div>
+        <div class="example-item">
+          <span class="label">مثال 3</span>
+          <div style="margin-top:8px; font-size:1.05rem; font-weight:700;">(4س³ + 6) - (س³ + 2) = ؟</div>
+          <div style="margin-top:10px; padding:8px 12px; background:#d1fae5; border-radius:8px; color:var(--gd); font-weight:800;">✅ الناتج = 3س³ + 4</div>
+        </div>
+      </div>
+
+      <div class="example-section e2">
+        <h3>⚠️ خطأ شائع</h3>
+        <div class="example-item">
+          <div style="margin-top:4px; padding:8px 12px; background:#fee2e2; border-radius:8px; color:var(--rd); font-weight:800;">❌ خطأ: 3س + 2س² = 5س³</div>
+          <div style="margin-top:8px; padding:8px 12px; background:#d1fae5; border-radius:8px; color:var(--gd); font-weight:800;">✅ الصحيح: 3س + 2س² = 2س² + 3س</div>
+          <div style="font-size:0.85rem; color:#64748b; margin-top:8px;">(لأن س و س² ليسا حدوداً متشابهة)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="l2-worksheet">
+      <div class="worksheet">
+        <h3>📋 ورقة عمل (2)</h3>
+        
+        <div class="question">
+          <b>س1:</b> (3س + 2) + (س + 4) = ؟
+          <div class="ws-options">
+            <button class="ws-option" onclick="pickWS(this, 'ws2-q1', '4س + 6', 2)">4س + 6</button>
+            <button class="ws-option" onclick="pickWS(this, 'ws2-q1', '4س + 6', 2)">3س + 6</button>
+            <button class="ws-option" onclick="pickWS(this, 'ws2-q1', '4س + 6', 2)">4س + 8</button>
+            <button class="ws-option" onclick="pickWS(this, 'ws2-q1', '4س + 6', 2)">3س² + 6</button>
+          </div>
+          <div class="ws-feedback" id="ws2-q1-fb"></div>
+        </div>
+        
+        <div class="question">
+          <b>س2:</b> (5س² - 2س) + (3س² + س) = ؟
+          <div class="ws-options">
+            <button class="ws-option" onclick="pickWS(this, 'ws2-q2', '8س² - س', 2)">8س² - س</button>
+            <button class="ws-option" onclick="pickWS(this, 'ws2-q2', '8س² - س', 2)">8س² + س</button>
+            <button class="ws-option" onclick="pickWS(this, 'ws2-q2', '8س² - س', 2)">15س² - س</button>
+            <button class="ws-option" onclick="pickWS(this, 'ws2-q2', '8س² - س', 2)">2س² - س</button>
+          </div>
+          <div class="ws-feedback" id="ws2-q2-fb"></div>
+        </div>
+        
+        <div class="question">
+          <b>س3:</b> (6س + 5) - (2س + 3) = ؟
+          <div class="ws-options">
+            <button class="ws-option" onclick="pickWS(this, 'ws2-q3', '4س + 2', 2)">8س + 2</button>
+            <button class="ws-option" onclick="pickWS(this, 'ws2-q3', '4س + 2', 2)">4س + 2</button>
+            <button class="ws-option" onclick="pickWS(this, 'ws2-q3', '4س + 2', 2)">4س + 8</button>
+            <button class="ws-option" onclick="pickWS(this, 'ws2-q3', '4س + 2', 2)">4س - 2</button>
+          </div>
+          <div class="ws-feedback" id="ws2-q3-fb"></div>
+        </div>
+        
+        <div class="question">
+          <b>س4:</b> (س² + 2س + 1) + (س² - س + 3) = ؟
+          <div class="ws-options">
+            <button class="ws-option" onclick="pickWS(this, 'ws2-q4', '2س² + س + 4', 2)">2س² + س + 4</button>
+            <button class="ws-option" onclick="pickWS(this, 'ws2-q4', '2س² + س + 4', 2)">2س² + 3س + 4</button>
+            <button class="ws-option" onclick="pickWS(this, 'ws2-q4', '2س² + س + 4', 2)">س² + س + 4</button>
+            <button class="ws-option" onclick="pickWS(this, 'ws2-q4', '2س² + س + 4', 2)">2س² + س + 2</button>
+          </div>
+          <div class="ws-feedback" id="ws2-q4-fb"></div>
+        </div>
+
+        <div class="question">
+          <b>س5:</b> (7س³ + 4) - (3س³ + 1) = ؟
+          <div class="ws-options">
+            <button class="ws-option" onclick="pickWS(this, 'ws2-q5', '4س³ + 3', 2)">4س³ + 3</button>
+            <button class="ws-option" onclick="pickWS(this, 'ws2-q5', '4س³ + 3', 2)">10س³ + 5</button>
+            <button class="ws-option" onclick="pickWS(this, 'ws2-q5', '4س³ + 3', 2)">4س³ + 5</button>
+            <button class="ws-option" onclick="pickWS(this, 'ws2-q5', '4س³ + 3', 2)">4س³ - 3</button>
+          </div>
+          <div class="ws-feedback" id="ws2-q5-fb"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="l2-game">
+      <div class="game-switcher">
+        <button class="game-switch-btn gs2 active" onclick="switchGame(2, 'order')">📊 الترتيب</button>
+        <button class="game-switch-btn gs2" onclick="switchGame(2, 'lights')">💡 الأزرار</button>
+        <button class="game-switch-btn gs2" onclick="switchGame(2, 'race')">⏱️ السباق</button>
+      </div>
+
+      <!-- لعبة الترتيب -->
+      <div class="game-variant active" id="l2-order">
+        <div class="game-section gm2">
+          <div class="game-header">
+            <div class="game-title-text">📊 رتّب الحدود</div>
+            <div class="score-pill" id="o2Pill">جولة 1/4</div>
+          </div>
+          <div style="font-size:0.88rem; color:#475569; text-align:center; margin-bottom:10px; background:white; padding:10px; border-radius:10px;" id="o2Instr">
+            ✨ اسحب الحدود لترتيبها <b>تنازلياً</b> حسب الدرجة
+          </div>
+          <div class="order-container" id="o2Container"></div>
+          <button class="game-btn" onclick="o2Check()" id="o2Check">✓ تحقق من الترتيب</button>
+          <div class="game-feedback" id="o2Feedback" style="display:none;"></div>
+          <button class="game-btn" id="o2Next" onclick="o2NextRound()" style="display:none;">الجولة التالية ➜</button>
+          <div id="o2Result" style="display:none;"></div>
+        </div>
+      </div>
+
+      <!-- الأزرار المضيئة -->
+      <div class="game-variant" id="l2-lights">
+        <div class="game-section gm2">
+          <div class="game-header">
+            <div class="game-title-text">💡 الأزرار المضيئة</div>
+            <div class="score-pill">النقاط: <span id="lt2Score">0</span></div>
+          </div>
+          <div class="lights-info" id="lt2Q">جاري التحميل...</div>
+          <div class="lights-grid" id="lt2Grid"></div>
+          <div class="game-feedback" id="lt2Feedback">اضغط الأزرار الصحيحة 👇</div>
+          <button class="game-btn" id="lt2Next" onclick="lt2NextQ()" style="display:none;">السؤال التالي ➜</button>
+          <div id="lt2Result" style="display:none;"></div>
+        </div>
+      </div>
+
+      <!-- السباق ضد الزمن -->
+      <div class="game-variant" id="l2-race">
+        <div class="game-section gm2">
+          <div class="game-header">
+            <div class="game-title-text">⏱️ السباق ضد الزمن</div>
+            <div class="score-pill">النقاط: <span id="r2Score">0</span></div>
+          </div>
+          <div class="timer-display" id="r2Timer">30</div>
+          <div class="timer-bar-container">
+            <div class="timer-bar-fill" id="r2TimerBar"></div>
+          </div>
+          <div class="game-question-box">
+            <div class="game-counter" id="r2Counter">سؤال 1 من 5</div>
+            <div class="game-question" id="r2Q">جاري التحميل...</div>
+          </div>
+          <div class="game-options" id="r2Options"></div>
+          <div class="game-feedback" id="r2Feedback">30 ثانية لكل سؤال ⚡</div>
+          <button class="game-btn" id="r2Start" onclick="r2Begin()">🚀 ابدأ السباق</button>
+          <div id="r2Result" style="display:none;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     LESSON 3
+═══════════════════════════════════ -->
+<div id="lesson3" style="display:none;">
+  <button class="back-btn" onclick="goHome()">⬅ العودة للرئيسية</button>
+  <div class="lesson-header h3">
+    <span class="lesson-emoji">📙</span>
+    <h2>الدرس الثالث: الضرب والقسمة</h2>
+  </div>
+  <div class="inner-tabs">
+    <button class="inner-tab t3 active" onclick="switchTab(3,'theory')">📖 الشرح</button>
+    <button class="inner-tab t3" onclick="switchTab(3,'examples')">✏️ أمثلة</button>
+    <button class="inner-tab t3" onclick="switchTab(3,'worksheet')">📋 ورقة عمل</button>
+    <button class="inner-tab t3" onclick="switchTab(3,'game')">🎮 لعبة</button>
+  </div>
+  <div class="lesson-content">
+    
+    <div class="tab-pane active" id="l3-theory">
+      <div class="intro-box b3">
+        <h2>✖️ ضرب وقسمة كثيرات الحدود</h2>
+        <p>هل لاحظت كيف يحسب البقّال السعر؟ إذا كان كيلو الفواكه بـ 3 شيكل، يضرب! نفس الفكرة هنا.</p>
+      </div>
+
+      <div class="visual-grid">
+        <div class="visual-card v3">
+          <span class="visual-emoji">🍎</span>
+          <span class="visual-title">3 سلات</span>
+          <span class="visual-value" style="font-size:0.75rem;">×</span>
+        </div>
+        <div class="visual-card v3">
+          <span class="visual-emoji">📦</span>
+          <span class="visual-title">(س+2)</span>
+          <span class="visual-value" style="font-size:0.75rem;">=</span>
+        </div>
+        <div class="visual-card v1" style="grid-column: span 2; background: #f0fdf4; border-color: var(--g);">
+          <span class="visual-emoji">🎯</span>
+          <span class="visual-title" style="color: var(--g);">الناتج</span>
+          <span class="visual-value" style="color: var(--gd);">3س + 6</span>
+        </div>
+      </div>
+
+      <div class="story-box">
+        <div class="story-icon">🍎</div>
+        <div class="story-text">
+          <b>قصة:</b> إذا كل سلة فيها (س + 2) تفاحة وأنت اشتريت 3 سلات، فإن مجموع التفاح = 3 × (س + 2) = <b>3س + 6</b>.<br>
+          نوزع الـ 3 على كل حد! 🎯
+        </div>
+      </div>
+
+      <div class="formula-card c3">
+        <div class="formula-title">📌 خاصية التوزيع</div>
+        <div class="formula-text">a × (b + c) = a·b + a·c</div>
+      </div>
+
+      <div class="formula-card c3">
+        <div class="formula-title">📌 قاعدة الأس في الضرب</div>
+        <div class="formula-text">سᵃ × سᵇ = سᵃ⁺ᵇ</div>
+        <div style="font-size:0.85rem; margin-top:8px; color:#475569;">مثال: س² × س³ = س⁵</div>
+      </div>
+
+      <div class="formula-card c3">
+        <div class="formula-title">📌 قاعدة الأس في القسمة</div>
+        <div class="formula-text">سᵃ ÷ سᵇ = سᵃ⁻ᵇ</div>
+        <div style="font-size:0.85rem; margin-top:8px; color:#475569;">مثال: س⁵ ÷ س² = س³</div>
+      </div>
+
+      <div class="note-box">
+        <b>خطوات ضرب حدّين:</b><br>
+        1️⃣ اضرب المعاملات (الأرقام)<br>
+        2️⃣ اجمع الأسس<br>
+        مثال: 3س² × 4س³ = (3×4) × (س²⁺³) = <b>12س⁵</b>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="l3-examples">
+      <div class="example-section e3">
+        <h3>✖️ أمثلة على الضرب</h3>
+        <div class="example-item">
+          <span class="label">مثال 1</span>
+          <div style="margin-top:8px; font-size:1.05rem; font-weight:700;">2(س + 3) = ؟</div>
+          <div style="margin-top:10px; padding:8px 12px; background:#d1fae5; border-radius:8px; color:var(--gd); font-weight:800;">✅ الناتج = 2س + 6</div>
+        </div>
+        <div class="example-item">
+          <span class="label">مثال 2</span>
+          <div style="margin-top:8px; font-size:1.05rem; font-weight:700;">س(س + 5) = ؟</div>
+          <div style="margin-top:10px; padding:8px 12px; background:#d1fae5; border-radius:8px; color:var(--gd); font-weight:800;">✅ الناتج = س² + 5س</div>
+        </div>
+        <div class="example-item">
+          <span class="label">مثال 3</span>
+          <div style="margin-top:8px; font-size:1.05rem; font-weight:700;">3س(2س - 4) = ؟</div>
+          <div style="margin-top:10px; padding:8px 12px; background:#d1fae5; border-radius:8px; color:var(--gd); font-weight:800;">✅ الناتج = 6س² - 12س</div>
+        </div>
+        <div class="example-item">
+          <span class="label">مثال 4</span>
+          <div style="margin-top:8px; font-size:1.05rem; font-weight:700;">(س + 2)(س + 3) = ؟</div>
+          <div style="margin-top:10px; padding:8px 12px; background:#d1fae5; border-radius:8px; color:var(--gd); font-weight:800;">✅ الناتج = س² + 5س + 6</div>
+        </div>
+      </div>
+
+      <div class="example-section e3">
+        <h3>➗ أمثلة على القسمة</h3>
+        <div class="example-item">
+          <span class="label">مثال 1</span>
+          <div style="margin-top:8px; font-size:1.05rem; font-weight:700;">6س³ ÷ 2س = ؟</div>
+          <div style="margin-top:10px; padding:8px 12px; background:#d1fae5; border-radius:8px; color:var(--gd); font-weight:800;">✅ الناتج = 3س²</div>
+        </div>
+        <div class="example-item">
+          <span class="label">مثال 2</span>
+          <div style="margin-top:8px; font-size:1.05rem; font-weight:700;">12س⁴ ÷ 4س² = ؟</div>
+          <div style="margin-top:10px; padding:8px 12px; background:#d1fae5; border-radius:8px; color:var(--gd); font-weight:800;">✅ الناتج = 3س²</div>
+        </div>
+        <div class="example-item">
+          <span class="label">مثال 3</span>
+          <div style="margin-top:8px; font-size:1.05rem; font-weight:700;">8س⁵ ÷ 2س³ = ؟</div>
+          <div style="margin-top:10px; padding:8px 12px; background:#d1fae5; border-radius:8px; color:var(--gd); font-weight:800;">✅ الناتج = 4س²</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="l3-worksheet">
+      <div class="worksheet">
+        <h3>📋 ورقة عمل (3)</h3>
+        
+        <div class="question">
+          <b>س1:</b> س(2س + 5) = ؟
+          <div class="ws-options">
+            <button class="ws-option" onclick="pickWS(this, 'ws3-q1', '2س² + 5س', 3)">2س² + 5س</button>
+            <button class="ws-option" onclick="pickWS(this, 'ws3-q1', '2س² + 5س', 3)">2س + 5س</button>
+            <button class="ws-option" onclick="pickWS(this, 'ws3-q1', '2س² + 5س', 3)">2س² + 5</button>
+            <button class="ws-option" onclick="pickWS(this, 'ws3-q1', '2س² + 5س', 3)">7س²</button>
+          </div>
+          <div class="ws-feedback" id="ws3-q1-fb"></div>
+        </div>
+        
+        <div class="question">
+          <b>س2:</b> 4س(3س - 2) = ؟
+          <div class="ws-options">
+            <button class="ws-option" onclick="pickWS(this, 'ws3-q2', '12س² - 8س', 3)">12س² - 8س</button>
+            <button class="ws-option" onclick="pickWS(this, 'ws3-q2', '12س² - 8س', 3)">12س - 8س</button>
+            <button class="ws-option" onclick="pickWS(this, 'ws3-q2', '12س² - 8س', 3)">12س² - 8</button>
+            <button class="ws-option" onclick="pickWS(this, 'ws3-q2', '12س² - 8س', 3)">7س² - 6س</button>
+          </div>
+          <div class="ws-feedback" id="ws3-q2-fb"></div>
+        </div>
+        
+        <div class="question">
+          <b>س3:</b> (س + 1)(س + 2) = ؟
+          <div class="ws-options">
+            <button class="ws-option" onclick="pickWS(this, 'ws3-q3', 'س² + 3س + 2', 3)">س² + 3س + 2</button>
+            <button class="ws-option" onclick="pickWS(this, 'ws3-q3', 'س² + 3س + 2', 3)">س² + 2</button>
+            <button class="ws-option" onclick="pickWS(this, 'ws3-q3', 'س² + 3س + 2', 3)">س² + 3س</button>
+            <button class="ws-option" onclick="pickWS(this, 'ws3-q3', 'س² + 3س + 2', 3)">2س + 3</button>
+          </div>
+          <div class="ws-feedback" id="ws3-q3-fb"></div>
+        </div>
+        
+        <div class="question">
+          <b>س4:</b> 10س⁴ ÷ 2س² = ؟
+          <div class="ws-options">
+            <button class="ws-option" onclick="pickWS(this, 'ws3-q4', '5س²', 3)">5س²</button>
+            <button class="ws-option" onclick="pickWS(this, 'ws3-q4', '5س²', 3)">5س⁶</button>
+            <button class="ws-option" onclick="pickWS(this, 'ws3-q4', '5س²', 3)">5س⁴</button>
+            <button class="ws-option" onclick="pickWS(this, 'ws3-q4', '5س²', 3)">8س²</button>
+          </div>
+          <div class="ws-feedback" id="ws3-q4-fb"></div>
+        </div>
+
+        <div class="question">
+          <b>س5:</b> 3س² × 2س³ = ؟
+          <div class="ws-options">
+            <button class="ws-option" onclick="pickWS(this, 'ws3-q5', '6س⁵', 3)">6س⁵</button>
+            <button class="ws-option" onclick="pickWS(this, 'ws3-q5', '6س⁵', 3)">6س⁶</button>
+            <button class="ws-option" onclick="pickWS(this, 'ws3-q5', '6س⁵', 3)">5س⁵</button>
+            <button class="ws-option" onclick="pickWS(this, 'ws3-q5', '6س⁵', 3)">6س²</button>
+          </div>
+          <div class="ws-feedback" id="ws3-q5-fb"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="l3-game">
+      <div class="game-switcher">
+        <button class="game-switch-btn gs3 active" onclick="switchGame(3, 'slider')">🎚️ الأشرطة</button>
+        <button class="game-switch-btn gs3" onclick="switchGame(3, 'challenge')">🏆 التحدي</button>
+        <button class="game-switch-btn gs3" onclick="switchGame(3, 'race')">⏱️ السباق</button>
+      </div>
+
+      <!-- الأشرطة المنزلقة -->
+      <div class="game-variant active" id="l3-slider">
+        <div class="game-section gm3">
+          <div class="game-header">
+            <div class="game-title-text">🎚️ حدّد الدرجة</div>
+            <div class="score-pill">النقاط: <span id="sl3Score">0</span></div>
+          </div>
+          <div class="slider-container">
+            <div class="slider-question" id="sl3Q">جاري التحميل...</div>
+            <div class="slider-value-display" id="sl3Value">0</div>
+            <input type="range" min="0" max="10" value="0" class="slider-input" id="sl3Input" oninput="sl3Update(this.value)">
+            <div class="slider-labels">
+              <span>0</span><span>2</span><span>4</span><span>6</span><span>8</span><span>10</span>
+            </div>
+          </div>
+          <div class="game-counter" id="sl3Counter" style="text-align:center; padding:8px;">سؤال 1 من 5</div>
+          <button class="game-btn" onclick="sl3Submit()" id="sl3CheckBtn">✓ تحقق</button>
+          <div class="game-feedback" id="sl3Feedback" style="display:none;"></div>
+          <button class="game-btn" id="sl3Next" onclick="sl3NextQ()" style="display:none;">السؤال التالي ➜</button>
+          <div id="sl3Result" style="display:none;"></div>
+        </div>
+      </div>
+
+      <!-- التحدي -->
+      <div class="game-variant" id="l3-challenge">
+        <div class="game-section gm3">
+          <div class="game-header">
+            <div class="game-title-text">🏆 التحدي المتدرج</div>
+            <div class="score-pill">النقاط: <span id="ch3Score">0</span></div>
+          </div>
+          <div style="text-align:center;">
+            <span class="challenge-level" id="ch3Level">سهل</span>
+          </div>
+          <div class="game-question-box">
+            <div class="game-counter" id="ch3Counter">سؤال 1 من 6</div>
+            <div class="progress-bar"><div class="progress-fill" id="ch3Progress"></div></div>
+            <div class="game-question" id="ch3Q">جاري التحميل...</div>
+          </div>
+          <div class="game-options" id="ch3Options"></div>
+          <div class="game-feedback" id="ch3Feedback">ابدأ من السهل وصولاً للخبير 💪</div>
+          <button class="game-btn" id="ch3Next" onclick="ch3NextQ()" style="display:none;">السؤال التالي ➜</button>
+          <div id="ch3Result" style="display:none;"></div>
+        </div>
+      </div>
+
+      <!-- السباق -->
+      <div class="game-variant" id="l3-race">
+        <div class="game-section gm3">
+          <div class="game-header">
+            <div class="game-title-text">⏱️ السباق ضد الزمن</div>
+            <div class="score-pill">النقاط: <span id="r3Score">0</span></div>
+          </div>
+          <div class="timer-display" id="r3Timer">30</div>
+          <div class="timer-bar-container">
+            <div class="timer-bar-fill" id="r3TimerBar"></div>
+          </div>
+          <div class="game-question-box">
+            <div class="game-counter" id="r3Counter">سؤال 1 من 5</div>
+            <div class="game-question" id="r3Q">جاري التحميل...</div>
+          </div>
+          <div class="game-options" id="r3Options"></div>
+          <div class="game-feedback" id="r3Feedback">30 ثانية لكل سؤال ⚡</div>
+          <button class="game-btn" id="r3Start" onclick="r3Begin()">🚀 ابدأ السباق</button>
+          <div id="r3Result" style="display:none;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     TEST
+═══════════════════════════════════ -->
+<div id="lesson4" style="display:none;">
+  <button class="back-btn" onclick="goHome()">⬅ العودة للرئيسية</button>
+  <div class="lesson-header h4">
+    <span class="lesson-emoji">📝</span>
+    <h2>الاختبار النهائي</h2>
+    <p style="opacity:0.95; font-size:0.9rem; margin-top:4px; position:relative; z-index:2;">20 سؤال شامل - حظاً موفقاً! 🍀</p>
+  </div>
+  <div class="lesson-content">
+    <div id="testContent"></div>
+    <button class="submit-test" onclick="submitTest()">📤 تسليم الاختبار</button>
+    <div id="testResult"></div>
+  </div>
+</div>
+
+<script>
+// ════════ SOUND SYSTEM ════════
+let soundEnabled = true;
+let audioContext = null;
+
+function initAudio() {
+  if (!audioContext) {
+    try {
+      audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    } catch(e) { console.log('Audio not supported'); }
+  }
+}
+
+function playTone(freq, duration, type = 'sine', volume = 0.15) {
+  if (!soundEnabled || !audioContext) return;
+  try {
+    const osc = audioContext.createOscillator();
+    const gain = audioContext.createGain();
+    osc.connect(gain);
+    gain.connect(audioContext.destination);
+    osc.type = type;
+    osc.frequency.value = freq;
+    gain.gain.setValueAtTime(volume, audioContext.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
+    osc.start(audioContext.currentTime);
+    osc.stop(audioContext.currentTime + duration);
+  } catch(e) {}
+}
+
+function soundClick() {
+  initAudio();
+  playTone(800, 0.05, 'sine', 0.1);
+}
+
+function soundCorrect() {
+  initAudio();
+  playTone(523, 0.1, 'sine', 0.15);
+  setTimeout(() => playTone(659, 0.1, 'sine', 0.15), 80);
+  setTimeout(() => playTone(784, 0.2, 'sine', 0.15), 160);
+}
+
+function soundWrong() {
+  initAudio();
+  playTone(300, 0.15, 'sawtooth', 0.1);
+  setTimeout(() => playTone(200, 0.2, 'sawtooth', 0.1), 100);
+}
+
+function soundTransition() {
+  initAudio();
+  playTone(440, 0.08, 'sine', 0.12);
+  setTimeout(() => playTone(587, 0.08, 'sine', 0.12), 60);
+}
+
+function soundCelebrate() {
+  initAudio();
+  const notes = [523, 659, 784, 1047];
+  notes.forEach((note, i) => {
+    setTimeout(() => playTone(note, 0.2, 'sine', 0.18), i * 100);
+  });
+}
+
+function soundLevelUp() {
+  initAudio();
+  playTone(659, 0.1, 'sine', 0.15);
+  setTimeout(() => playTone(784, 0.1, 'sine', 0.15), 80);
+  setTimeout(() => playTone(1047, 0.3, 'sine', 0.18), 160);
+}
+
+function toggleSound() {
+  soundEnabled = !soundEnabled;
+  document.getElementById('soundIcon').textContent = soundEnabled ? '🔊' : '🔇';
+  if (soundEnabled) soundClick();
+}
+
+// ════════ CONFETTI ════════
+function createConfetti() {
+  const colors = ['#2563eb', '#7c3aed', '#db2777', '#f59e0b', '#10b981', '#eab308'];
+  for (let i = 0; i < 50; i++) {
+    setTimeout(() => {
+      const c = document.createElement('div');
+      c.className = 'confetti';
+      c.style.left = Math.random() * 100 + '%';
+      c.style.background = colors[Math.floor(Math.random() * colors.length)];
+      c.style.animationDuration = (Math.random() * 2 + 2) + 's';
+      c.style.transform = `rotate(${Math.random() * 360}deg)`;
+      if (Math.random() > 0.5) c.style.borderRadius = '50%';
+      document.body.appendChild(c);
+      setTimeout(() => c.remove(), 4000);
+    }, i * 30);
+  }
+}
+
+// ════════ APP CONTROL ════════
+let studentName = '';
+
+function startApp() {
+  const name = document.getElementById('studentName').value.trim();
+  if (!name) { 
+    alert('⚠️ الرجاء كتابة اسمك أولاً!'); 
+    return; 
+  }
+  studentName = name;
+  initAudio();
+  soundLevelUp();
+  document.getElementById('welcome').style.display = 'none';
+  document.getElementById('studentBadge').textContent = '👤 ' + name;
+  document.getElementById('welcomeName').textContent = name;
+  initTest();
+}
+
+function goHome() {
+  soundTransition();
+  document.getElementById('homePage').style.display = '';
+  ['lesson1','lesson2','lesson3','lesson4'].forEach(id => {
+    document.getElementById(id).style.display = 'none';
+  });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function openLesson(n) {
+  soundTransition();
+  document.getElementById('homePage').style.display = 'none';
+  ['lesson1','lesson2','lesson3','lesson4'].forEach(id => {
+    document.getElementById(id).style.display = 'none';
+  });
+  document.getElementById('lesson' + n).style.display = '';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  
+  // بدء اللعبة الافتراضية لكل درس
+  if (n === 1) m1Start();
+  if (n === 2) o2Start();
+  if (n === 3) sl3Start();
+}
+
+// نظام تتبع الإنجاز
+const progress = {
+  1: { worksheet: false, game: false },
+  2: { worksheet: false, game: false },
+  3: { worksheet: false, game: false },
+  4: { test: false }
+};
+
+function updateProgress(lesson, type) {
+  if (lesson === 4) {
+    progress[4].test = true;
+  } else {
+    progress[lesson][type] = true;
+  }
+  refreshProgressTags();
+}
+
+function refreshProgressTags() {
+  for (let i = 1; i <= 3; i++) {
+    const tag = document.getElementById('prog' + i);
+    const p = progress[i];
+    if (p.worksheet && p.game) {
+      tag.textContent = '✓ مكتمل';
+      tag.className = 'progress-tag show';
+    } else if (p.worksheet || p.game) {
+      tag.textContent = '◐ نصف مكتمل';
+      tag.className = 'progress-tag show partial';
+    }
+  }
+  const tag4 = document.getElementById('prog4');
+  if (progress[4].test) {
+    tag4.textContent = '✓ تم الاختبار';
+    tag4.className = 'progress-tag show';
+  }
+}
+
+function switchTab(lesson, tab) {
+  soundClick();
+  const lessonDiv = document.getElementById('lesson' + lesson);
+  lessonDiv.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  lessonDiv.querySelectorAll('.inner-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('l' + lesson + '-' + tab).classList.add('active');
+  const tabs = lessonDiv.querySelectorAll('.inner-tab');
+  const tabOrder = ['theory', 'examples', 'worksheet', 'game'];
+  tabs[tabOrder.indexOf(tab)].classList.add('active');
+}
+
+function toggleAns(id) {
+  soundClick();
+  document.getElementById(id).classList.toggle('show');
+}
+
+function normalize(s) {
+  return s.replace(/\s+/g, '').replace(/×/g, '*').replace(/÷/g, '/').toLowerCase();
+}
+
+function checkAns(inputId, correct, mode = 'exact') {
+  const input = document.getElementById(inputId);
+  const userAns = input.value.trim();
+  if (!userAns) {
+    alert('الرجاء كتابة إجابة!');
+    return;
+  }
+  
+  let isCorrect = false;
+  if (mode === 'flexible') {
+    isCorrect = normalize(userAns) === normalize(correct);
+  } else {
+    isCorrect = userAns === correct || userAns.toLowerCase() === correct.toLowerCase();
+  }
+  
+  if (isCorrect) {
+    soundCorrect();
+    input.classList.remove('wrong');
+    input.classList.add('correct');
+    setTimeout(() => createMiniConfetti(input), 100);
+    // تتبع: استخراج رقم الدرس من inputId (مثل ws1-1 → 1)
+    const lessonNum = parseInt(inputId.charAt(2));
+    if (lessonNum >= 1 && lessonNum <= 3) {
+      checkWorksheetComplete(lessonNum);
+    }
+  } else {
+    soundWrong();
+    input.classList.remove('correct');
+    input.classList.add('wrong');
+    input.classList.add('shake');
+    setTimeout(() => input.classList.remove('shake'), 500);
+  }
+}
+
+function checkWorksheetComplete(lesson) {
+  // عدّ كل الأسئلة المُجاب عليها (صح أو خطأ) في ورقة العمل
+  const answeredOptions = document.querySelectorAll(`#l${lesson}-worksheet .ws-option.correct, #l${lesson}-worksheet .ws-option.wrong`);
+  // عدد الأسئلة في كل ورقة عمل = 5
+  if (answeredOptions.length >= 5) {
+    if (!progress[lesson].worksheet) {
+      progress[lesson].worksheet = true;
+      refreshProgressTags();
+      
+      // عد الإجابات الصحيحة لعرض نتيجة ورقة العمل
+      const correctCount = document.querySelectorAll(`#l${lesson}-worksheet .ws-option.correct`).length;
+      showWorksheetResult(lesson, correctCount, 5);
+      
+      if (correctCount >= 4) {
+        soundCelebrate();
+        createConfetti();
+      } else {
+        soundLevelUp();
+      }
+    }
+  }
+}
+
+function showWorksheetResult(lesson, score, total) {
+  const worksheetDiv = document.querySelector(`#l${lesson}-worksheet .worksheet`);
+  if (!worksheetDiv) return;
+  
+  // تحقق أن النتيجة لم تُعرض من قبل
+  if (document.getElementById(`ws${lesson}-result`)) return;
+  
+  const pct = (score / total) * 100;
+  let cls, emoji, msg;
+  if (pct >= 80) { emoji = '🏆'; msg = 'ممتاز جداً!'; }
+  else if (pct >= 60) { emoji = '🌟'; msg = 'أداء جيد!'; }
+  else if (pct >= 40) { emoji = '👍'; msg = 'مقبول، تدرب أكثر'; }
+  else { emoji = '📚'; msg = 'راجع الدرس'; }
+  
+  const resultDiv = document.createElement('div');
+  resultDiv.id = `ws${lesson}-result`;
+  resultDiv.innerHTML = `
+    <div style="margin-top:18px; padding:24px; background:linear-gradient(135deg, #d1fae5, #a7f3d0); border:3px solid var(--g); border-radius:18px; text-align:center; animation: popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);">
+      <span style="font-size:60px; display:block; margin-bottom:8px;">${emoji}</span>
+      <div style="font-size:1.05rem; font-weight:800; color:var(--gd); margin-bottom:8px;">نتيجة ورقة العمل</div>
+      <div style="font-size:2.4rem; font-weight:900; color:var(--gd); margin:8px 0;">${score} / ${total}</div>
+      <div style="font-size:1.05rem; color:var(--gd); font-weight:800;">${msg}</div>
+      <div style="font-size:0.88rem; margin-top:6px; color:#475569;">النسبة: ${pct.toFixed(0)}%</div>
+    </div>`;
+  worksheetDiv.appendChild(resultDiv);
+  resultDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+// نظام ورقة العمل بالاختيار من متعدد
+const wsAnswered = {};
+
+function pickWS(btn, qId, correctAns, lesson) {
+  if (wsAnswered[qId]) return; // مجاب عليه مسبقاً
+  
+  const userAns = btn.textContent.trim();
+  const isCorrect = userAns === correctAns;
+  const allOpts = btn.parentElement.querySelectorAll('.ws-option');
+  const feedback = document.getElementById(qId + '-fb');
+  
+  // قفل كل الخيارات
+  allOpts.forEach(opt => opt.classList.add('locked'));
+  
+  if (isCorrect) {
+    soundCorrect();
+    btn.classList.add('correct');
+    feedback.className = 'ws-feedback correct show';
+    feedback.innerHTML = `✅ <b>إجابة صحيحة!</b> أحسنت 🎉`;
+    setTimeout(() => createMiniConfetti(btn), 100);
+  } else {
+    soundWrong();
+    btn.classList.add('wrong');
+    feedback.className = 'ws-feedback wrong show';
+    feedback.innerHTML = `❌ <b>إجابة خاطئة</b><br>الإجابة الصحيحة: <b>${correctAns}</b>`;
+    
+    // إظهار الإجابة الصحيحة بالأخضر
+    allOpts.forEach(opt => {
+      if (opt.textContent.trim() === correctAns) {
+        opt.classList.add('show-correct');
+      }
+    });
+  }
+  
+  wsAnswered[qId] = true;
+  
+  // تحقق من إكمال ورقة العمل
+  setTimeout(() => checkWorksheetComplete(lesson), 200);
+}
+
+function createMiniConfetti(elem) {
+  const rect = elem.getBoundingClientRect();
+  const colors = ['#10b981', '#f59e0b', '#2563eb'];
+  for (let i = 0; i < 10; i++) {
+    const c = document.createElement('div');
+    c.className = 'confetti';
+    c.style.left = (rect.left + rect.width / 2) + 'px';
+    c.style.top = rect.top + 'px';
+    c.style.position = 'fixed';
+    c.style.background = colors[i % colors.length];
+    c.style.animationDuration = '1.5s';
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 1500);
+  }
+}
+
+// ════════ GAME SWITCHER ════════
+function switchGame(lesson, variant) {
+  soundClick();
+  const lessonDiv = document.getElementById('lesson' + lesson);
+  lessonDiv.querySelectorAll('.game-variant').forEach(v => v.classList.remove('active'));
+  lessonDiv.querySelectorAll('.game-switch-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('l' + lesson + '-' + variant).classList.add('active');
+  // تفعيل الزر
+  const buttons = lessonDiv.querySelectorAll('.game-switch-btn');
+  const variantOrder = lesson === 1 ? ['match','flash','race'] : 
+                        lesson === 2 ? ['order','lights','race'] :
+                        ['slider','challenge','race'];
+  buttons[variantOrder.indexOf(variant)].classList.add('active');
+  
+  // بدء اللعبة
+  if (lesson === 1) {
+    if (variant === 'match') m1Start();
+    else if (variant === 'flash') f1Start();
+    else r1Reset();
+  } else if (lesson === 2) {
+    if (variant === 'order') o2Start();
+    else if (variant === 'lights') lt2Start();
+    else r2Reset();
+  } else if (lesson === 3) {
+    if (variant === 'slider') sl3Start();
+    else if (variant === 'challenge') ch3Start();
+    else r3Reset();
+  }
+}
+
+// تتبع: علامة إكمال اللعبة لأي درس (إنهاء أي لعبة يكفي)
+function markGameDone(lesson) {
+  if (!progress[lesson].game) {
+    progress[lesson].game = true;
+    refreshProgressTags();
+  }
+}
+
+// ════════ DRAG & DROP UTILITIES ════════
+let dragSource = null;
+let touchDragElement = null;
+let touchDragClone = null;
+
+function makeDraggable(elem, onDrop) {
+  // Desktop drag
+  elem.draggable = true;
+  elem.addEventListener('dragstart', (e) => {
+    dragSource = elem;
+    elem.classList.add('dragging');
+    e.dataTransfer.effectAllowed = 'move';
+  });
+  elem.addEventListener('dragend', () => {
+    elem.classList.remove('dragging');
+    document.querySelectorAll('.drag-over').forEach(d => d.classList.remove('drag-over'));
+  });
+  
+  // Touch (mobile)
+  elem.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    dragSource = elem;
+    touchDragElement = elem;
+    elem.classList.add('dragging');
+    const touch = e.touches[0];
+    touchDragClone = elem.cloneNode(true);
+    touchDragClone.style.position = 'fixed';
+    touchDragClone.style.pointerEvents = 'none';
+    touchDragClone.style.zIndex = '9999';
+    touchDragClone.style.opacity = '0.85';
+    touchDragClone.style.transform = 'scale(1.05)';
+    touchDragClone.style.width = elem.offsetWidth + 'px';
+    touchDragClone.style.left = (touch.clientX - elem.offsetWidth/2) + 'px';
+    touchDragClone.style.top = (touch.clientY - elem.offsetHeight/2) + 'px';
+    document.body.appendChild(touchDragClone);
+  }, {passive: false});
+  
+  elem.addEventListener('touchmove', (e) => {
+    e.preventDefault();
+    if (!touchDragClone) return;
+    const touch = e.touches[0];
+    touchDragClone.style.left = (touch.clientX - touchDragClone.offsetWidth/2) + 'px';
+    touchDragClone.style.top = (touch.clientY - touchDragClone.offsetHeight/2) + 'px';
+    
+    // ابحث عن العنصر تحت اللمس
+    touchDragClone.style.display = 'none';
+    const el = document.elementFromPoint(touch.clientX, touch.clientY);
+    touchDragClone.style.display = '';
+    
+    document.querySelectorAll('.drag-over').forEach(d => d.classList.remove('drag-over'));
+    if (el && el.classList.contains('drop-target')) {
+      el.classList.add('drag-over');
+    } else if (el) {
+      const target = el.closest('.drop-target');
+      if (target) target.classList.add('drag-over');
+    }
+  }, {passive: false});
+  
+  elem.addEventListener('touchend', (e) => {
+    if (!touchDragClone) return;
+    const touch = e.changedTouches[0];
+    touchDragClone.style.display = 'none';
+    const el = document.elementFromPoint(touch.clientX, touch.clientY);
+    touchDragClone.remove();
+    touchDragClone = null;
+    elem.classList.remove('dragging');
+    document.querySelectorAll('.drag-over').forEach(d => d.classList.remove('drag-over'));
+    
+    if (el) {
+      const target = el.classList.contains('drop-target') ? el : el.closest('.drop-target');
+      if (target && onDrop) {
+        onDrop(elem, target);
+      }
+    }
+    touchDragElement = null;
+    dragSource = null;
+  }, {passive: false});
+}
+
+function makeDropTarget(elem, onDrop) {
+  elem.classList.add('drop-target');
+  elem.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    elem.classList.add('drag-over');
+  });
+  elem.addEventListener('dragleave', () => {
+    elem.classList.remove('drag-over');
+  });
+  elem.addEventListener('drop', (e) => {
+    e.preventDefault();
+    elem.classList.remove('drag-over');
+    if (dragSource && onDrop) onDrop(dragSource, elem);
+    dragSource = null;
+  });
+}
+
+// ════════════════════════════════════════════
+// 🔗 GAME 1.1: المطابقة (الدرس 1)
+// ════════════════════════════════════════════
+const m1Pairs = [
+  { left: 'المعامل = 5', right: '5س³' },
+  { left: 'الدرجة = 4', right: '2س⁴ + 1' },
+  { left: 'الثابت = 7', right: '3س² + 7' },
+  { left: 'عدد الحدود = 3', right: 'س² + 2س + 1' }
+];
+let m1Score = 0;
+let m1Matched = [];
+
+function m1Start() {
+  m1Score = 0;
+  m1Matched = [];
+  document.getElementById('m1Score').textContent = '0';
+  document.getElementById('m1Result').style.display = 'none';
+  document.getElementById('m1Restart').style.display = 'none';
+  
+  const leftCol = document.getElementById('m1LeftCol');
+  const rightCol = document.getElementById('m1RightCol');
+  leftCol.innerHTML = '';
+  rightCol.innerHTML = '';
+  
+  // خلط
+  const leftShuffled = [...m1Pairs].sort(() => Math.random() - 0.5);
+  const rightShuffled = [...m1Pairs].sort(() => Math.random() - 0.5);
+  
+  leftShuffled.forEach((p, i) => {
+    const div = document.createElement('div');
+    div.className = 'match-item left-item';
+    div.textContent = p.left;
+    div.dataset.match = p.left;
+    leftCol.appendChild(div);
+    makeDropTarget(div, m1Drop);
+  });
+  
+  rightShuffled.forEach((p, i) => {
+    const div = document.createElement('div');
+    div.className = 'match-item right-item';
+    div.textContent = p.right;
+    div.dataset.match = p.left; // العنصر اليمين يطابق الـ left الخاص به
+    div.dataset.right = p.right;
+    rightCol.appendChild(div);
+    makeDraggable(div, m1Drop);
+  });
+}
+
+function m1Drop(rightElem, leftElem) {
+  if (m1Matched.includes(rightElem.dataset.right)) return;
+  if (leftElem.classList.contains('matched-left')) return;
+  
+  if (rightElem.dataset.match === leftElem.dataset.match) {
+    soundCorrect();
+    rightElem.classList.add('matched-right');
+    leftElem.classList.add('matched-left');
+    rightElem.draggable = false;
+    m1Matched.push(rightElem.dataset.right);
+    m1Score++;
+    document.getElementById('m1Score').textContent = m1Score;
+    createMiniConfetti(leftElem);
+    
+    if (m1Score >= 4) {
+      setTimeout(() => m1End(), 600);
+    }
+  } else {
+    soundWrong();
+    rightElem.classList.add('wrong-pos');
+    setTimeout(() => rightElem.classList.remove('wrong-pos'), 500);
+  }
+}
+
+function m1End() {
+  soundCelebrate();
+  createConfetti();
+  markGameDone(1);
+  document.getElementById('m1Result').innerHTML = `
+    <div class="result-box" style="margin-top:14px;">
+      <span class="result-emoji">🎉</span>
+      <div class="result-score">${m1Score} / 4</div>
+      <div class="result-msg">مطابقة مثالية! 🌟</div>
+    </div>`;
+  document.getElementById('m1Result').style.display = 'block';
+  document.getElementById('m1Restart').style.display = 'block';
+}
+
+// ════════════════════════════════════════════
+// 🃏 GAME 1.2: البطاقات السريعة (الدرس 1)
+// ════════════════════════════════════════════
+const f1Cards = [
+  { q: '5س³', sub: 'ما درجة هذا الحد؟', correct: '3', wrong: ['5', '8', '1'] },
+  { q: '7س²', sub: 'ما المعامل؟', correct: '7', wrong: ['2', '14', '1'] },
+  { q: '4س⁵', sub: 'ما الأس؟', correct: '5', wrong: ['4', '9', '1'] },
+  { q: '9', sub: 'ما درجة هذا الحد الثابت؟', correct: '0', wrong: ['9', '1', 'لا يوجد'] },
+  { q: '6س', sub: 'ما المعامل؟', correct: '6', wrong: ['1', '0', 'س'] },
+  { q: '-3س⁴', sub: 'ما المعامل؟', correct: '-3', wrong: ['3', '4', '-4'] },
+  { q: '2س² + 5س + 1', sub: 'كم عدد الحدود؟', correct: '3', wrong: ['2', '4', '1'] },
+  { q: 'س³ + س² + س + 5', sub: 'ما الدرجة؟', correct: '3', wrong: ['4', '1', '5'] }
+];
+let f1Idx = 0, f1Score = 0, f1Order = [];
+
+function f1Start() {
+  f1Idx = 0; f1Score = 0;
+  document.getElementById('f1Score').textContent = '0';
+  document.getElementById('f1Result').style.display = 'none';
+  document.querySelector('#l1-flash .flashcard').style.display = 'flex';
+  document.getElementById('f1Options').style.display = 'grid';
+  document.getElementById('f1Feedback').style.display = 'block';
+  f1Order = [...Array(f1Cards.length).keys()].sort(() => Math.random() - 0.5).slice(0, 6);
+  f1Load();
+}
+
+function f1Load() {
+  const c = f1Cards[f1Order[f1Idx]];
+  document.getElementById('f1Counter').textContent = `${f1Idx + 1}/6`;
+  document.getElementById('f1Q').textContent = c.q;
+  document.getElementById('f1Sub').textContent = c.sub;
+  document.getElementById('f1Feedback').textContent = 'اختر الإجابة 👆';
+  document.getElementById('f1Feedback').className = 'game-feedback';
+  document.getElementById('f1Next').style.display = 'none';
+  
+  // إعادة تشغيل أنيميشن البطاقة
+  const card = document.querySelector('#l1-flash .flashcard');
+  card.style.animation = 'none';
+  setTimeout(() => card.style.animation = 'cardFlip 0.5s ease', 10);
+  
+  const opts = [c.correct, ...c.wrong].sort(() => Math.random() - 0.5);
+  const optsDiv = document.getElementById('f1Options');
+  optsDiv.innerHTML = '';
+  opts.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'choice-btn';
+    btn.textContent = opt;
+    btn.onclick = () => f1Pick(btn, opt, c.correct);
+    optsDiv.appendChild(btn);
+  });
+}
+
+function f1Pick(btn, chosen, correct) {
+  document.querySelectorAll('#f1Options .choice-btn').forEach(b => {
+    b.classList.add('dis');
+    if (b.textContent === correct) b.classList.add('ok');
+  });
+  const fb = document.getElementById('f1Feedback');
+  if (chosen === correct) {
+    soundCorrect();
+    f1Score++;
+    document.getElementById('f1Score').textContent = f1Score;
+    fb.className = 'game-feedback correct-fb';
+    fb.textContent = '🎉 ممتاز!';
+  } else {
+    soundWrong();
+    btn.classList.add('err');
+    fb.className = 'game-feedback wrong-fb';
+    fb.textContent = '❌ الصحيح: ' + correct;
+  }
+  document.getElementById('f1Next').style.display = 'block';
+}
+
+function f1NextQ() {
+  soundClick();
+  f1Idx++;
+  if (f1Idx >= 6) f1End(); else f1Load();
+}
+
+function f1End() {
+  markGameDone(1);
+  if (f1Score >= 5) { soundCelebrate(); createConfetti(); } else soundLevelUp();
+  const msg = f1Score >= 5 ? 'بطل البطاقات! 🌟' : f1Score >= 3 ? 'جيد! 👍' : 'حاول مرة أخرى! 💪';
+  document.getElementById('f1Result').innerHTML = `<div class="result-box"><span class="result-emoji">🏆</span><div class="result-score">${f1Score} / 6</div><div class="result-msg">${msg}</div><button class="restart-btn" onclick="f1Start()">🔄 العب مرة أخرى</button></div>`;
+  document.getElementById('f1Result').style.display = 'block';
+  document.querySelector('#l1-flash .flashcard').style.display = 'none';
+  document.getElementById('f1Options').style.display = 'none';
+  document.getElementById('f1Feedback').style.display = 'none';
+  document.getElementById('f1Next').style.display = 'none';
+}
+
+// ════════════════════════════════════════════
+// ⏱️ GAME 1.3: السباق ضد الزمن (الدرس 1) - 15 ثانية
+// ════════════════════════════════════════════
+const r1Questions = [
+  { q: 'درجة 4س² + 1؟', correct: '2', wrong: ['1', '4', '0'] },
+  { q: 'معامل 9س³؟', correct: '9', wrong: ['3', '27', '1'] },
+  { q: 'عدد حدود: 2س + 5؟', correct: '2', wrong: ['1', '3', '5'] },
+  { q: 'درجة الحد 8؟', correct: '0', wrong: ['8', '1', '∞'] },
+  { q: 'معامل س⁴؟', correct: '1', wrong: ['4', '0', '-1'] },
+  { q: 'درجة 6س⁵ + س؟', correct: '5', wrong: ['6', '1', '4'] },
+  { q: 'عدد حدود: س³ + س² + س + 1؟', correct: '4', wrong: ['3', '5', '2'] }
+];
+let r1Idx = 0, r1Score = 0, r1Order = [], r1Timer = null, r1TimeLeft = 0;
+let r1Bonus = 0;
+const R1_TIME = 15;
+
+function r1Reset() {
+  r1Idx = 0; r1Score = 0; r1Bonus = 0;
+  document.getElementById('r1Score').textContent = '0';
+  document.getElementById('r1Result').style.display = 'none';
+  document.getElementById('r1Start').style.display = 'block';
+  document.getElementById('r1Start').textContent = '🚀 ابدأ السباق';
+  document.getElementById('r1Options').innerHTML = '';
+  document.getElementById('r1Feedback').textContent = '15 ثانية لكل سؤال ⚡';
+  document.getElementById('r1Feedback').className = 'game-feedback';
+  document.getElementById('r1Q').textContent = 'اضغط ابدأ لتبدأ التحدي';
+  document.getElementById('r1Timer').textContent = R1_TIME;
+  document.getElementById('r1TimerBar').style.width = '100%';
+}
+
+function r1Begin() {
+  document.getElementById('r1Start').style.display = 'none';
+  r1Order = [...Array(r1Questions.length).keys()].sort(() => Math.random() - 0.5).slice(0, 5);
+  r1Load();
+}
+
+function r1Load() {
+  const q = r1Questions[r1Order[r1Idx]];
+  document.getElementById('r1Counter').textContent = `سؤال ${r1Idx + 1} من 5`;
+  document.getElementById('r1Q').textContent = q.q;
+  document.getElementById('r1Feedback').textContent = '⚡ سرعة!';
+  document.getElementById('r1Feedback').className = 'game-feedback';
+  
+  const opts = [q.correct, ...q.wrong].sort(() => Math.random() - 0.5);
+  const optsDiv = document.getElementById('r1Options');
+  optsDiv.innerHTML = '';
+  opts.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'choice-btn';
+    btn.textContent = opt;
+    btn.onclick = () => r1Pick(btn, opt, q.correct);
+    optsDiv.appendChild(btn);
+  });
+  
+  r1StartTimer();
+}
+
+function r1StartTimer() {
+  r1TimeLeft = R1_TIME;
+  document.getElementById('r1Timer').textContent = r1TimeLeft;
+  document.getElementById('r1Timer').classList.remove('urgent');
+  document.getElementById('r1TimerBar').style.width = '100%';
+  
+  if (r1Timer) clearInterval(r1Timer);
+  r1Timer = setInterval(() => {
+    r1TimeLeft--;
+    document.getElementById('r1Timer').textContent = r1TimeLeft;
+    document.getElementById('r1TimerBar').style.width = (r1TimeLeft / R1_TIME * 100) + '%';
+    if (r1TimeLeft <= 5) document.getElementById('r1Timer').classList.add('urgent');
+    if (r1TimeLeft <= 0) {
+      clearInterval(r1Timer);
+      r1TimeOut();
+    }
+  }, 1000);
+}
+
+function r1Pick(btn, chosen, correct) {
+  clearInterval(r1Timer);
+  // مكافأة الوقت
+  if (chosen === correct && r1TimeLeft > 7) {
+    r1Bonus++;
+  }
+  document.querySelectorAll('#r1Options .choice-btn').forEach(b => {
+    b.classList.add('dis');
+    if (b.textContent === correct) b.classList.add('ok');
+  });
+  if (chosen === correct) {
+    soundCorrect();
+    btn.classList.add('ok');
+    r1Score++;
+    document.getElementById('r1Score').textContent = r1Score;
+    document.getElementById('r1Feedback').className = 'game-feedback correct-fb';
+    document.getElementById('r1Feedback').textContent = '✅ صحيح!' + (r1TimeLeft > 7 ? ' (مكافأة سرعة 🎁)' : '');
+  } else {
+    soundWrong();
+    btn.classList.add('err');
+    document.getElementById('r1Feedback').className = 'game-feedback wrong-fb';
+    document.getElementById('r1Feedback').textContent = '❌ الصحيح: ' + correct;
+  }
+  setTimeout(r1Next, 1200);
+}
+
+function r1TimeOut() {
+  soundWrong();
+  const q = r1Questions[r1Order[r1Idx]];
+  document.querySelectorAll('#r1Options .choice-btn').forEach(b => {
+    b.classList.add('dis');
+    if (b.textContent === q.correct) b.classList.add('ok');
+  });
+  document.getElementById('r1Feedback').className = 'game-feedback wrong-fb';
+  document.getElementById('r1Feedback').textContent = '⏰ انتهى الوقت! الصحيح: ' + q.correct;
+  setTimeout(r1Next, 1500);
+}
+
+function r1Next() {
+  r1Idx++;
+  if (r1Idx >= 5) r1End(); else r1Load();
+}
+
+function r1End() {
+  markGameDone(1);
+  if (r1Score >= 4) { soundCelebrate(); createConfetti(); } else soundLevelUp();
+  let bonusBadge = r1Bonus > 0 ? `<div class="bonus-badge">🎁 مكافأة السرعة: +${r1Bonus} نقاط</div>` : '';
+  const total = r1Score + r1Bonus;
+  const msg = total >= 6 ? 'متسابق ممتاز! 🌟' : total >= 4 ? 'جيد! 👍' : 'تدرب أكثر! 💪';
+  document.getElementById('r1Result').innerHTML = `<div class="result-box"><span class="result-emoji">⏱️</span><div class="result-score">${r1Score} / 5</div>${bonusBadge}<div class="result-msg">${msg}</div><div style="font-size:1rem; font-weight:700; color:var(--gd);">المجموع: ${total} نقطة</div><button class="restart-btn" onclick="r1Reset()" style="margin-top:10px;">🔄 العب مرة أخرى</button></div>`;
+  document.getElementById('r1Result').style.display = 'block';
+}
+
+// ════════════════════════════════════════════
+// 📊 GAME 2.1: الترتيب بالسحب (الدرس 2)
+// ════════════════════════════════════════════
+const o2Rounds = [
+  { items: ['3س', '5س²', '2س⁴', 'س³'], correctOrder: ['2س⁴', 'س³', '5س²', '3س'], type: 'desc', label: 'تنازلياً حسب الدرجة' },
+  { items: ['س²', '2س⁵', '7', '3س³'], correctOrder: ['2س⁵', '3س³', 'س²', '7'], type: 'desc', label: 'تنازلياً حسب الدرجة' },
+  { items: ['4س', '6', 'س⁴', '2س²'], correctOrder: ['6', '4س', '2س²', 'س⁴'], type: 'asc', label: 'تصاعدياً حسب الدرجة' },
+  { items: ['س⁶', '3س', '5س²', '2س³'], correctOrder: ['س⁶', '2س³', '5س²', '3س'], type: 'desc', label: 'تنازلياً حسب الدرجة' }
+];
+let o2Round = 0, o2Score = 0;
+let o2DraggedItem = null;
+
+function o2Start() {
+  o2Round = 0; o2Score = 0;
+  document.getElementById('o2Pill').textContent = `جولة 1/${o2Rounds.length}`;
+  document.getElementById('o2Result').style.display = 'none';
+  document.getElementById('o2Next').style.display = 'none';
+  document.getElementById('o2Check').style.display = 'block';
+  document.getElementById('o2Feedback').style.display = 'none';
+  document.querySelector('#l2-order .game-section').style.display = 'block';
+  o2LoadRound();
+}
+
+function o2LoadRound() {
+  const round = o2Rounds[o2Round];
+  document.getElementById('o2Pill').textContent = `جولة ${o2Round + 1}/${o2Rounds.length}`;
+  document.getElementById('o2Instr').innerHTML = `✨ اسحب الحدود لترتيبها <b>${round.label}</b>`;
+  document.getElementById('o2Feedback').style.display = 'none';
+  document.getElementById('o2Next').style.display = 'none';
+  document.getElementById('o2Check').style.display = 'block';
+  
+  const container = document.getElementById('o2Container');
+  container.innerHTML = '';
+  
+  // خلط
+  const shuffled = [...round.items].sort(() => Math.random() - 0.5);
+  shuffled.forEach((item, i) => {
+    const div = document.createElement('div');
+    div.className = 'order-item';
+    div.textContent = item;
+    div.dataset.value = item;
+    container.appendChild(div);
+    
+    // Drag handlers
+    o2MakeDraggable(div);
+  });
+}
+
+function o2MakeDraggable(elem) {
+  // Desktop
+  elem.draggable = true;
+  elem.addEventListener('dragstart', () => {
+    o2DraggedItem = elem;
+    elem.classList.add('dragging');
+  });
+  elem.addEventListener('dragend', () => {
+    elem.classList.remove('dragging');
+    document.querySelectorAll('.order-item.drag-target').forEach(d => d.classList.remove('drag-target'));
+  });
+  elem.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    if (elem !== o2DraggedItem) elem.classList.add('drag-target');
+  });
+  elem.addEventListener('dragleave', () => elem.classList.remove('drag-target'));
+  elem.addEventListener('drop', (e) => {
+    e.preventDefault();
+    elem.classList.remove('drag-target');
+    if (o2DraggedItem && elem !== o2DraggedItem) {
+      const container = document.getElementById('o2Container');
+      const items = [...container.children];
+      const draggedIdx = items.indexOf(o2DraggedItem);
+      const targetIdx = items.indexOf(elem);
+      if (draggedIdx < targetIdx) {
+        elem.parentNode.insertBefore(o2DraggedItem, elem.nextSibling);
+      } else {
+        elem.parentNode.insertBefore(o2DraggedItem, elem);
+      }
+      soundClick();
+    }
+  });
+  
+  // Touch
+  let touchY = 0;
+  let originalIdx = 0;
+  let touchClone = null;
+  elem.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    o2DraggedItem = elem;
+    elem.classList.add('dragging');
+    const touch = e.touches[0];
+    touchY = touch.clientY;
+    const container = document.getElementById('o2Container');
+    originalIdx = [...container.children].indexOf(elem);
+    
+    touchClone = elem.cloneNode(true);
+    touchClone.style.position = 'fixed';
+    touchClone.style.pointerEvents = 'none';
+    touchClone.style.zIndex = '9999';
+    touchClone.style.opacity = '0.85';
+    touchClone.style.width = elem.offsetWidth + 'px';
+    touchClone.style.left = elem.getBoundingClientRect().left + 'px';
+    touchClone.style.top = (touch.clientY - elem.offsetHeight/2) + 'px';
+    document.body.appendChild(touchClone);
+  }, {passive: false});
+  
+  elem.addEventListener('touchmove', (e) => {
+    e.preventDefault();
+    if (!touchClone) return;
+    const touch = e.touches[0];
+    touchClone.style.top = (touch.clientY - elem.offsetHeight/2) + 'px';
+    
+    // اعثر على عنصر تحت الإصبع
+    touchClone.style.display = 'none';
+    const el = document.elementFromPoint(touch.clientX, touch.clientY);
+    touchClone.style.display = '';
+    
+    if (el && el.classList.contains('order-item') && el !== elem) {
+      const container = document.getElementById('o2Container');
+      const targetIdx = [...container.children].indexOf(el);
+      const draggedIdx = [...container.children].indexOf(elem);
+      if (draggedIdx < targetIdx) {
+        el.parentNode.insertBefore(elem, el.nextSibling);
+      } else {
+        el.parentNode.insertBefore(elem, el);
+      }
+    }
+  }, {passive: false});
+  
+  elem.addEventListener('touchend', () => {
+    if (touchClone) { touchClone.remove(); touchClone = null; }
+    elem.classList.remove('dragging');
+    o2DraggedItem = null;
+  });
+}
+
+function o2Check() {
+  const container = document.getElementById('o2Container');
+  const items = [...container.children].map(c => c.dataset.value);
+  const correct = o2Rounds[o2Round].correctOrder;
+  
+  let allCorrect = true;
+  items.forEach((item, i) => {
+    const child = container.children[i];
+    if (item === correct[i]) {
+      child.classList.add('correct-pos');
+    } else {
+      child.classList.add('wrong-pos');
+      allCorrect = false;
+    }
+  });
+  
+  document.getElementById('o2Check').style.display = 'none';
+  const fb = document.getElementById('o2Feedback');
+  fb.style.display = 'block';
+  
+  if (allCorrect) {
+    soundCorrect();
+    o2Score++;
+    fb.className = 'game-feedback correct-fb';
+    fb.textContent = '✅ ترتيب صحيح! ممتاز';
+    createMiniConfetti(container);
+  } else {
+    soundWrong();
+    fb.className = 'game-feedback wrong-fb';
+    fb.innerHTML = '❌ ترتيب خاطئ. الترتيب الصحيح: <b>' + correct.join(' ← ') + '</b>';
+  }
+  
+  if (o2Round < o2Rounds.length - 1) {
+    document.getElementById('o2Next').style.display = 'block';
+  } else {
+    setTimeout(o2End, 1500);
+  }
+}
+
+function o2NextRound() {
+  soundClick();
+  o2Round++;
+  o2LoadRound();
+}
+
+function o2End() {
+  markGameDone(2);
+  document.querySelector('#l2-order .game-section').style.display = 'none';
+  if (o2Score >= 3) { soundCelebrate(); createConfetti(); } else soundLevelUp();
+  const msg = o2Score >= 3 ? 'مرتب احترافي! 🌟' : o2Score >= 2 ? 'جيد! 👍' : 'حاول مرة أخرى! 💪';
+  document.getElementById('o2Result').innerHTML = `<div class="result-box"><span class="result-emoji">🏆</span><div class="result-score">${o2Score} / ${o2Rounds.length}</div><div class="result-msg">${msg}</div><button class="restart-btn" onclick="o2RestartGame()">🔄 العب مرة أخرى</button></div>`;
+  document.getElementById('o2Result').style.display = 'block';
+}
+
+function o2RestartGame() {
+  document.querySelector('#l2-order .game-section').style.display = 'block';
+  o2Start();
+}
+
+// ════════════════════════════════════════════
+// 💡 GAME 2.2: الأزرار المضيئة (الدرس 2)
+// ════════════════════════════════════════════
+const lt2Questions = [
+  { q: 'اختر كل الحدود المتشابهة مع 3س²', options: ['5س²', '2س', '-س²', 'س³', '8س²', '4'], correct: ['5س²', '-س²', '8س²'] },
+  { q: 'اختر كل الحدود من الدرجة الأولى', options: ['2س', 'س²', '5', 'س', '-3س', 'س³'], correct: ['2س', 'س', '-3س'] },
+  { q: 'اختر كل الحدود الثابتة', options: ['7', 'س', '3', '2س', '-5', 'س²'], correct: ['7', '3', '-5'] },
+  { q: 'اختر كل الحدود المتشابهة مع 5س', options: ['2س', '5س²', '3س', '-س', '4', 'س³'], correct: ['2س', '3س', '-س'] }
+];
+let lt2Idx = 0, lt2Score = 0, lt2Order = [], lt2Selected = [];
+
+function lt2Start() {
+  lt2Idx = 0; lt2Score = 0;
+  document.getElementById('lt2Score').textContent = '0';
+  document.getElementById('lt2Result').style.display = 'none';
+  document.querySelector('#l2-lights .game-section').style.display = 'block';
+  lt2Order = [...Array(lt2Questions.length).keys()].sort(() => Math.random() - 0.5);
+  lt2Load();
+}
+
+function lt2Load() {
+  const q = lt2Questions[lt2Order[lt2Idx]];
+  document.getElementById('lt2Q').textContent = q.q + ` (${lt2Idx + 1}/${lt2Order.length})`;
+  document.getElementById('lt2Feedback').textContent = `اضغط ${q.correct.length} أزرار صحيحة 👇`;
+  document.getElementById('lt2Feedback').className = 'game-feedback';
+  document.getElementById('lt2Next').style.display = 'none';
+  lt2Selected = [];
+  
+  const grid = document.getElementById('lt2Grid');
+  grid.innerHTML = '';
+  const shuffled = [...q.options].sort(() => Math.random() - 0.5);
+  shuffled.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'light-btn';
+    btn.textContent = opt;
+    btn.onclick = () => lt2Pick(btn, opt, q);
+    grid.appendChild(btn);
+  });
+}
+
+function lt2Pick(btn, val, q) {
+  if (btn.classList.contains('locked')) return;
+  if (q.correct.includes(val)) {
+    soundCorrect();
+    btn.classList.add('lit-correct', 'locked');
+    lt2Selected.push(val);
+    
+    // تحقق إذا اختار كل الإجابات
+    if (lt2Selected.length === q.correct.length) {
+      soundCelebrate();
+      lt2Score++;
+      document.getElementById('lt2Score').textContent = lt2Score;
+      document.getElementById('lt2Feedback').className = 'game-feedback correct-fb';
+      document.getElementById('lt2Feedback').textContent = '✅ ممتاز! وجدت كل الإجابات';
+      // قفل الباقي
+      document.querySelectorAll('#lt2Grid .light-btn').forEach(b => b.classList.add('locked'));
+      document.getElementById('lt2Next').style.display = 'block';
+      createMiniConfetti(btn);
+    }
+  } else {
+    soundWrong();
+    btn.classList.add('lit-wrong', 'locked');
+    document.getElementById('lt2Feedback').className = 'game-feedback wrong-fb';
+    document.getElementById('lt2Feedback').textContent = '❌ خطأ! تابع البحث';
+  }
+}
+
+function lt2NextQ() {
+  soundClick();
+  lt2Idx++;
+  if (lt2Idx >= lt2Order.length) lt2End(); else lt2Load();
+}
+
+function lt2End() {
+  markGameDone(2);
+  document.querySelector('#l2-lights .game-section').style.display = 'none';
+  if (lt2Score >= 3) { soundCelebrate(); createConfetti(); } else soundLevelUp();
+  const msg = lt2Score >= 3 ? 'كشاف مذهل! 🌟' : lt2Score >= 2 ? 'جيد! 👍' : 'تدرب أكثر! 💪';
+  document.getElementById('lt2Result').innerHTML = `<div class="result-box"><span class="result-emoji">💡</span><div class="result-score">${lt2Score} / ${lt2Order.length}</div><div class="result-msg">${msg}</div><button class="restart-btn" onclick="lt2Restart()">🔄 العب مرة أخرى</button></div>`;
+  document.getElementById('lt2Result').style.display = 'block';
+}
+
+function lt2Restart() {
+  document.querySelector('#l2-lights .game-section').style.display = 'block';
+  lt2Start();
+}
+
+// ════════════════════════════════════════════
+// ⏱️ GAME 2.3: السباق ضد الزمن (الدرس 2) - 30 ثانية
+// ════════════════════════════════════════════
+const r2Questions = [
+  { q: '(2س + 3) + (س + 1) = ؟', correct: '3س + 4', wrong: ['3س + 3', '2س + 4', 'س + 4'] },
+  { q: '(5س - 2) + (3س + 5) = ؟', correct: '8س + 3', wrong: ['8س - 3', '8س + 7', '2س + 3'] },
+  { q: '(7س + 4) - (2س + 1) = ؟', correct: '5س + 3', wrong: ['5س + 5', '9س + 5', '5س - 3'] },
+  { q: '(س² + 3س) + (2س² + س) = ؟', correct: '3س² + 4س', wrong: ['3س² + 3س', '2س² + 4س', '3س⁴ + 4س'] },
+  { q: '(6س + 2) - (س + 1) = ؟', correct: '5س + 1', wrong: ['5س + 3', '7س + 1', '6س + 1'] },
+  { q: '(4س² + 1) + (س² - 3) = ؟', correct: '5س² - 2', wrong: ['5س² + 4', '3س² - 2', '5س² + 2'] },
+  { q: '(3س³ + 2) + (س³ + 5) = ؟', correct: '4س³ + 7', wrong: ['4س⁶ + 7', '4س³ + 3', '3س³ + 7'] }
+];
+let r2Idx = 0, r2Score = 0, r2Order = [], r2Timer = null, r2TimeLeft = 0, r2Bonus = 0;
+const R2_TIME = 30;
+
+function r2Reset() {
+  r2Idx = 0; r2Score = 0; r2Bonus = 0;
+  document.getElementById('r2Score').textContent = '0';
+  document.getElementById('r2Result').style.display = 'none';
+  document.getElementById('r2Start').style.display = 'block';
+  document.getElementById('r2Options').innerHTML = '';
+  document.getElementById('r2Feedback').textContent = '30 ثانية لكل سؤال ⚡';
+  document.getElementById('r2Feedback').className = 'game-feedback';
+  document.getElementById('r2Q').textContent = 'اضغط ابدأ لتبدأ التحدي';
+  document.getElementById('r2Timer').textContent = R2_TIME;
+  document.getElementById('r2TimerBar').style.width = '100%';
+}
+
+function r2Begin() {
+  document.getElementById('r2Start').style.display = 'none';
+  r2Order = [...Array(r2Questions.length).keys()].sort(() => Math.random() - 0.5).slice(0, 5);
+  r2Load();
+}
+
+function r2Load() {
+  const q = r2Questions[r2Order[r2Idx]];
+  document.getElementById('r2Counter').textContent = `سؤال ${r2Idx + 1} من 5`;
+  document.getElementById('r2Q').textContent = q.q;
+  document.getElementById('r2Feedback').textContent = '⚡ احسب بسرعة!';
+  document.getElementById('r2Feedback').className = 'game-feedback';
+  
+  const opts = [q.correct, ...q.wrong].sort(() => Math.random() - 0.5);
+  const optsDiv = document.getElementById('r2Options');
+  optsDiv.innerHTML = '';
+  opts.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'choice-btn';
+    btn.textContent = opt;
+    btn.onclick = () => r2Pick(btn, opt, q.correct);
+    optsDiv.appendChild(btn);
+  });
+  r2StartTimer();
+}
+
+function r2StartTimer() {
+  r2TimeLeft = R2_TIME;
+  document.getElementById('r2Timer').textContent = r2TimeLeft;
+  document.getElementById('r2Timer').classList.remove('urgent');
+  document.getElementById('r2TimerBar').style.width = '100%';
+  if (r2Timer) clearInterval(r2Timer);
+  r2Timer = setInterval(() => {
+    r2TimeLeft--;
+    document.getElementById('r2Timer').textContent = r2TimeLeft;
+    document.getElementById('r2TimerBar').style.width = (r2TimeLeft / R2_TIME * 100) + '%';
+    if (r2TimeLeft <= 10) document.getElementById('r2Timer').classList.add('urgent');
+    if (r2TimeLeft <= 0) {
+      clearInterval(r2Timer);
+      r2TimeOut();
+    }
+  }, 1000);
+}
+
+function r2Pick(btn, chosen, correct) {
+  clearInterval(r2Timer);
+  if (chosen === correct && r2TimeLeft > 15) r2Bonus++;
+  document.querySelectorAll('#r2Options .choice-btn').forEach(b => {
+    b.classList.add('dis');
+    if (b.textContent === correct) b.classList.add('ok');
+  });
+  if (chosen === correct) {
+    soundCorrect();
+    btn.classList.add('ok');
+    r2Score++;
+    document.getElementById('r2Score').textContent = r2Score;
+    document.getElementById('r2Feedback').className = 'game-feedback correct-fb';
+    document.getElementById('r2Feedback').textContent = '✅ صحيح!' + (r2TimeLeft > 15 ? ' (مكافأة سرعة 🎁)' : '');
+  } else {
+    soundWrong();
+    btn.classList.add('err');
+    document.getElementById('r2Feedback').className = 'game-feedback wrong-fb';
+    document.getElementById('r2Feedback').textContent = '❌ الصحيح: ' + correct;
+  }
+  setTimeout(r2Next, 1500);
+}
+
+function r2TimeOut() {
+  soundWrong();
+  const q = r2Questions[r2Order[r2Idx]];
+  document.querySelectorAll('#r2Options .choice-btn').forEach(b => {
+    b.classList.add('dis');
+    if (b.textContent === q.correct) b.classList.add('ok');
+  });
+  document.getElementById('r2Feedback').className = 'game-feedback wrong-fb';
+  document.getElementById('r2Feedback').textContent = '⏰ انتهى الوقت! الصحيح: ' + q.correct;
+  setTimeout(r2Next, 1500);
+}
+
+function r2Next() {
+  r2Idx++;
+  if (r2Idx >= 5) r2End(); else r2Load();
+}
+
+function r2End() {
+  markGameDone(2);
+  if (r2Score >= 4) { soundCelebrate(); createConfetti(); } else soundLevelUp();
+  let bonusBadge = r2Bonus > 0 ? `<div class="bonus-badge">🎁 مكافأة السرعة: +${r2Bonus} نقاط</div>` : '';
+  const total = r2Score + r2Bonus;
+  const msg = total >= 6 ? 'متسابق ممتاز! 🌟' : total >= 4 ? 'جيد! 👍' : 'تدرب أكثر! 💪';
+  document.getElementById('r2Result').innerHTML = `<div class="result-box"><span class="result-emoji">⏱️</span><div class="result-score">${r2Score} / 5</div>${bonusBadge}<div class="result-msg">${msg}</div><div style="font-size:1rem; font-weight:700; color:var(--gd);">المجموع: ${total} نقطة</div><button class="restart-btn" onclick="r2Reset()" style="margin-top:10px;">🔄 العب مرة أخرى</button></div>`;
+  document.getElementById('r2Result').style.display = 'block';
+}
+
+// ════════════════════════════════════════════
+// 🎚️ GAME 3.1: الأشرطة المنزلقة (الدرس 3)
+// ════════════════════════════════════════════
+const sl3Questions = [
+  { q: 'ما درجة: 2س³ × 3س²؟', correct: 5 },
+  { q: 'ما درجة: 4س⁵ ÷ 2س²؟', correct: 3 },
+  { q: 'ما درجة: (س + 1)(س + 2)؟', correct: 2 },
+  { q: 'ما درجة: س² × س⁴؟', correct: 6 },
+  { q: 'ما درجة: 3س⁷ ÷ س³؟', correct: 4 },
+  { q: 'ما درجة: (س²)(س³)(س)؟', correct: 6 }
+];
+let sl3Idx = 0, sl3Score = 0, sl3Order = [], sl3Answered = false;
+
+function sl3Start() {
+  sl3Idx = 0; sl3Score = 0;
+  document.getElementById('sl3Score').textContent = '0';
+  document.getElementById('sl3Result').style.display = 'none';
+  document.querySelector('#l3-slider .game-section').style.display = 'block';
+  sl3Order = [...Array(sl3Questions.length).keys()].sort(() => Math.random() - 0.5).slice(0, 5);
+  sl3Load();
+}
+
+function sl3Load() {
+  const q = sl3Questions[sl3Order[sl3Idx]];
+  document.getElementById('sl3Q').textContent = q.q;
+  document.getElementById('sl3Counter').textContent = `سؤال ${sl3Idx + 1} من 5`;
+  document.getElementById('sl3Input').value = 0;
+  document.getElementById('sl3Value').textContent = '0';
+  document.getElementById('sl3Value').className = 'slider-value-display';
+  document.getElementById('sl3Feedback').style.display = 'none';
+  document.getElementById('sl3Next').style.display = 'none';
+  document.getElementById('sl3CheckBtn').style.display = 'block';
+  document.getElementById('sl3Input').disabled = false;
+  sl3Answered = false;
+}
+
+function sl3Update(val) {
+  if (sl3Answered) return;
+  document.getElementById('sl3Value').textContent = val;
+}
+
+function sl3Submit() {
+  if (sl3Answered) return;
+  sl3Answered = true;
+  const userVal = parseInt(document.getElementById('sl3Input').value);
+  const correct = sl3Questions[sl3Order[sl3Idx]].correct;
+  const valueDisplay = document.getElementById('sl3Value');
+  const fb = document.getElementById('sl3Feedback');
+  
+  document.getElementById('sl3Input').disabled = true;
+  document.getElementById('sl3CheckBtn').style.display = 'none';
+  fb.style.display = 'block';
+  
+  if (userVal === correct) {
+    soundCorrect();
+    valueDisplay.classList.add('correct');
+    sl3Score++;
+    document.getElementById('sl3Score').textContent = sl3Score;
+    fb.className = 'game-feedback correct-fb';
+    fb.textContent = '✅ ممتاز! الدرجة هي ' + correct;
+    createMiniConfetti(valueDisplay);
+  } else {
+    soundWrong();
+    valueDisplay.classList.add('wrong');
+    fb.className = 'game-feedback wrong-fb';
+    fb.innerHTML = `❌ خطأ! الدرجة الصحيحة: <b>${correct}</b>`;
+  }
+  
+  if (sl3Idx < 4) document.getElementById('sl3Next').style.display = 'block';
+  else setTimeout(sl3End, 1500);
+}
+
+function sl3NextQ() {
+  soundClick();
+  sl3Idx++;
+  if (sl3Idx >= 5) sl3End(); else sl3Load();
+}
+
+function sl3End() {
+  markGameDone(3);
+  document.querySelector('#l3-slider .game-section').style.display = 'none';
+  if (sl3Score >= 4) { soundCelebrate(); createConfetti(); } else soundLevelUp();
+  const msg = sl3Score >= 4 ? 'محدد ممتاز! 🌟' : sl3Score >= 2 ? 'جيد! 👍' : 'تدرب أكثر! 💪';
+  document.getElementById('sl3Result').innerHTML = `<div class="result-box"><span class="result-emoji">🎚️</span><div class="result-score">${sl3Score} / 5</div><div class="result-msg">${msg}</div><button class="restart-btn" onclick="sl3Restart()">🔄 العب مرة أخرى</button></div>`;
+  document.getElementById('sl3Result').style.display = 'block';
+}
+
+function sl3Restart() {
+  document.querySelector('#l3-slider .game-section').style.display = 'block';
+  sl3Start();
+}
+
+// ════════════════════════════════════════════
+// 🏆 GAME 3.2: التحدي المتدرج (الدرس 3)
+// ════════════════════════════════════════════
+const ch3Questions = [
+  // سهل
+  { level: 'easy', label: 'سهل', q: '2(س + 3) = ؟', correct: '2س + 6', wrong: ['س + 6', '2س + 3', '2س²'] },
+  { level: 'easy', label: 'سهل', q: 'س · س = ؟', correct: 'س²', wrong: ['2س', 'س', '2س²'] },
+  // متوسط
+  { level: 'medium', label: 'متوسط', q: '3س(2س + 1) = ؟', correct: '6س² + 3س', wrong: ['5س² + 3س', '6س + 3س', '6س² + 1'] },
+  { level: 'medium', label: 'متوسط', q: '8س³ ÷ 2س = ؟', correct: '4س²', wrong: ['4س³', '6س²', '4س'] },
+  // صعب
+  { level: 'hard', label: 'صعب', q: '(س + 2)(س + 3) = ؟', correct: 'س² + 5س + 6', wrong: ['س² + 6', 'س² + 5س', '2س + 5'] },
+  // خبير
+  { level: 'expert', label: 'خبير', q: '(س + 4)(س - 4) = ؟', correct: 'س² - 16', wrong: ['س² + 16', 'س² - 8', 'س² - 8س'] }
+];
+let ch3Idx = 0, ch3Score = 0;
+
+function ch3Start() {
+  ch3Idx = 0; ch3Score = 0;
+  document.getElementById('ch3Score').textContent = '0';
+  document.getElementById('ch3Result').style.display = 'none';
+  document.querySelector('#l3-challenge .game-section').style.display = 'block';
+  document.querySelector('#l3-challenge .game-question-box').style.display = 'block';
+  document.getElementById('ch3Options').style.display = 'grid';
+  document.getElementById('ch3Feedback').style.display = 'block';
+  ch3Load();
+}
+
+function ch3Load() {
+  const q = ch3Questions[ch3Idx];
+  document.getElementById('ch3Level').textContent = q.label;
+  document.getElementById('ch3Level').className = 'challenge-level ' + q.level;
+  document.getElementById('ch3Counter').textContent = `سؤال ${ch3Idx + 1} من 6`;
+  document.getElementById('ch3Q').textContent = q.q;
+  document.getElementById('ch3Progress').style.width = (ch3Idx / 6 * 100) + '%';
+  document.getElementById('ch3Feedback').textContent = 'اختر الإجابة الصحيحة 👆';
+  document.getElementById('ch3Feedback').className = 'game-feedback';
+  document.getElementById('ch3Next').style.display = 'none';
+  
+  const opts = [q.correct, ...q.wrong].sort(() => Math.random() - 0.5);
+  const optsDiv = document.getElementById('ch3Options');
+  optsDiv.innerHTML = '';
+  opts.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'choice-btn';
+    btn.textContent = opt;
+    btn.onclick = () => ch3Pick(btn, opt, q.correct);
+    optsDiv.appendChild(btn);
+  });
+}
+
+function ch3Pick(btn, chosen, correct) {
+  document.querySelectorAll('#ch3Options .choice-btn').forEach(b => {
+    b.classList.add('dis');
+    if (b.textContent === correct) b.classList.add('ok');
+  });
+  const fb = document.getElementById('ch3Feedback');
+  const q = ch3Questions[ch3Idx];
+  let bonus = q.level === 'expert' ? 4 : q.level === 'hard' ? 3 : q.level === 'medium' ? 2 : 1;
+  
+  if (chosen === correct) {
+    soundCorrect();
+    ch3Score += bonus;
+    document.getElementById('ch3Score').textContent = ch3Score;
+    fb.className = 'game-feedback correct-fb';
+    fb.textContent = `🎉 صحيح! +${bonus} نقاط`;
+  } else {
+    soundWrong();
+    btn.classList.add('err');
+    fb.className = 'game-feedback wrong-fb';
+    fb.textContent = '❌ الصحيح: ' + correct;
+  }
+  document.getElementById('ch3Next').style.display = 'block';
+}
+
+function ch3NextQ() {
+  soundClick();
+  ch3Idx++;
+  if (ch3Idx >= 6) ch3End(); else ch3Load();
+}
+
+function ch3End() {
+  markGameDone(3);
+  document.querySelector('#l3-challenge .game-question-box').style.display = 'none';
+  document.getElementById('ch3Options').style.display = 'none';
+  document.getElementById('ch3Feedback').style.display = 'none';
+  document.getElementById('ch3Next').style.display = 'none';
+  
+  const max = 1+1+2+2+3+4; // 13
+  if (ch3Score >= 10) { soundCelebrate(); createConfetti(); } else soundLevelUp();
+  const msg = ch3Score >= 12 ? 'خبير الجبر! 🏆🌟' : ch3Score >= 8 ? 'أداء قوي! 💪' : ch3Score >= 5 ? 'جيد! 👍' : 'حاول مرة أخرى! 📚';
+  document.getElementById('ch3Result').innerHTML = `<div class="result-box"><span class="result-emoji">🏆</span><div class="result-score">${ch3Score} / ${max}</div><div class="result-msg">${msg}</div><button class="restart-btn" onclick="ch3Start()">🔄 العب مرة أخرى</button></div>`;
+  document.getElementById('ch3Result').style.display = 'block';
+}
+
+// ════════════════════════════════════════════
+// ⏱️ GAME 3.3: السباق ضد الزمن (الدرس 3) - 30 ثانية
+// ════════════════════════════════════════════
+const r3Questions = [
+  { q: '2(س + 1) = ؟', correct: '2س + 2', wrong: ['س + 2', '2س + 1', '3س'] },
+  { q: 'س · س³ = ؟', correct: 'س⁴', wrong: ['س³', 'س²', '2س⁴'] },
+  { q: '6س² ÷ 2س = ؟', correct: '3س', wrong: ['3س²', '4س', '8س'] },
+  { q: '3س · 4س = ؟', correct: '12س²', wrong: ['12س', '7س²', '12س⁴'] },
+  { q: '10س⁵ ÷ 5س² = ؟', correct: '2س³', wrong: ['2س²', '5س³', '15س³'] },
+  { q: 'س(س + 5) = ؟', correct: 'س² + 5س', wrong: ['س² + 5', '2س + 5', '6س'] },
+  { q: '(س + 1)(س - 1) = ؟', correct: 'س² - 1', wrong: ['س² + 1', 'س² - 2', 'س² - س'] }
+];
+let r3Idx = 0, r3Score = 0, r3Order = [], r3Timer = null, r3TimeLeft = 0, r3Bonus = 0;
+const R3_TIME = 30;
+
+function r3Reset() {
+  r3Idx = 0; r3Score = 0; r3Bonus = 0;
+  document.getElementById('r3Score').textContent = '0';
+  document.getElementById('r3Result').style.display = 'none';
+  document.getElementById('r3Start').style.display = 'block';
+  document.getElementById('r3Options').innerHTML = '';
+  document.getElementById('r3Feedback').textContent = '30 ثانية لكل سؤال ⚡';
+  document.getElementById('r3Feedback').className = 'game-feedback';
+  document.getElementById('r3Q').textContent = 'اضغط ابدأ لتبدأ التحدي';
+  document.getElementById('r3Timer').textContent = R3_TIME;
+  document.getElementById('r3TimerBar').style.width = '100%';
+}
+
+function r3Begin() {
+  document.getElementById('r3Start').style.display = 'none';
+  r3Order = [...Array(r3Questions.length).keys()].sort(() => Math.random() - 0.5).slice(0, 5);
+  r3Load();
+}
+
+function r3Load() {
+  const q = r3Questions[r3Order[r3Idx]];
+  document.getElementById('r3Counter').textContent = `سؤال ${r3Idx + 1} من 5`;
+  document.getElementById('r3Q').textContent = q.q;
+  document.getElementById('r3Feedback').textContent = '⚡ احسب بسرعة!';
+  document.getElementById('r3Feedback').className = 'game-feedback';
+  
+  const opts = [q.correct, ...q.wrong].sort(() => Math.random() - 0.5);
+  const optsDiv = document.getElementById('r3Options');
+  optsDiv.innerHTML = '';
+  opts.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'choice-btn';
+    btn.textContent = opt;
+    btn.onclick = () => r3Pick(btn, opt, q.correct);
+    optsDiv.appendChild(btn);
+  });
+  r3StartTimer();
+}
+
+function r3StartTimer() {
+  r3TimeLeft = R3_TIME;
+  document.getElementById('r3Timer').textContent = r3TimeLeft;
+  document.getElementById('r3Timer').classList.remove('urgent');
+  document.getElementById('r3TimerBar').style.width = '100%';
+  if (r3Timer) clearInterval(r3Timer);
+  r3Timer = setInterval(() => {
+    r3TimeLeft--;
+    document.getElementById('r3Timer').textContent = r3TimeLeft;
+    document.getElementById('r3TimerBar').style.width = (r3TimeLeft / R3_TIME * 100) + '%';
+    if (r3TimeLeft <= 10) document.getElementById('r3Timer').classList.add('urgent');
+    if (r3TimeLeft <= 0) {
+      clearInterval(r3Timer);
+      r3TimeOut();
+    }
+  }, 1000);
+}
+
+function r3Pick(btn, chosen, correct) {
+  clearInterval(r3Timer);
+  if (chosen === correct && r3TimeLeft > 15) r3Bonus++;
+  document.querySelectorAll('#r3Options .choice-btn').forEach(b => {
+    b.classList.add('dis');
+    if (b.textContent === correct) b.classList.add('ok');
+  });
+  if (chosen === correct) {
+    soundCorrect();
+    btn.classList.add('ok');
+    r3Score++;
+    document.getElementById('r3Score').textContent = r3Score;
+    document.getElementById('r3Feedback').className = 'game-feedback correct-fb';
+    document.getElementById('r3Feedback').textContent = '✅ صحيح!' + (r3TimeLeft > 15 ? ' (مكافأة سرعة 🎁)' : '');
+  } else {
+    soundWrong();
+    btn.classList.add('err');
+    document.getElementById('r3Feedback').className = 'game-feedback wrong-fb';
+    document.getElementById('r3Feedback').textContent = '❌ الصحيح: ' + correct;
+  }
+  setTimeout(r3Next, 1500);
+}
+
+function r3TimeOut() {
+  soundWrong();
+  const q = r3Questions[r3Order[r3Idx]];
+  document.querySelectorAll('#r3Options .choice-btn').forEach(b => {
+    b.classList.add('dis');
+    if (b.textContent === q.correct) b.classList.add('ok');
+  });
+  document.getElementById('r3Feedback').className = 'game-feedback wrong-fb';
+  document.getElementById('r3Feedback').textContent = '⏰ انتهى الوقت! الصحيح: ' + q.correct;
+  setTimeout(r3Next, 1500);
+}
+
+function r3Next() {
+  r3Idx++;
+  if (r3Idx >= 5) r3End(); else r3Load();
+}
+
+function r3End() {
+  markGameDone(3);
+  if (r3Score >= 4) { soundCelebrate(); createConfetti(); } else soundLevelUp();
+  let bonusBadge = r3Bonus > 0 ? `<div class="bonus-badge">🎁 مكافأة السرعة: +${r3Bonus} نقاط</div>` : '';
+  const total = r3Score + r3Bonus;
+  const msg = total >= 6 ? 'متسابق ممتاز! 🌟' : total >= 4 ? 'جيد! 👍' : 'تدرب أكثر! 💪';
+  document.getElementById('r3Result').innerHTML = `<div class="result-box"><span class="result-emoji">⏱️</span><div class="result-score">${r3Score} / 5</div>${bonusBadge}<div class="result-msg">${msg}</div><div style="font-size:1rem; font-weight:700; color:var(--gd);">المجموع: ${total} نقطة</div><button class="restart-btn" onclick="r3Reset()" style="margin-top:10px;">🔄 العب مرة أخرى</button></div>`;
+  document.getElementById('r3Result').style.display = 'block';
+}
+
+
+// ════════ TEST ════════
+const testQuestions = [
+  { q:'ما درجة كثيرة الحدود: 5س⁴ + 2س² - 1؟', opts:['2','3','4','5'], correct:2 },
+  { q:'كم عدد الحدود في: 3س² - 2س + 7؟', opts:['1','2','3','4'], correct:2 },
+  { q:'ما المعامل في 6س³؟', opts:['3','6','18','1'], correct:1 },
+  { q:'أي مما يلي كثيرة حدود؟', opts:['2س⁻¹ + 1','√س + 3','3س² + س','1/س + 5'], correct:2 },
+  { q:'ما درجة الحد الثابت 7؟', opts:['7','1','0','غير معرفة'], correct:2 },
+  { q:'ما درجة: س⁵ + س³ + س؟', opts:['1','3','5','9'], correct:2 },
+  { q:'ما الحد الثابت في: 4س² + 3س - 2؟', opts:['4','3','-2','2'], correct:2 },
+  { q:'(3س + 2) + (س + 5) = ؟', opts:['4س + 7','3س + 7','4س + 5','3س²+7'], correct:0 },
+  { q:'(5س² - 2س) + (3س² + س) = ؟', opts:['8س² - س','8س² + س','2س² - س','15س² - س'], correct:1 },
+  { q:'(7س + 4) - (3س + 1) = ؟', opts:['4س + 3','10س + 5','4س + 5','4س - 3'], correct:0 },
+  { q:'(2س³ + 5) - (س³ + 2) = ؟', opts:['س³ + 3','س³ + 7','3س³ + 3','س³ - 3'], correct:0 },
+  { q:'(6س + 3) + (2س - 1) = ؟', opts:['8س + 2','8س + 4','4س + 2','8س - 2'], correct:0 },
+  { q:'(س² + 2س) + (س² - 2س) = ؟', opts:['2س²','0','2س² + 4س','س²'], correct:0 },
+  { q:'3(س + 2) = ؟', opts:['3س + 6','3س + 2','س + 6','3س + 5'], correct:0 },
+  { q:'س(س + 4) = ؟', opts:['س² + 4','س + 4س','س² + 4س','2س + 4'], correct:2 },
+  { q:'(س + 1)(س + 2) = ؟', opts:['س² + 3س + 2','س² + 2','س² + 3','س² + 2س + 1'], correct:0 },
+  { q:'10س⁴ ÷ 2س² = ؟', opts:['5س²','5س⁶','5س⁴','8س²'], correct:0 },
+  { q:'2س² × 3س³ = ؟', opts:['6س⁵','5س⁵','6س⁶','6س²'], correct:0 },
+  { q:'(س + 3)(س - 3) = ؟', opts:['س² - 9','س² + 9','س² - 6','س² - 3'], correct:0 },
+  { q:'18س⁵ ÷ 6س³ = ؟', opts:['3س²','3س⁸','12س²','3س⁵'], correct:0 },
+];
+
+function initTest() {
+  let html = '';
+  testQuestions.forEach((q, i) => {
+    html += `<div class="test-q">
+      <div class="test-q-num">سؤال ${i + 1}</div>
+      <div class="test-q-text">${q.q}</div>
+      <div class="test-options">`;
+    q.opts.forEach((opt, j) => {
+      html += `<label class="test-option" onclick="soundClick()"><input type="radio" name="q${i}" value="${j}"><span>${opt}</span></label>`;
+    });
+    html += `</div></div>`;
+  });
+  document.getElementById('testContent').innerHTML = html;
+}
+
+function submitTest() {
+  let score = 0, unanswered = 0;
+  
+  testQuestions.forEach((q, i) => {
+    const sel = document.querySelector(`input[name="q${i}"]:checked`);
+    const qDiv = document.querySelectorAll('.test-q')[i];
+    
+    // إزالة أي إجابة سابقة
+    const oldFeedback = qDiv.querySelector('.test-feedback');
+    if (oldFeedback) oldFeedback.remove();
+    
+    // إزالة highlights السابقة
+    qDiv.querySelectorAll('.test-option').forEach(opt => {
+      opt.classList.remove('correct-option', 'wrong-option', 'right-answer');
+    });
+    
+    if (!sel) {
+      unanswered++;
+      // إظهار "لم تجب"
+      const feedback = document.createElement('div');
+      feedback.className = 'test-feedback no-answer';
+      feedback.innerHTML = `⚠️ لم تجب على هذا السؤال<br><b>الإجابة الصحيحة:</b> ${q.opts[q.correct]}`;
+      qDiv.appendChild(feedback);
+      
+      // إظهار الإجابة الصحيحة بالأخضر
+      qDiv.querySelectorAll('.test-option')[q.correct].classList.add('right-answer');
+      return;
+    }
+    
+    const userVal = parseInt(sel.value);
+    const isCorrect = userVal === q.correct;
+    
+    if (isCorrect) {
+      score++;
+      // إظهار "صح"
+      const feedback = document.createElement('div');
+      feedback.className = 'test-feedback correct';
+      feedback.innerHTML = `✅ <b>إجابة صحيحة!</b> أحسنت 🎉`;
+      qDiv.appendChild(feedback);
+      qDiv.querySelectorAll('.test-option')[q.correct].classList.add('correct-option');
+    } else {
+      // إظهار "خطأ" مع الإجابة الصحيحة
+      const feedback = document.createElement('div');
+      feedback.className = 'test-feedback wrong';
+      feedback.innerHTML = `❌ <b>إجابة خاطئة</b><br><b>الإجابة الصحيحة:</b> ${q.opts[q.correct]}`;
+      qDiv.appendChild(feedback);
+      qDiv.querySelectorAll('.test-option')[userVal].classList.add('wrong-option');
+      qDiv.querySelectorAll('.test-option')[q.correct].classList.add('right-answer');
+    }
+  });
+  
+  // تتبع: تم الاختبار
+  progress[4].test = true;
+  refreshProgressTags();
+  
+  let cls, emoji, msg;
+  const pct = (score / 20) * 100;
+  if (pct >= 90) { cls = 'excellent'; emoji = '🏆'; msg = 'ممتاز جداً!'; soundCelebrate(); createConfetti(); }
+  else if (pct >= 75) { cls = 'good'; emoji = '🌟'; msg = 'جيد جداً!'; soundCelebrate(); }
+  else if (pct >= 50) { cls = 'medium'; emoji = '👍'; msg = 'مقبول، تدرب أكثر'; soundLevelUp(); }
+  else { cls = 'poor'; emoji = '📚'; msg = 'راجع الدروس'; soundWrong(); }
+  
+  document.getElementById('testResult').innerHTML = `<div class="test-result ${cls}"><span style="font-size:64px; display:block;">${emoji}</span><div style="font-size:2.6rem; font-weight:900; margin:10px 0;">${score} / 20</div><div style="font-size:1.15rem; font-weight:800;">${msg}</div><div style="font-size:0.95rem; margin-top:10px;">النسبة: ${pct.toFixed(0)}%</div><div style="font-size:0.85rem; margin-top:8px; color:#475569;">عدد الأسئلة بدون إجابة: ${unanswered}</div><button class="restart-btn" onclick="resetTest()" style="margin-top:16px;">🔄 إعادة الاختبار</button></div>`;
+  
+  // التمرير لأعلى الاختبار لرؤية النتيجة ثم التفاصيل
+  document.getElementById('testResult').scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function resetTest() {
+  soundClick();
+  document.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+  document.getElementById('testResult').innerHTML = '';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+document.getElementById('studentName').addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') startApp();
+});
+
+// Click sound on menu cards
+document.querySelectorAll('.menu-card').forEach(c => {
+  c.addEventListener('click', () => soundTransition());
+});
+</script>
+
+</body>
+</html>
