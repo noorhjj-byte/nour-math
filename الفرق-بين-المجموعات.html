@@ -1,0 +1,2364 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الفرق بين المجموعات — رياضيات 7</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Tajawal:wght@400;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --p: #c53030;
+  --pl: #e53e3e;
+  --acc: #f6ad55;
+  --acc2: #ed8936;
+  --g: #38a169;
+  --r: #e53e3e;
+  --b: #3182ce;
+  --pu: #805ad5;
+  --y: #ecc94b;
+  --light: #fef5e7;
+  --shadow: 0 8px 32px rgba(197,48,48,0.15);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Cairo', sans-serif;
+  background: linear-gradient(135deg, #fef5e7 0%, #fed7aa 100%);
+  min-height: 100vh; color: #222;
+}
+
+/* ══ WELCOME ══ */
+#welcome {
+  position: fixed; inset: 0; z-index: 999;
+  background: linear-gradient(145deg, var(--p) 0%, #8b0000 100%);
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px; overflow: hidden;
+}
+.float-shape {
+  position: absolute; opacity: 0.2;
+  animation: floatUp 8s ease-in-out infinite;
+  font-size: 50px;
+}
+.float-shape.s1 { top: 10%; left: 8%; animation-delay: 0s; }
+.float-shape.s2 { top: 22%; right: 10%; animation-delay: 1s; }
+.float-shape.s3 { bottom: 18%; left: 12%; animation-delay: 2s; }
+.float-shape.s4 { bottom: 28%; right: 8%; animation-delay: 3s; }
+.float-shape.s5 { top: 50%; left: 4%; animation-delay: 1.5s; }
+.float-shape.s6 { top: 55%; right: 5%; animation-delay: 2.5s; }
+@keyframes floatUp {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-30px) rotate(15deg); }
+}
+.wc {
+  background: white; border-radius: 28px;
+  padding: 36px 30px 30px; width: 100%; max-width: 420px;
+  text-align: center; box-shadow: 0 24px 64px rgba(0,0,0,0.3);
+  position: relative; z-index: 2;
+  animation: popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes popIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.wc-emoji {
+  font-size: 64px; display: block; margin-bottom: 8px;
+  animation: bounce 2s ease-in-out infinite;
+}
+@keyframes bounce {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-10px) rotate(8deg); }
+}
+.wc h1 {
+  font-family: 'Tajawal', sans-serif; font-size: 1.6rem;
+  font-weight: 900; color: var(--p); margin-bottom: 4px;
+}
+.wc-teacher {
+  background: linear-gradient(135deg, var(--p), var(--pl));
+  color: white; padding: 8px 18px; border-radius: 20px;
+  font-size: 0.88rem; font-weight: 700;
+  display: inline-block; margin-bottom: 14px;
+}
+.wc-teacher span { color: var(--y); }
+.lesson-info { font-size: 0.85rem; color: #888; margin-bottom: 22px; }
+.wc input {
+  width: 100%; padding: 14px 16px; font-family: 'Cairo', sans-serif;
+  font-size: 1rem; border: 2.5px solid #fbd5b5; border-radius: 14px;
+  color: var(--p); text-align: center; outline: none;
+  transition: border 0.2s; margin-bottom: 16px; background: #fff8f0;
+}
+.wc input:focus { border-color: var(--p); }
+.go-btn {
+  width: 100%; padding: 15px;
+  background: linear-gradient(135deg, var(--p), var(--pl));
+  color: white; border: none; border-radius: 14px;
+  font-family: 'Cairo', sans-serif; font-size: 1.05rem; font-weight: 900;
+  cursor: pointer; transition: all 0.25s;
+  box-shadow: 0 6px 18px rgba(197,48,48,0.4);
+}
+.go-btn:hover { transform: translateY(-2px); }
+.go-btn:disabled { background: #ccc; box-shadow: none; cursor: not-allowed; }
+
+/* ══ HEADER ══ */
+header {
+  background: linear-gradient(135deg, var(--p), var(--pl));
+  color: white; padding: 16px 22px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; box-shadow: 0 4px 18px rgba(197,48,48,0.3);
+  position: sticky; top: 0; z-index: 10; overflow: hidden;
+}
+header::before {
+  content: ''; position: absolute; top: -40px; left: -40px;
+  width: 180px; height: 180px;
+  background: rgba(246,173,85,0.2); border-radius: 50%;
+}
+.h-left { display: flex; align-items: center; gap: 12px; position: relative; z-index: 2; }
+.header-icon {
+  font-size: 24px; background: var(--acc); color: var(--p);
+  border-radius: 14px; padding: 4px 12px;
+  box-shadow: 0 4px 12px rgba(246,173,85,0.5);
+  font-weight: 900; font-family: 'Tajawal', sans-serif;
+  animation: pulse 3s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+header h1 { font-family: 'Tajawal', sans-serif; font-size: 1.1rem; font-weight: 900; }
+header .sub { font-size: 0.75rem; opacity: 0.9; margin-top: 1px; }
+
+.h-right { display: flex; align-items: center; gap: 6px; position: relative; z-index: 2; }
+#studentBadge {
+  background: rgba(255,255,255,0.2); border: 1.5px solid rgba(255,255,255,0.35);
+  border-radius: 25px; padding: 5px 14px; font-size: 0.82rem;
+  color: white; font-weight: 700; max-width: 130px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+#soundToggle {
+  background: rgba(255,255,255,0.2); border: 1.5px solid rgba(255,255,255,0.35);
+  border-radius: 50%; width: 36px; height: 36px; cursor: pointer;
+  color: white; font-size: 1rem;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.teacher-banner {
+  background: linear-gradient(90deg, var(--acc), #fbd38d);
+  color: var(--p); padding: 8px 22px;
+  font-weight: 800; font-size: 0.88rem;
+  text-align: center;
+  border-bottom: 2px solid rgba(197,48,48,0.15);
+}
+
+/* ══ TABS ══ */
+.tabs {
+  display: flex; gap: 5px; padding: 14px 16px 0;
+  overflow-x: auto; scrollbar-width: none;
+}
+.tabs::-webkit-scrollbar { display: none; }
+.tab-btn {
+  padding: 9px 16px; border: 2px solid var(--p);
+  background: white; color: var(--p);
+  border-radius: 20px 20px 0 0; font-family: 'Cairo', sans-serif;
+  font-size: 0.85rem; font-weight: 700; cursor: pointer;
+  transition: all 0.22s; white-space: nowrap; flex-shrink: 0;
+}
+.tab-btn.active { background: var(--p); color: white; }
+
+/* ══ MAIN ══ */
+main {
+  background: white; margin: 0 16px 24px;
+  border-radius: 0 14px 14px 14px;
+  box-shadow: var(--shadow); padding: 22px;
+  min-height: 460px;
+}
+.section { display: none; animation: fadeUp 0.4s ease; }
+.section.active { display: block; }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ══ THEORY ══ */
+.intro-box {
+  background: linear-gradient(135deg, var(--p), var(--pl));
+  color: white; border-radius: 16px;
+  padding: 18px 20px; margin-bottom: 18px;
+  position: relative; overflow: hidden;
+}
+.intro-box::after {
+  content: '−'; position: absolute; right: 0px; bottom: -50px;
+  font-size: 130px; opacity: 0.12; font-weight: 900;
+}
+.intro-box h2 { font-size: 1.18rem; font-weight: 900; margin-bottom: 8px; }
+.intro-box p { font-size: 0.95rem; line-height: 1.85; }
+
+/* Definition card */
+.def-card {
+  background: white;
+  border: 3px solid var(--acc);
+  border-radius: 14px;
+  padding: 16px 18px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 12px rgba(246,173,85,0.2);
+}
+.def-card .def-title {
+  display: inline-block;
+  background: var(--acc); color: var(--p);
+  padding: 4px 14px; border-radius: 20px;
+  font-weight: 900; font-size: 0.85rem;
+  margin-bottom: 10px;
+}
+.def-card .def-body {
+  font-size: 0.96rem; line-height: 1.85; color: #333;
+}
+.def-card .def-body strong { color: var(--p); }
+.def-card .symbol {
+  background: var(--p); color: white;
+  padding: 3px 12px; border-radius: 8px;
+  font-weight: 900; display: inline-block;
+  font-size: 1.05rem;
+}
+
+/* Venn diagram styles */
+.venn-container {
+  text-align: center;
+  margin: 16px 0;
+  background: #fff8f0;
+  border-radius: 14px;
+  padding: 16px;
+}
+.venn-container svg {
+  max-width: 100%; height: auto;
+  width: 280px;
+}
+.venn-label {
+  font-size: 0.92rem; color: var(--p);
+  font-weight: 800; margin-top: 8px;
+}
+
+/* Operation cards */
+.op-card {
+  border-radius: 14px; padding: 16px;
+  margin-bottom: 14px;
+  transition: transform 0.2s;
+}
+.op-card:hover { transform: translateX(-4px); }
+.op-card.diff1 { background: #e6f4ea; border-right: 5px solid var(--g); }
+.op-card.diff2 { background: #e6f0fc; border-right: 5px solid var(--b); }
+
+.op-header {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 10px;
+}
+.op-symbol {
+  font-size: 2rem; font-weight: 900;
+  width: 50px; height: 50px;
+  display: flex; align-items: center; justify-content: center;
+  background: white; border-radius: 50%;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  flex-shrink: 0;
+}
+.op-card.diff1 .op-symbol { color: var(--g); }
+.op-card.diff2 .op-symbol { color: var(--b); }
+
+.op-name {
+  font-weight: 900; font-size: 1.05rem;
+}
+.op-card.diff1 .op-name { color: var(--g); }
+.op-card.diff2 .op-name { color: var(--b); }
+
+.op-rule {
+  background: white; border-radius: 10px;
+  padding: 10px 14px; margin-bottom: 10px;
+  font-size: 0.92rem; line-height: 1.75; color: #444;
+}
+.op-rule strong { color: var(--p); }
+
+.op-example {
+  background: rgba(255,255,255,0.7); border-radius: 10px;
+  padding: 8px 12px; font-size: 0.88rem;
+  text-align: center; color: #444;
+}
+.op-example b { color: var(--p); }
+
+/* Tip box */
+.tip-box {
+  background: #fff8e1; border-right: 5px solid var(--acc);
+  border-radius: 12px; padding: 14px 16px; margin: 14px 0;
+  font-size: 0.92rem; line-height: 1.85;
+  display: flex; gap: 10px; align-items: flex-start;
+}
+
+/* Warning box (for direction matters) */
+.warning-box {
+  background: #fde8e8; border-right: 5px solid var(--p);
+  border-radius: 12px; padding: 14px 16px; margin: 14px 0;
+  font-size: 0.92rem; line-height: 1.85;
+  display: flex; gap: 10px; align-items: flex-start;
+}
+.warning-box b { color: var(--p); }
+
+/* ══ EXAMPLES ══ */
+.example-card {
+  background: white;
+  border: 2px solid #fbd5b5;
+  border-radius: 14px; margin-bottom: 18px;
+  overflow: hidden; transition: all 0.25s;
+}
+.example-card:hover {
+  border-color: var(--p);
+  box-shadow: 0 6px 20px rgba(197,48,48,0.12);
+}
+.ex-header {
+  background: linear-gradient(135deg, var(--p), var(--pl));
+  color: white; padding: 11px 16px;
+  font-weight: 800; font-size: 0.95rem;
+  display: flex; align-items: center; gap: 8px;
+}
+.ex-badge {
+  background: var(--acc); color: var(--p);
+  padding: 2px 10px; border-radius: 14px;
+  font-size: 0.72rem; font-weight: 900;
+  margin-right: auto;
+}
+.ex-body { padding: 16px; }
+.ex-given {
+  background: linear-gradient(135deg, #fff8e7, #fff3d0);
+  border-right: 4px solid var(--acc);
+  border-radius: 10px;
+  padding: 12px 14px; margin-bottom: 14px;
+  font-size: 0.95rem; line-height: 1.85;
+}
+.ex-step {
+  display: flex; gap: 10px;
+  margin-bottom: 10px;
+  align-items: flex-start;
+}
+.ex-step .step-num {
+  background: var(--p); color: white;
+  border-radius: 50%; width: 26px; height: 26px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 900; font-size: 0.82rem;
+  flex-shrink: 0;
+}
+.ex-step .step-text {
+  font-size: 0.92rem; line-height: 1.85;
+  padding-top: 2px;
+}
+.ex-step .step-text strong { color: var(--p); }
+.ex-answer {
+  background: linear-gradient(135deg, #d4f5e2, #c4ecd0);
+  border: 2px solid var(--g);
+  border-radius: 10px;
+  padding: 11px 14px; margin-top: 12px;
+  font-weight: 800; color: #1a6b3a;
+  font-size: 0.93rem;
+}
+
+/* ══ VISUAL ELEMENTS for weak students ══ */
+.baskets-row {
+  display: flex; gap: 12px; justify-content: center;
+  align-items: flex-end; margin: 14px 0;
+  flex-wrap: wrap;
+}
+.basket {
+  background: white; border: 3px solid var(--p);
+  border-radius: 14px 14px 24px 24px;
+  padding: 12px 14px 16px;
+  min-width: 130px; text-align: center;
+  position: relative;
+  box-shadow: 0 4px 14px rgba(197,48,48,0.15);
+}
+.basket.green { border-color: var(--g); }
+.basket.blue { border-color: var(--b); }
+.basket .basket-label {
+  position: absolute; top: -14px; left: 50%;
+  transform: translateX(-50%);
+  background: var(--p); color: white;
+  padding: 4px 14px; border-radius: 14px;
+  font-size: 0.88rem; font-weight: 900;
+  white-space: nowrap;
+}
+.basket.green .basket-label { background: var(--g); }
+.basket.blue .basket-label { background: var(--b); }
+.basket-items {
+  display: flex; flex-wrap: wrap; gap: 6px;
+  justify-content: center; margin-top: 10px;
+  min-height: 50px; align-items: center;
+}
+.basket-item {
+  font-size: 1.8rem;
+  animation: itemPop 0.4s ease backwards;
+  display: inline-block;
+}
+@keyframes itemPop {
+  from { transform: scale(0); }
+  to { transform: scale(1); }
+}
+.basket-item:nth-child(1) { animation-delay: 0s; }
+.basket-item:nth-child(2) { animation-delay: 0.1s; }
+.basket-item:nth-child(3) { animation-delay: 0.2s; }
+.basket-item:nth-child(4) { animation-delay: 0.3s; }
+.basket-item:nth-child(5) { animation-delay: 0.4s; }
+.basket-item:nth-child(6) { animation-delay: 0.5s; }
+
+/* Big arrow */
+.big-arrow {
+  font-size: 2rem; color: var(--acc2);
+  font-weight: 900; text-align: center; margin: 4px 0;
+  animation: pointDown 1.2s ease-in-out infinite;
+}
+@keyframes pointDown {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+/* Result basket */
+.result-basket {
+  background: linear-gradient(135deg, #fff3d0, #ffe7a0);
+  border: 3px dashed var(--acc2);
+  border-radius: 16px;
+  padding: 14px;
+  text-align: center;
+  margin: 12px auto;
+  max-width: 320px;
+}
+.result-basket .rb-label {
+  background: var(--acc2); color: white;
+  padding: 5px 16px; border-radius: 16px;
+  font-size: 0.92rem; font-weight: 900;
+  display: inline-block; margin-bottom: 10px;
+}
+.result-basket .rb-items {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  justify-content: center;
+}
+.result-basket .rb-items span {
+  font-size: 2rem;
+  animation: itemPop 0.4s ease backwards;
+}
+
+/* Step visual */
+.step-visual {
+  background: #fff8f0; border-radius: 12px;
+  padding: 12px; margin: 10px 0;
+  text-align: center;
+}
+.numbers-flow {
+  display: flex; gap: 6px; justify-content: center;
+  flex-wrap: wrap; margin: 8px 0;
+}
+.num-circle {
+  background: white; border: 2.5px solid var(--p);
+  width: 36px; height: 36px; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-weight: 900; font-size: 0.95rem;
+  color: var(--p);
+  animation: itemPop 0.4s ease backwards;
+}
+.num-circle.green-num { border-color: var(--g); color: var(--g); }
+.num-circle.blue-num { border-color: var(--b); color: var(--b); }
+.num-circle.shared-num {
+  background: var(--acc); border-color: var(--acc2);
+  color: var(--p);
+  animation: highlight 1.5s ease-in-out infinite;
+}
+.num-circle.crossed {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+.num-circle.kept {
+  background: var(--g); color: white;
+  border-color: var(--g);
+  box-shadow: 0 0 0 4px rgba(56,161,105,0.3);
+}
+@keyframes highlight {
+  0%, 100% { box-shadow: 0 2px 6px rgba(237,137,54,0.3); }
+  50% { box-shadow: 0 4px 16px rgba(237,137,54,0.6); }
+}
+
+/* Story box */
+.story-box {
+  background: linear-gradient(135deg, #fef5e7, #fed7aa);
+  border: 2px solid var(--acc2);
+  border-radius: 14px;
+  padding: 14px 16px; margin: 12px 0;
+  position: relative;
+}
+.story-box .story-icon {
+  position: absolute; top: -16px; right: 14px;
+  background: var(--acc2); color: white;
+  width: 36px; height: 36px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem;
+  box-shadow: 0 3px 8px rgba(237,137,54,0.4);
+}
+.story-box .story-text {
+  font-size: 0.94rem; line-height: 1.9;
+  color: #5a3a1a; padding-right: 30px;
+}
+.story-box .story-text b { color: var(--p); }
+
+/* ══ WORKSHEET ══ */
+.ws-header { margin-bottom: 18px; }
+.ws-header h2 {
+  font-size: 1.18rem; color: var(--p);
+  font-weight: 900; margin-bottom: 3px;
+}
+.ws-info { font-size: 0.82rem; color: #999; }
+
+.question-card {
+  border: 2px solid #fbd5b5;
+  border-radius: 14px;
+  padding: 16px 18px; margin-bottom: 14px;
+  transition: border 0.2s;
+}
+.question-card:hover { border-color: var(--p); }
+.q-header {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 10px; flex-wrap: wrap;
+}
+.q-num {
+  background: var(--p); color: white;
+  border-radius: 50%; width: 30px; height: 30px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 900; font-size: 0.85rem; flex-shrink: 0;
+}
+.q-text { font-size: 0.95rem; font-weight: 700; line-height: 1.65; flex: 1; }
+.q-level {
+  padding: 3px 10px; border-radius: 18px;
+  font-size: 0.72rem; font-weight: 700;
+  margin-right: auto; flex-shrink: 0;
+}
+.level-easy { background: #d4f5e2; color: #1a6b3a; }
+.level-med { background: #fff3d0; color: #a07000; }
+.level-hard { background: #fde8e8; color: #a01a1a; }
+
+.mcq-options {
+  display: grid; gap: 8px; margin-top: 10px;
+}
+.mcq-btn {
+  background: white; border: 2.5px solid #fbd5b5;
+  border-radius: 12px; padding: 11px 16px;
+  font-family: 'Cairo', sans-serif;
+  font-size: 0.93rem; font-weight: 700;
+  cursor: pointer; transition: all 0.22s;
+  color: #333; text-align: right;
+}
+.mcq-btn:hover {
+  border-color: var(--p); background: var(--light);
+  transform: translateY(-1px);
+}
+.mcq-btn.ok {
+  border-color: var(--g); background: #d4f5e2; color: #1a6b3a;
+  animation: pulseGood 0.5s ease;
+}
+.mcq-btn.err {
+  border-color: var(--r); background: #fde8e8; color: #a01a1a;
+  animation: shakeX 0.5s ease;
+}
+.mcq-btn.dis { pointer-events: none; opacity: 0.65; }
+@keyframes pulseGood {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+}
+@keyframes shakeX {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+.feedback {
+  margin-top: 10px; border-radius: 10px;
+  padding: 10px 14px; font-weight: 700;
+  display: none; font-size: 0.88rem;
+  line-height: 1.7;
+}
+.feedback.correct { background: #d4f5e2; color: #1a6b3a; display: block; }
+.feedback.wrong { background: #fde8e8; color: #a01a1a; display: block; }
+
+#wsResultBar {
+  display: none;
+  background: linear-gradient(135deg, var(--p), var(--pl));
+  color: white; border-radius: 14px;
+  padding: 20px 22px; margin-bottom: 18px;
+  text-align: center;
+}
+#wsResultBar h3 { font-size: 1.2rem; font-weight: 900; margin-bottom: 6px; }
+#wsResultBar .ws-score {
+  font-size: 2.2rem; font-weight: 900; color: var(--acc);
+}
+#wsResultBar p { font-size: 0.9rem; opacity: 0.9; margin-top: 4px; }
+
+.submit-btn {
+  background: linear-gradient(135deg, var(--acc), var(--acc2));
+  color: var(--p); border: none;
+  border-radius: 12px; padding: 13px 30px;
+  font-family: 'Cairo', sans-serif;
+  font-weight: 900; font-size: 0.95rem;
+  cursor: pointer; box-shadow: 0 5px 16px rgba(246,173,85,0.4);
+  transition: all 0.25s;
+}
+.submit-btn:hover { transform: translateY(-2px); }
+
+/* ══ GAMES ══ */
+.games-menu {
+  display: grid; gap: 14px; margin-top: 8px;
+}
+.game-card {
+  background: linear-gradient(135deg, var(--p), var(--pl));
+  color: white; border-radius: 16px;
+  padding: 20px; cursor: pointer;
+  transition: all 0.25s;
+  box-shadow: 0 6px 20px rgba(197,48,48,0.25);
+  position: relative; overflow: hidden;
+  text-align: right;
+}
+.game-card::before {
+  content: ''; position: absolute; top: -30px; left: -30px;
+  width: 90px; height: 90px;
+  background: rgba(246,173,85,0.2); border-radius: 50%;
+}
+.game-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(197,48,48,0.4);
+}
+.game-card .gc-emoji {
+  font-size: 2.2rem; margin-bottom: 8px;
+  display: block; position: relative; z-index: 2;
+}
+.game-card .gc-title {
+  font-size: 1.1rem; font-weight: 900;
+  margin-bottom: 4px; position: relative; z-index: 2;
+}
+.game-card .gc-desc {
+  font-size: 0.85rem; opacity: 0.92;
+  line-height: 1.6; position: relative; z-index: 2;
+}
+.game-card .gc-badge {
+  position: absolute; top: 14px; left: 14px;
+  background: var(--acc); color: var(--p);
+  padding: 3px 10px; border-radius: 12px;
+  font-size: 0.7rem; font-weight: 900;
+  z-index: 2;
+}
+
+.back-btn {
+  background: transparent; border: 2px solid var(--p);
+  color: var(--p); border-radius: 10px;
+  padding: 6px 14px; cursor: pointer;
+  font-family: 'Cairo', sans-serif;
+  font-size: 0.85rem; font-weight: 700;
+  margin-bottom: 12px;
+  transition: all 0.2s;
+}
+.back-btn:hover { background: var(--p); color: white; }
+
+.game-title-bar {
+  display: flex; justify-content: space-between; align-items: center;
+  background: linear-gradient(135deg, var(--p), var(--pl));
+  color: white; border-radius: 12px;
+  padding: 12px 18px; margin-bottom: 14px;
+  flex-wrap: wrap; gap: 8px;
+}
+.game-title-bar h2 { font-size: 1.02rem; font-weight: 900; }
+.score-display {
+  background: var(--acc); color: var(--p);
+  border-radius: 9px; padding: 5px 14px;
+  font-weight: 900; font-size: 0.95rem;
+}
+.progress-bar-wrap {
+  background: #fbd5b5; border-radius: 20px;
+  height: 9px; margin-bottom: 14px; overflow: hidden;
+}
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--acc), var(--acc2));
+  border-radius: 20px;
+  transition: width 0.5s ease;
+}
+
+/* GAME 1: Decide if element belongs to س-ص or ص-س or neither */
+.g1-question-box {
+  background: linear-gradient(135deg, var(--p), var(--pl));
+  color: white; border-radius: 16px;
+  padding: 18px; margin-bottom: 14px;
+  text-align: center;
+  position: relative; overflow: hidden;
+}
+.g1-sets-info {
+  font-size: 0.88rem; opacity: 0.88;
+  background: rgba(0,0,0,0.18); border-radius: 10px;
+  padding: 8px 12px; margin-bottom: 12px;
+  line-height: 1.7;
+  font-family: 'Tajawal', sans-serif;
+  font-weight: 600;
+}
+.g1-element {
+  font-size: 2.5rem; font-weight: 900;
+  background: var(--acc); color: var(--p);
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  margin: 8px 0;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+  animation: floatY 2s ease-in-out infinite;
+}
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.g1-question {
+  font-size: 0.95rem; font-weight: 700;
+  margin-top: 8px;
+}
+.g1-zones {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 10px; margin-bottom: 12px;
+}
+.zone-btn {
+  background: white; border: 3px solid #fbd5b5;
+  border-radius: 14px; padding: 14px 10px;
+  cursor: pointer; transition: all 0.22s;
+  text-align: center;
+  font-family: 'Cairo', sans-serif;
+}
+.zone-btn:hover {
+  border-color: var(--p); transform: translateY(-2px);
+  background: var(--light);
+}
+.zone-btn.ok {
+  border-color: var(--g); background: #d4f5e2;
+  animation: pulseGood 0.5s ease;
+}
+.zone-btn.err {
+  border-color: var(--r); background: #fde8e8;
+  animation: shakeX 0.5s ease;
+}
+.zone-btn.dis { pointer-events: none; opacity: 0.6; }
+.zone-btn .zone-icon { font-size: 1.8rem; display: block; margin-bottom: 4px; }
+.zone-btn .zone-label {
+  font-size: 0.82rem; font-weight: 700; color: var(--p);
+}
+
+/* GAME 2: Venn matching for difference */
+.g2-question-box {
+  background: linear-gradient(135deg, var(--p), var(--pl));
+  color: white; border-radius: 16px;
+  padding: 18px; margin-bottom: 14px;
+  text-align: center;
+}
+.g2-q-expr {
+  font-size: 2.2rem; font-weight: 900;
+  font-family: 'Tajawal', sans-serif;
+  margin: 8px 0;
+  letter-spacing: 4px;
+}
+.g2-q-label {
+  font-size: 0.85rem; opacity: 0.85;
+}
+.g2-options {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 10px; margin-bottom: 12px;
+}
+.venn-option {
+  background: white; border: 3px solid #fbd5b5;
+  border-radius: 14px; padding: 8px;
+  cursor: pointer; transition: all 0.22s;
+}
+.venn-option:hover {
+  border-color: var(--p);
+  transform: translateY(-2px);
+}
+.venn-option.ok {
+  border-color: var(--g); background: #d4f5e2;
+  animation: pulseGood 0.5s ease;
+}
+.venn-option.err {
+  border-color: var(--r); background: #fde8e8;
+  animation: shakeX 0.5s ease;
+}
+.venn-option.dis { pointer-events: none; opacity: 0.6; }
+.venn-option svg {
+  width: 100%; max-width: 140px; height: auto;
+}
+.venn-option-label {
+  text-align: center; font-size: 0.78rem;
+  color: #666; font-weight: 700; margin-top: 4px;
+}
+
+/* GAME 3: Calculate the difference result */
+.g3-question-box {
+  background: linear-gradient(135deg, var(--p), var(--pl));
+  color: white; border-radius: 16px;
+  padding: 18px; margin-bottom: 14px;
+  text-align: center;
+}
+.g3-sets-row {
+  display: flex; gap: 10px; justify-content: center;
+  flex-wrap: wrap; margin: 10px 0;
+}
+.g3-set-bubble {
+  background: rgba(255,255,255,0.18);
+  border: 2px solid rgba(255,255,255,0.35);
+  border-radius: 12px; padding: 8px 14px;
+  font-family: 'Tajawal', sans-serif;
+  font-weight: 800; font-size: 0.95rem;
+  line-height: 1.5;
+}
+.g3-set-bubble .label {
+  color: var(--acc); margin-left: 6px;
+}
+.g3-op {
+  font-size: 1.6rem; font-weight: 900;
+  background: var(--acc); color: var(--p);
+  padding: 6px 14px; border-radius: 10px;
+  display: inline-block; margin: 10px 4px;
+}
+.g3-q-text {
+  font-size: 0.95rem; margin-top: 8px; font-weight: 700;
+}
+.g3-options {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 10px; margin-bottom: 12px;
+}
+.g3-opt-btn {
+  background: white; border: 3px solid #fbd5b5;
+  border-radius: 12px; padding: 12px 10px;
+  cursor: pointer; transition: all 0.22s;
+  font-family: 'Tajawal', sans-serif;
+  font-weight: 800; font-size: 0.92rem;
+  color: var(--p);
+}
+.g3-opt-btn:hover {
+  border-color: var(--p); background: var(--light);
+  transform: translateY(-2px);
+}
+.g3-opt-btn.ok {
+  border-color: var(--g); background: #d4f5e2; color: #1a6b3a;
+  animation: pulseGood 0.5s ease;
+}
+.g3-opt-btn.err {
+  border-color: var(--r); background: #fde8e8; color: #a01a1a;
+  animation: shakeX 0.5s ease;
+}
+.g3-opt-btn.dis { pointer-events: none; opacity: 0.6; }
+
+/* Shared feedback */
+.game-feedback {
+  background: var(--light); border-radius: 10px;
+  padding: 12px 16px; font-weight: 700;
+  font-size: 0.92rem; min-height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 14px;
+}
+.game-feedback.correct-fb { background: #d4f5e2; color: #1a6b3a; }
+.game-feedback.wrong-fb { background: #fde8e8; color: #a01a1a; }
+
+.next-btn, .restart-btn {
+  background: linear-gradient(135deg, var(--acc), var(--acc2));
+  color: var(--p); border: none;
+  border-radius: 11px; padding: 11px 28px;
+  font-family: 'Cairo', sans-serif;
+  font-weight: 900; font-size: 0.98rem;
+  cursor: pointer; transition: all 0.22s;
+  box-shadow: 0 4px 12px rgba(246,173,85,0.4);
+}
+.next-btn:hover, .restart-btn:hover { transform: translateY(-2px); }
+
+.result-screen {
+  text-align: center; padding: 24px 0;
+}
+.result-screen .big-emoji {
+  font-size: 76px; margin-bottom: 14px;
+  animation: bounce 1.5s ease-in-out infinite;
+}
+.result-screen h2 {
+  color: var(--p); font-size: 1.5rem;
+  font-weight: 900; margin-bottom: 8px;
+}
+.result-screen p { font-size: 0.96rem; color: #555; margin-bottom: 18px; }
+.result-score {
+  display: inline-block;
+  background: var(--p); color: var(--acc);
+  border-radius: 14px; padding: 12px 28px;
+  font-size: 1.6rem; font-weight: 900; margin-bottom: 18px;
+}
+
+.footer-credit {
+  text-align: center; padding: 18px 16px 24px;
+  font-size: 0.82rem; color: var(--p); font-weight: 700;
+}
+.footer-credit .name {
+  color: var(--p); font-weight: 900;
+  background: var(--acc); padding: 3px 14px;
+  border-radius: 14px; display: inline-block; margin: 0 4px;
+}
+
+.confetti-piece {
+  position: fixed; width: 10px; height: 10px; top: -20px;
+  z-index: 1000; pointer-events: none;
+  animation: confettiFall linear forwards;
+}
+@keyframes confettiFall {
+  to { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+}
+
+@media (max-width: 500px) {
+  main { padding: 18px 14px; margin: 0 8px 18px; }
+  .tabs { padding: 12px 8px 0; }
+  header { padding: 12px 14px; }
+  header h1 { font-size: 0.95rem; }
+  .g1-element { width: 70px; height: 70px; font-size: 2rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ WELCOME ══ -->
+<div id="welcome">
+  <span class="float-shape s1">−</span>
+  <span class="float-shape s2">{ }</span>
+  <span class="float-shape s3">⊂</span>
+  <span class="float-shape s4">−</span>
+  <span class="float-shape s5">س</span>
+  <span class="float-shape s6">ص</span>
+
+  <div class="wc">
+    <span class="wc-emoji">➖</span>
+    <h1>الفرق بين المجموعات</h1>
+    <div class="wc-teacher">✨ المعلمة: <span>نور حجاج</span> ✨</div>
+    <p class="lesson-info">رياضيات الصف السابع</p>
+    <input type="text" id="nameInput" placeholder="اكتب اسمك هنا..." maxlength="40" oninput="toggleStart()">
+    <button class="go-btn" id="goBtn" disabled onclick="startLesson()">ابدأ الدرس ←</button>
+  </div>
+</div>
+
+<!-- ══ HEADER ══ -->
+<header>
+  <div class="h-left">
+    <div class="header-icon">س−ص</div>
+    <div>
+      <h1>الفرق بين المجموعات</h1>
+      <div class="sub">رياضيات • الصف السابع</div>
+    </div>
+  </div>
+  <div class="h-right">
+    <button id="soundToggle" onclick="toggleSound()">🔊</button>
+    <div id="studentBadge">👤 <span id="badgeName">—</span></div>
+  </div>
+</header>
+
+<div class="teacher-banner">
+  <span class="icon">👩‍🏫</span> المعلمة: نور حجاج
+</div>
+
+<div class="tabs">
+  <button class="tab-btn active" onclick="showTab('theory', this)">📚 الشرح</button>
+  <button class="tab-btn" onclick="showTab('examples', this)">✏️ أمثلة</button>
+  <button class="tab-btn" onclick="showTab('worksheet', this)">📄 ورقة العمل</button>
+  <button class="tab-btn" onclick="showTab('games', this)">🎮 الألعاب</button>
+</div>
+
+<main>
+
+<!-- ═══ THEORY ═══ -->
+<div class="section active" id="theory">
+
+  <div class="intro-box">
+    <h2>➖ ما هو الفرق بين المجموعتين؟</h2>
+    <p>تخيّل سلّتك فيها فواكه 🧺، وصديقك أخذ منها كل فاكهة موجودة عنده أيضاً. <strong>ما تبقّى عندك = الفرق!</strong> رمزه: <strong>س − ص</strong></p>
+  </div>
+
+  <!-- ════ Story Introduction ════ -->
+  <div class="story-box">
+    <div class="story-icon">📖</div>
+    <div class="story-text">
+      <b>قصة بسيطة:</b> أحمد عنده سلّة فيها 🍎🍌🍇 ، وسارة عندها سلّة فيها 🍇🍊🍓.<br>
+      ❓ <b>ماذا يبقى عند أحمد فقط</b> (ليس عند سارة)؟<br>
+      ❓ <b>ماذا يبقى عند سارة فقط</b> (ليس عند أحمد)؟
+    </div>
+  </div>
+
+  <div class="baskets-row">
+    <div class="basket">
+      <div class="basket-label">🧺 سلّة أحمد (س)</div>
+      <div class="basket-items">
+        <span class="basket-item">🍎</span>
+        <span class="basket-item">🍌</span>
+        <span class="basket-item">🍇</span>
+      </div>
+    </div>
+    <div class="basket green">
+      <div class="basket-label">🧺 سلّة سارة (ص)</div>
+      <div class="basket-items">
+        <span class="basket-item">🍇</span>
+        <span class="basket-item">🍊</span>
+        <span class="basket-item">🍓</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════ Definition Card ════ -->
+  <div class="def-card">
+    <div class="def-title">💡 تعريف الفرق</div>
+    <div class="def-body">
+      <p style="margin-bottom:10px;">المجموعة <span class="symbol">س − ص</span> هي مجموعة العناصر التي <strong>تنتمي إلى س</strong>، و <strong>لا تنتمي إلى ص</strong>.</p>
+      <p style="background:#fff8e1; padding:10px; border-radius:8px; font-size:0.92rem;">
+        🔑 <b>بكلمات بسيطة:</b> خذ كل ما في س، واحذف منها كل ما هو موجود في ص.
+      </p>
+    </div>
+  </div>
+
+  <!-- ════ س − ص Operation ════ -->
+  <div class="op-card diff1">
+    <div class="op-header">
+      <div class="op-symbol">−</div>
+      <div class="op-name">الفرق (س − ص)</div>
+    </div>
+    <div class="op-rule">
+      🔹 <strong>الخطوة ١:</strong> ابدأ بالمجموعة <strong>س</strong>.<br>
+      🔹 <strong>الخطوة ٢:</strong> اشطب من <strong>س</strong> أي عنصر موجود في <strong>ص</strong>.<br>
+      🔹 <strong>الخطوة ٣:</strong> العناصر المتبقّية في س = <strong>س − ص</strong>.<br>
+      📖 نقرأ: <strong>"س ناقص ص"</strong> أو <strong>"الفرق بين س و ص"</strong>.
+    </div>
+
+    <div style="text-align:center; font-weight:700; color:#1a6b3a; margin:10px 0 4px;">
+      🍎🍌🍇 − 🍇🍊🍓 = ؟
+    </div>
+    <div class="result-basket" style="border-color:var(--g); background:#e6f4ea;">
+      <div class="rb-label" style="background:var(--g);">س − ص = الموجود فقط عند أحمد</div>
+      <div class="rb-items">
+        <span>🍎</span><span>🍌</span>
+      </div>
+      <div style="font-size:0.82rem; color:#1a6b3a; margin-top:6px; font-weight:700;">
+        ✨ 🍇 شطبناه لأنه موجود عند سارة أيضاً
+      </div>
+    </div>
+
+    <div class="venn-container">
+      <svg viewBox="0 0 220 130">
+        <defs>
+          <clipPath id="leftOnly">
+            <circle cx="80" cy="65" r="50"/>
+          </clipPath>
+        </defs>
+        <circle cx="80" cy="65" r="50" fill="#38a169" fill-opacity="0.55"/>
+        <circle cx="140" cy="65" r="50" fill="white" clip-path="url(#leftOnly)"/>
+        <circle cx="80" cy="65" r="50" fill="none" stroke="#38a169" stroke-width="2.5"/>
+        <circle cx="140" cy="65" r="50" fill="none" stroke="#38a169" stroke-width="2.5"/>
+        <text x="55" y="70" text-anchor="middle" fill="#1a4a2e" font-size="18" font-weight="900">س</text>
+        <text x="165" y="70" text-anchor="middle" fill="#1a4a2e" font-size="18" font-weight="900">ص</text>
+      </svg>
+      <div class="venn-label" style="color:#1a6b3a">👀 المنطقة الخضراء = س − ص (س بدون المشترك)</div>
+    </div>
+
+    <div class="op-example">
+      📝 <b>مثال بالأرقام:</b><br>
+      س = {١، ٢، ٣} ، ص = {٣، ٤، ٥}<br>
+      <b style="color:#1a6b3a;">س − ص = {١، ٢}</b> &nbsp; (شطبنا ٣ لأنه في ص)
+    </div>
+  </div>
+
+  <!-- ════ ص − س Operation ════ -->
+  <div class="op-card diff2">
+    <div class="op-header">
+      <div class="op-symbol">−</div>
+      <div class="op-name">الفرق (ص − س)</div>
+    </div>
+    <div class="op-rule">
+      🔹 <strong>الخطوة ١:</strong> ابدأ بالمجموعة <strong>ص</strong>.<br>
+      🔹 <strong>الخطوة ٢:</strong> اشطب من <strong>ص</strong> أي عنصر موجود في <strong>س</strong>.<br>
+      🔹 <strong>الخطوة ٣:</strong> العناصر المتبقّية في ص = <strong>ص − س</strong>.<br>
+      📖 نقرأ: <strong>"ص ناقص س"</strong>.
+    </div>
+
+    <div style="text-align:center; font-weight:700; color:#1e4e8c; margin:10px 0 4px;">
+      🍇🍊🍓 − 🍎🍌🍇 = ؟
+    </div>
+    <div class="result-basket" style="border-color:var(--b); background:#e6f0fc;">
+      <div class="rb-label" style="background:var(--b);">ص − س = الموجود فقط عند سارة</div>
+      <div class="rb-items">
+        <span>🍊</span><span>🍓</span>
+      </div>
+      <div style="font-size:0.82rem; color:#1e4e8c; margin-top:6px; font-weight:700;">
+        ✨ 🍇 شطبناه لأنه موجود عند أحمد أيضاً
+      </div>
+    </div>
+
+    <div class="venn-container">
+      <svg viewBox="0 0 220 130">
+        <defs>
+          <clipPath id="rightOnly">
+            <circle cx="140" cy="65" r="50"/>
+          </clipPath>
+        </defs>
+        <circle cx="140" cy="65" r="50" fill="#3182ce" fill-opacity="0.55"/>
+        <circle cx="80" cy="65" r="50" fill="white" clip-path="url(#rightOnly)"/>
+        <circle cx="80" cy="65" r="50" fill="none" stroke="#3182ce" stroke-width="2.5"/>
+        <circle cx="140" cy="65" r="50" fill="none" stroke="#3182ce" stroke-width="2.5"/>
+        <text x="55" y="70" text-anchor="middle" fill="#1e4e8c" font-size="18" font-weight="900">س</text>
+        <text x="165" y="70" text-anchor="middle" fill="#1e4e8c" font-size="18" font-weight="900">ص</text>
+      </svg>
+      <div class="venn-label" style="color:#1e4e8c">👀 المنطقة الزرقاء = ص − س (ص بدون المشترك)</div>
+    </div>
+
+    <div class="op-example">
+      📝 <b>مثال بالأرقام:</b><br>
+      س = {١، ٢، ٣} ، ص = {٣، ٤، ٥}<br>
+      <b style="color:#1e4e8c;">ص − س = {٤، ٥}</b> &nbsp; (شطبنا ٣ لأنه في س)
+    </div>
+  </div>
+
+  <!-- ════ Warning: order matters! ════ -->
+  <div class="warning-box">
+    <span style="font-size:1.5rem;">⚠️</span>
+    <span>
+      <b>انتبه جيداً!</b><br>
+      <span style="color:var(--p); font-weight:800;">س − ص ≠ ص − س</span><br>
+      الترتيب مهم جداً في الفرق! اللي تبدأ منه يختلف عن اللي تشطب منه.<br>
+      <span style="font-size:0.88rem; color:#666;">👈 على عكس الاتحاد والتقاطع، فيهما الترتيب لا يهم.</span>
+    </span>
+  </div>
+
+  <!-- ════ Comparison Table ════ -->
+  <h3 style="color:var(--p); text-align:center; margin:18px 0 10px; font-weight:900;">📊 الفرق بين س−ص و ص−س</h3>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:14px;">
+    <div style="background:#e6f4ea; border:2px solid var(--g); border-radius:14px; padding:12px; text-align:center;">
+      <div style="font-size:1.8rem; color:var(--g); font-weight:900;">س − ص</div>
+      <div style="font-size:0.85rem; color:#555; margin-top:4px;">العناصر في <b style="color:var(--g);">س فقط</b></div>
+      <div style="background:white; border-radius:8px; padding:6px 10px; font-size:0.82rem; font-weight:700; color:#444; margin-top:6px;">ابدأ من س</div>
+    </div>
+    <div style="background:#e6f0fc; border:2px solid var(--b); border-radius:14px; padding:12px; text-align:center;">
+      <div style="font-size:1.8rem; color:var(--b); font-weight:900;">ص − س</div>
+      <div style="font-size:0.85rem; color:#555; margin-top:4px;">العناصر في <b style="color:var(--b);">ص فقط</b></div>
+      <div style="background:white; border-radius:8px; padding:6px 10px; font-size:0.82rem; font-weight:700; color:#444; margin-top:6px;">ابدأ من ص</div>
+    </div>
+  </div>
+
+  <!-- ════ Special case: subset ════ -->
+  <div class="def-card">
+    <div class="def-title">💡 حالة خاصة: س جزء من ص</div>
+    <div class="def-body">
+      <p>إذا كانت <strong>كل عناصر س موجودة في ص</strong> (أي س ⊂ ص)، فإن:</p>
+      <p style="background:#fff8e1; padding:10px; border-radius:8px; margin-top:8px; text-align:center; font-weight:800; color:var(--p);">
+        س − ص = ∅ (مجموعة فارغة) 
+      </p>
+      <p style="font-size:0.85rem; color:#666; margin-top:6px;">لأن كل عناصر س سنشطبها (موجودة في ص)!</p>
+    </div>
+  </div>
+
+  <!-- ════ Real-life Example ════ -->
+  <div class="story-box">
+    <div class="story-icon">👨‍🎓</div>
+    <div class="story-text">
+      <b>مثال من الحياة:</b><br>
+      ميساء وعمر وحسن طلاب نادي <b>الرسم</b> 🎨.<br>
+      عمر وحسن وعلي طلاب نادي <b>الموسيقى</b> 🎵.<br>
+      ❓ من في الرسم <b>فقط</b> (لا يحضر الموسيقى)؟
+    </div>
+  </div>
+
+  <div class="baskets-row">
+    <div class="basket">
+      <div class="basket-label">🎨 نادي الرسم</div>
+      <div class="basket-items">
+        <span class="basket-item">👧</span>
+        <span class="basket-item">👦</span>
+        <span class="basket-item">👦</span>
+      </div>
+      <div style="font-size:0.72rem; color:var(--p); font-weight:700; margin-top:4px;">ميساء، عمر، حسن</div>
+    </div>
+    <div class="basket green">
+      <div class="basket-label">🎵 نادي الموسيقى</div>
+      <div class="basket-items">
+        <span class="basket-item">👦</span>
+        <span class="basket-item">👦</span>
+        <span class="basket-item">👦</span>
+      </div>
+      <div style="font-size:0.72rem; color:var(--g); font-weight:700; margin-top:4px;">عمر، حسن، علي</div>
+    </div>
+  </div>
+  <div class="big-arrow">⬇️</div>
+  <div class="result-basket" style="border-color:var(--g); background:#e6f4ea;">
+    <div class="rb-label" style="background:var(--g);">رسم − موسيقى = من في الرسم فقط</div>
+    <div style="font-size:1.4rem; font-weight:900; color:var(--g);">{ميساء}</div>
+    <div style="font-size:0.8rem; color:#1a6b3a; margin-top:6px;">شطبنا عمر وحسن لأنهما في الموسيقى أيضاً</div>
+  </div>
+
+  <!-- ════ Final Summary ════ -->
+  <div class="tip-box">
+    <span style="font-size:1.4rem;">💡</span>
+    <span><b>الخلاصة بكلمتين:</b><br>
+    🟢 <strong style="color:var(--g)">س − ص</strong> = خذ <b>س</b> واشطب اللي في <b>ص</b><br>
+    🔵 <strong style="color:var(--b)">ص − س</strong> = خذ <b>ص</b> واشطب اللي في <b>س</b><br>
+    ⚠️ <strong style="color:var(--p);">الترتيب مهم! ليسا متساويين</strong></span>
+  </div>
+
+</div>
+
+
+<!-- ═══ EXAMPLES ═══ -->
+<div class="section" id="examples">
+  <h2 style="color:var(--p); margin-bottom:18px; font-size:1.2rem; font-weight:900;">✏️ أمثلة محلولة خطوة بخطوة</h2>
+
+  <!-- Example 1: simple س - ص -->
+  <div class="example-card">
+    <div class="ex-header">
+      📝 مثال ١ — إيجاد س − ص
+      <span class="ex-badge">سهل</span>
+    </div>
+    <div class="ex-body">
+      <div class="ex-given">
+        إذا كانت <strong>س = {١، ٢، ٣، ٤}</strong> و <strong>ص = {٣، ٤، ٥، ٦}</strong>،<br>
+        أوجد <strong>س − ص</strong>.
+      </div>
+
+      <div class="baskets-row">
+        <div class="basket" style="min-width:110px;">
+          <div class="basket-label">س</div>
+          <div class="basket-items">
+            <div class="numbers-flow">
+              <div class="num-circle">١</div>
+              <div class="num-circle">٢</div>
+              <div class="num-circle shared-num">٣</div>
+              <div class="num-circle shared-num">٤</div>
+            </div>
+          </div>
+        </div>
+        <div class="basket green" style="min-width:110px;">
+          <div class="basket-label">ص</div>
+          <div class="basket-items">
+            <div class="numbers-flow">
+              <div class="num-circle shared-num">٣</div>
+              <div class="num-circle shared-num">٤</div>
+              <div class="num-circle green-num">٥</div>
+              <div class="num-circle green-num">٦</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ex-step">
+        <div class="step-num">١</div>
+        <div class="step-text"><strong>ابدأ من المجموعة الأولى س</strong> واكتب عناصرها:</div>
+      </div>
+      <div class="step-visual">
+        <div class="numbers-flow">
+          <div class="num-circle">١</div>
+          <div class="num-circle">٢</div>
+          <div class="num-circle">٣</div>
+          <div class="num-circle">٤</div>
+        </div>
+      </div>
+
+      <div class="ex-step">
+        <div class="step-num">٢</div>
+        <div class="step-text"><strong>اشطب من س أي عنصر موجود في ص</strong>:<br>
+        🔍 الرقم ٣ موجود في ص؟ ✅ نعم → اشطبه<br>
+        🔍 الرقم ٤ موجود في ص؟ ✅ نعم → اشطبه<br>
+        🔍 الرقم ١ موجود في ص؟ ❌ لا → اتركه<br>
+        🔍 الرقم ٢ موجود في ص؟ ❌ لا → اتركه
+        </div>
+      </div>
+      <div class="step-visual">
+        <div class="numbers-flow">
+          <div class="num-circle kept">١</div>
+          <div class="num-circle kept">٢</div>
+          <div class="num-circle crossed">٣</div>
+          <div class="num-circle crossed">٤</div>
+        </div>
+      </div>
+
+      <div class="ex-step">
+        <div class="step-num">٣</div>
+        <div class="step-text"><strong>المتبقّي = الإجابة</strong>:</div>
+      </div>
+
+      <div class="big-arrow">⬇️</div>
+      <div class="ex-answer">✅ الإجابة: س − ص = {١، ٢}</div>
+    </div>
+  </div>
+
+  <!-- Example 2: ص - س same sets -->
+  <div class="example-card">
+    <div class="ex-header">
+      📝 مثال ٢ — إيجاد ص − س
+      <span class="ex-badge">سهل</span>
+    </div>
+    <div class="ex-body">
+      <div class="ex-given">
+        إذا كانت <strong>س = {١، ٢، ٣، ٤}</strong> و <strong>ص = {٣، ٤، ٥، ٦}</strong>،<br>
+        أوجد <strong>ص − س</strong>.
+      </div>
+
+      <div class="ex-step">
+        <div class="step-num">١</div>
+        <div class="step-text"><strong>ابدأ من المجموعة الأولى ص</strong> (هذه المرة ص أولاً!) واكتب عناصرها:</div>
+      </div>
+      <div class="step-visual">
+        <div class="numbers-flow">
+          <div class="num-circle green-num">٣</div>
+          <div class="num-circle green-num">٤</div>
+          <div class="num-circle green-num">٥</div>
+          <div class="num-circle green-num">٦</div>
+        </div>
+      </div>
+
+      <div class="ex-step">
+        <div class="step-num">٢</div>
+        <div class="step-text"><strong>اشطب من ص أي عنصر موجود في س</strong>:<br>
+        🔍 الرقم ٣ موجود في س؟ ✅ نعم → اشطبه<br>
+        🔍 الرقم ٤ موجود في س؟ ✅ نعم → اشطبه<br>
+        🔍 الرقم ٥ موجود في س؟ ❌ لا → اتركه<br>
+        🔍 الرقم ٦ موجود في س؟ ❌ لا → اتركه
+        </div>
+      </div>
+      <div class="step-visual">
+        <div class="numbers-flow">
+          <div class="num-circle crossed">٣</div>
+          <div class="num-circle crossed">٤</div>
+          <div class="num-circle kept">٥</div>
+          <div class="num-circle kept">٦</div>
+        </div>
+      </div>
+
+      <div class="ex-step">
+        <div class="step-num">٣</div>
+        <div class="step-text"><strong>المتبقّي = الإجابة</strong>:</div>
+      </div>
+
+      <div class="big-arrow">⬇️</div>
+      <div class="ex-answer">✅ الإجابة: ص − س = {٥، ٦}</div>
+
+      <div class="warning-box" style="margin-top:14px;">
+        <span style="font-size:1.3rem;">⚠️</span>
+        <span style="font-size:0.88rem;">
+          <b>لاحظ:</b> في المثال ١ كانت الإجابة {١، ٢}، وفي مثال ٢ صارت {٥، ٦}!<br>
+          ✨ هذا يثبت أن <b>س − ص ≠ ص − س</b>.
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Example 3: disjoint sets -->
+  <div class="example-card">
+    <div class="ex-header">
+      📝 مثال ٣ — مجموعتان منفصلتان
+      <span class="ex-badge">متوسط</span>
+    </div>
+    <div class="ex-body">
+      <div class="ex-given">
+        إذا كانت <strong>س = {١، ٣، ٥}</strong> و <strong>ص = {٢، ٤، ٦}</strong>،<br>
+        أوجد <strong>س − ص</strong> و <strong>ص − س</strong>.
+      </div>
+
+      <div class="ex-step">
+        <div class="step-num">١</div>
+        <div class="step-text">🔍 <strong>هل يوجد عنصر مشترك بين س و ص؟</strong></div>
+      </div>
+      <div class="step-visual">
+        <div style="font-size:0.9rem; color:#666; line-height:1.85;">
+          ١ في ص؟ ❌ &nbsp; ٣ في ص؟ ❌ &nbsp; ٥ في ص؟ ❌<br>
+          <b style="color:var(--p);">لا يوجد أي عنصر مشترك! 🚫</b>
+        </div>
+      </div>
+
+      <div class="ex-step">
+        <div class="step-num">٢</div>
+        <div class="step-text">
+          <strong>س − ص:</strong> لا نشطب شيئاً من س (لأن لا شيء مشترك) → كل عناصر س تبقى.
+        </div>
+      </div>
+      <div class="step-visual">
+        <div class="numbers-flow">
+          <div class="num-circle kept">١</div>
+          <div class="num-circle kept">٣</div>
+          <div class="num-circle kept">٥</div>
+        </div>
+      </div>
+
+      <div class="ex-step">
+        <div class="step-num">٣</div>
+        <div class="step-text">
+          <strong>ص − س:</strong> لا نشطب شيئاً من ص → كل عناصر ص تبقى.
+        </div>
+      </div>
+      <div class="step-visual">
+        <div class="numbers-flow">
+          <div class="num-circle kept">٢</div>
+          <div class="num-circle kept">٤</div>
+          <div class="num-circle kept">٦</div>
+        </div>
+      </div>
+
+      <div class="big-arrow">⬇️</div>
+      <div class="ex-answer">
+        ✅ س − ص = {١، ٣، ٥} = س (نفسها)<br>
+        ✅ ص − س = {٢، ٤، ٦} = ص (نفسها)
+      </div>
+
+      <div class="tip-box" style="margin-top:12px;">
+        <span style="font-size:1.3rem;">💡</span>
+        <span style="font-size:0.88rem;">
+          <b>قاعدة:</b> إذا كانت المجموعتان <b>منفصلتين</b> (لا تشترك بعنصر)، فإن:<br>
+          س − ص = س &nbsp;و&nbsp; ص − س = ص
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Example 4: subset (س ⊂ ص) -->
+  <div class="example-card">
+    <div class="ex-header">
+      📝 مثال ٤ — س جزء من ص
+      <span class="ex-badge">متوسط</span>
+    </div>
+    <div class="ex-body">
+      <div class="ex-given">
+        إذا كانت <strong>س = {٢، ٤}</strong> و <strong>ص = {١، ٢، ٣، ٤، ٥}</strong>،<br>
+        أوجد <strong>س − ص</strong> و <strong>ص − س</strong>.
+      </div>
+
+      <div class="ex-step">
+        <div class="step-num">١</div>
+        <div class="step-text"><strong>س − ص:</strong> ابدأ من س = {٢، ٤}، واشطب اللي في ص.</div>
+      </div>
+      <div class="step-visual">
+        <div style="font-size:0.9rem; line-height:1.85;">
+          ٢ في ص؟ ✅ → اشطبه<br>
+          ٤ في ص؟ ✅ → اشطبه<br>
+          <b style="color:var(--p);">شطبنا كل العناصر!</b>
+        </div>
+        <div class="numbers-flow">
+          <div class="num-circle crossed">٢</div>
+          <div class="num-circle crossed">٤</div>
+        </div>
+      </div>
+
+      <div class="ex-step">
+        <div class="step-num">٢</div>
+        <div class="step-text"><strong>س − ص = ∅</strong> (مجموعة فارغة) ⬅️</div>
+      </div>
+
+      <div class="ex-step">
+        <div class="step-num">٣</div>
+        <div class="step-text"><strong>ص − س:</strong> ابدأ من ص = {١، ٢، ٣، ٤، ٥}، واشطب اللي في س.</div>
+      </div>
+      <div class="step-visual">
+        <div class="numbers-flow">
+          <div class="num-circle kept">١</div>
+          <div class="num-circle crossed">٢</div>
+          <div class="num-circle kept">٣</div>
+          <div class="num-circle crossed">٤</div>
+          <div class="num-circle kept">٥</div>
+        </div>
+      </div>
+
+      <div class="big-arrow">⬇️</div>
+      <div class="ex-answer">
+        ✅ س − ص = ∅ (فارغة)<br>
+        ✅ ص − س = {١، ٣، ٥}
+      </div>
+    </div>
+  </div>
+
+  <!-- Example 5: real life story -->
+  <div class="example-card">
+    <div class="ex-header">
+      📝 مثال ٥ — قصة من الحياة
+      <span class="ex-badge">تطبيقي</span>
+    </div>
+    <div class="ex-body">
+      <div class="ex-given">
+        طلاب الفصل: <strong>أ = {أحمد، سامي، علي}</strong> يشاركون في <b>الكرة ⚽</b>.<br>
+        وطلاب: <strong>ب = {سامي، علي، نور}</strong> يشاركون في <b>السباحة 🏊</b>.<br>
+        ❓ من يلعب <b>الكرة فقط</b> (ليس السباحة)؟
+      </div>
+
+      <div class="ex-step">
+        <div class="step-num">١</div>
+        <div class="step-text">السؤال يطلب: <strong>أ − ب</strong> (في الكرة وليس في السباحة).</div>
+      </div>
+
+      <div class="ex-step">
+        <div class="step-num">٢</div>
+        <div class="step-text">ابدأ من أ = {أحمد، سامي، علي}، واشطب اللي في ب:<br>
+        🔍 أحمد في ب؟ ❌ → اتركه<br>
+        🔍 سامي في ب؟ ✅ → اشطبه<br>
+        🔍 علي في ب؟ ✅ → اشطبه
+        </div>
+      </div>
+
+      <div class="big-arrow">⬇️</div>
+      <div class="result-basket" style="border-color:var(--g); background:#e6f4ea;">
+        <div class="rb-label" style="background:var(--g);">⚽ − 🏊</div>
+        <div style="font-size:1.3rem; font-weight:900; color:var(--g);">{أحمد}</div>
+      </div>
+
+      <div class="ex-answer">✅ الإجابة: أ − ب = {أحمد} (يلعب الكرة فقط)</div>
+    </div>
+  </div>
+
+  <!-- Quick reminder -->
+  <div class="story-box">
+    <div class="story-icon">⭐</div>
+    <div class="story-text">
+      <b>طريقة سهلة للتذكّر بثلاث خطوات:</b><br>
+      <b style="color:var(--p);">١)</b> اكتب عناصر المجموعة الأولى (الأمامية).<br>
+      <b style="color:var(--p);">٢)</b> اشطب من بين هذه العناصر أي شيء موجود في المجموعة الثانية.<br>
+      <b style="color:var(--p);">٣)</b> اللي بقي = إجابتك ✅
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══ WORKSHEET ═══ -->
+<div class="section" id="worksheet">
+  <div class="ws-header">
+    <h2>📄 ورقة العمل</h2>
+    <div class="ws-info">👩‍🏫 إعداد المعلمة: <strong style="color:var(--p)">نور حجاج</strong></div>
+  </div>
+
+  <div id="wsResultBar">
+    <h3>🎯 نتيجتك</h3>
+    <div class="ws-score" id="wsScoreText">—</div>
+    <p id="wsMsg">—</p>
+  </div>
+
+  <div class="question-card">
+    <div class="q-header">
+      <div class="q-num">١</div>
+      <div class="q-text">➖ إذا كانت س = {١، ٢، ٣} و ص = {٢، ٣، ٤}، فإن س − ص =</div>
+      <span class="q-level level-easy">سهل</span>
+    </div>
+    <div class="mcq-options">
+      <button class="mcq-btn" onclick="chkMCQ(this, 1, true)">{١}</button>
+      <button class="mcq-btn" onclick="chkMCQ(this, 1, false)">{٤}</button>
+      <button class="mcq-btn" onclick="chkMCQ(this, 1, false)">{٢، ٣}</button>
+    </div>
+    <div class="feedback" id="fb1"></div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-header">
+      <div class="q-num">٢</div>
+      <div class="q-text">⭐ إذا كانت س = {١، ٢، ٣} و ص = {٢، ٣، ٤}، فإن ص − س =</div>
+      <span class="q-level level-easy">سهل</span>
+    </div>
+    <div class="mcq-options">
+      <button class="mcq-btn" onclick="chkMCQ(this, 2, false)">{١}</button>
+      <button class="mcq-btn" onclick="chkMCQ(this, 2, true)">{٤}</button>
+      <button class="mcq-btn" onclick="chkMCQ(this, 2, false)">{٢، ٣}</button>
+    </div>
+    <div class="feedback" id="fb2"></div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-header">
+      <div class="q-num">٣</div>
+      <div class="q-text">🎯 س − ص هي مجموعة العناصر التي:</div>
+      <span class="q-level level-easy">سهل</span>
+    </div>
+    <div class="mcq-options">
+      <button class="mcq-btn" onclick="chkMCQ(this, 3, true)">تنتمي إلى س ولا تنتمي إلى ص</button>
+      <button class="mcq-btn" onclick="chkMCQ(this, 3, false)">تنتمي إلى ص ولا تنتمي إلى س</button>
+      <button class="mcq-btn" onclick="chkMCQ(this, 3, false)">تنتمي للاثنتين معاً</button>
+    </div>
+    <div class="feedback" id="fb3"></div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-header">
+      <div class="q-num">٤</div>
+      <div class="q-text">🚫 إذا كانت أ = {١، ٣، ٥} و ب = {٢، ٤، ٦}، فإن أ − ب =</div>
+      <span class="q-level level-med">متوسط</span>
+    </div>
+    <div class="mcq-options">
+      <button class="mcq-btn" onclick="chkMCQ(this, 4, true)">{١، ٣، ٥}</button>
+      <button class="mcq-btn" onclick="chkMCQ(this, 4, false)">∅ (فارغة)</button>
+      <button class="mcq-btn" onclick="chkMCQ(this, 4, false)">{٢، ٤، ٦}</button>
+    </div>
+    <div class="feedback" id="fb4"></div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-header">
+      <div class="q-num">٥</div>
+      <div class="q-text">✅ إذا كانت س = {٢، ٤} و ص = {١، ٢، ٣، ٤، ٥}، فإن س − ص =</div>
+      <span class="q-level level-med">متوسط</span>
+    </div>
+    <div class="mcq-options">
+      <button class="mcq-btn" onclick="chkMCQ(this, 5, true)">∅ (فارغة)</button>
+      <button class="mcq-btn" onclick="chkMCQ(this, 5, false)">{٢، ٤}</button>
+      <button class="mcq-btn" onclick="chkMCQ(this, 5, false)">{١، ٣، ٥}</button>
+    </div>
+    <div class="feedback" id="fb5"></div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-header">
+      <div class="q-num">٦</div>
+      <div class="q-text">📊 إذا كانت س = {أ، ب، ج} و ص = {ب، ج، د}، فإن س − ص =</div>
+      <span class="q-level level-easy">سهل</span>
+    </div>
+    <div class="mcq-options">
+      <button class="mcq-btn" onclick="chkMCQ(this, 6, true)">{أ}</button>
+      <button class="mcq-btn" onclick="chkMCQ(this, 6, false)">{د}</button>
+      <button class="mcq-btn" onclick="chkMCQ(this, 6, false)">{ب، ج}</button>
+    </div>
+    <div class="feedback" id="fb6"></div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-header">
+      <div class="q-num">٧</div>
+      <div class="q-text">⚽ نادي الكرة = {أحمد، علي، سامي}، نادي الرسم = {علي، نور}. من في الكرة فقط؟</div>
+      <span class="q-level level-med">متوسط</span>
+    </div>
+    <div class="mcq-options">
+      <button class="mcq-btn" onclick="chkMCQ(this, 7, true)">{أحمد، سامي}</button>
+      <button class="mcq-btn" onclick="chkMCQ(this, 7, false)">{علي}</button>
+      <button class="mcq-btn" onclick="chkMCQ(this, 7, false)">{نور}</button>
+    </div>
+    <div class="feedback" id="fb7"></div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-header">
+      <div class="q-num">٨</div>
+      <div class="q-text">🤔 أيّ من العبارات التالية صحيحة؟</div>
+      <span class="q-level level-hard">صعب</span>
+    </div>
+    <div class="mcq-options">
+      <button class="mcq-btn" onclick="chkMCQ(this, 8, true)">س − ص ≠ ص − س (الترتيب مهم)</button>
+      <button class="mcq-btn" onclick="chkMCQ(this, 8, false)">س − ص = ص − س دائماً</button>
+      <button class="mcq-btn" onclick="chkMCQ(this, 8, false)">س − ص = س ∩ ص</button>
+    </div>
+    <div class="feedback" id="fb8"></div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-header">
+      <div class="q-num">٩</div>
+      <div class="q-text">🔢 إذا كانت س = {١، ٢، ٣، ٤، ٥} و ص = {٣، ٤}، فإن س − ص =</div>
+      <span class="q-level level-med">متوسط</span>
+    </div>
+    <div class="mcq-options">
+      <button class="mcq-btn" onclick="chkMCQ(this, 9, true)">{١، ٢، ٥}</button>
+      <button class="mcq-btn" onclick="chkMCQ(this, 9, false)">{٣، ٤}</button>
+      <button class="mcq-btn" onclick="chkMCQ(this, 9, false)">∅</button>
+    </div>
+    <div class="feedback" id="fb9"></div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-header">
+      <div class="q-num">١٠</div>
+      <div class="q-text">📖 "س ناقص ص" نُرمز لها بـ:</div>
+      <span class="q-level level-easy">سهل</span>
+    </div>
+    <div class="mcq-options">
+      <button class="mcq-btn" onclick="chkMCQ(this, 10, true)">س − ص</button>
+      <button class="mcq-btn" onclick="chkMCQ(this, 10, false)">س ∪ ص</button>
+      <button class="mcq-btn" onclick="chkMCQ(this, 10, false)">س ∩ ص</button>
+    </div>
+    <div class="feedback" id="fb10"></div>
+  </div>
+
+  <div style="text-align:center; margin-top:22px;">
+    <button class="submit-btn" onclick="submitWS()">📤 عرض النتيجة</button>
+  </div>
+</div>
+
+
+<!-- ═══ GAMES MENU ═══ -->
+<div class="section" id="games">
+  <div id="gamesMenu">
+    <h2 style="color:var(--p); margin-bottom:6px; font-size:1.18rem; font-weight:900;">🎮 اختر لعبتك!</h2>
+    <p style="color:#777; font-size:0.88rem; margin-bottom:16px;">٣ ألعاب ممتعة لتعلّم الفرق بين المجموعات 🎯</p>
+
+    <div class="games-menu">
+      <div class="game-card" onclick="openGame(1)">
+        <span class="gc-badge">لعبة ١</span>
+        <span class="gc-emoji">🎯</span>
+        <div class="gc-title">أين ينتمي العنصر؟</div>
+        <div class="gc-desc">يظهر عنصر، حدّد هل ينتمي لـ "س − ص" أم "ص − س" أم "س ∩ ص" أم لا أحد.</div>
+      </div>
+
+      <div class="game-card" onclick="openGame(2)">
+        <span class="gc-badge">لعبة ٢</span>
+        <span class="gc-emoji">🎨</span>
+        <div class="gc-title">اختر شكل فِن الصحيح</div>
+        <div class="gc-desc">يظهر سؤال مثل "س − ص"، اختر الشكل البياني الذي يمثّله من ٤ أشكال.</div>
+      </div>
+
+      <div class="game-card" onclick="openGame(3)">
+        <span class="gc-badge">لعبة ٣</span>
+        <span class="gc-emoji">🧮</span>
+        <div class="gc-title">احسب ناتج الفرق</div>
+        <div class="gc-desc">مجموعتان ظاهرتان، احسب نتيجة س − ص أو ص − س.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Game 1 Area -->
+  <div id="game1Area" style="display:none;">
+    <button class="back-btn" onclick="backToMenu()">← رجوع</button>
+    <div class="game-title-bar">
+      <h2>🎯 أين ينتمي العنصر؟</h2>
+      <div class="score-display">النقاط: <span id="g1Score">٠</span></div>
+    </div>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" id="g1Progress" style="width:0%"></div></div>
+    <div class="g1-question-box">
+      <div class="g1-sets-info" id="g1SetsInfo">—</div>
+      <div class="g1-element" id="g1Element">؟</div>
+      <div class="g1-question" id="g1QText">أين ينتمي هذا العنصر؟</div>
+    </div>
+    <div class="g1-zones">
+      <button class="zone-btn" onclick="g1Pick(this,'sMinusS')">
+        <span class="zone-icon">🟢</span>
+        <span class="zone-label">في س − ص</span>
+      </button>
+      <button class="zone-btn" onclick="g1Pick(this,'ssMinusS')">
+        <span class="zone-icon">🔵</span>
+        <span class="zone-label">في ص − س</span>
+      </button>
+      <button class="zone-btn" onclick="g1Pick(this,'inter')">
+        <span class="zone-icon">🟣</span>
+        <span class="zone-label">في س ∩ ص</span>
+      </button>
+      <button class="zone-btn" onclick="g1Pick(this,'none')">
+        <span class="zone-icon">⚪</span>
+        <span class="zone-label">لا في أي منهما</span>
+      </button>
+    </div>
+    <div class="game-feedback" id="g1Feedback">اختر المنطقة الصحيحة 👆</div>
+    <div style="text-align:center">
+      <button class="next-btn" id="g1Next" onclick="g1NextQ()" style="display:none">التالي ←</button>
+    </div>
+    <div class="result-screen" id="g1Result" style="display:none;">
+      <div class="big-emoji" id="g1ResultEmoji">🎉</div>
+      <h2 id="g1ResultTitle">أحسنت!</h2>
+      <p id="g1ResultMsg">لقد أتممت اللعبة</p>
+      <div class="result-score" id="g1ResultScore">٠ / ٦</div><br>
+      <button class="restart-btn" onclick="g1Restart()">🔄 العب مجدداً</button>
+      <button class="restart-btn" onclick="backToMenu()" style="background:var(--p);color:white;margin-right:8px;">🏠 القائمة</button>
+    </div>
+  </div>
+
+  <!-- Game 2 Area -->
+  <div id="game2Area" style="display:none;">
+    <button class="back-btn" onclick="backToMenu()">← رجوع</button>
+    <div class="game-title-bar">
+      <h2>🎨 اختر شكل فِن</h2>
+      <div class="score-display">النقاط: <span id="g2Score">٠</span></div>
+    </div>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" id="g2Progress" style="width:0%"></div></div>
+    <div class="g2-question-box">
+      <div class="g2-q-label">ما الشكل الذي يمثّل:</div>
+      <div class="g2-q-expr" id="g2Expr">س − ص</div>
+    </div>
+    <div class="g2-options" id="g2Options"></div>
+    <div class="game-feedback" id="g2Feedback">اختر الشكل الصحيح 👆</div>
+    <div style="text-align:center">
+      <button class="next-btn" id="g2Next" onclick="g2NextQ()" style="display:none">التالي ←</button>
+    </div>
+    <div class="result-screen" id="g2Result" style="display:none;">
+      <div class="big-emoji" id="g2ResultEmoji">🎉</div>
+      <h2 id="g2ResultTitle">أحسنت!</h2>
+      <p id="g2ResultMsg">—</p>
+      <div class="result-score" id="g2ResultScore">٠ / ٥</div><br>
+      <button class="restart-btn" onclick="g2Restart()">🔄 العب مجدداً</button>
+      <button class="restart-btn" onclick="backToMenu()" style="background:var(--p);color:white;margin-right:8px;">🏠 القائمة</button>
+    </div>
+  </div>
+
+  <!-- Game 3 Area -->
+  <div id="game3Area" style="display:none;">
+    <button class="back-btn" onclick="backToMenu()">← رجوع</button>
+    <div class="game-title-bar">
+      <h2>🧮 احسب ناتج الفرق</h2>
+      <div class="score-display">النقاط: <span id="g3Score">٠</span></div>
+    </div>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" id="g3Progress" style="width:0%"></div></div>
+    <div class="g3-question-box">
+      <div class="g3-sets-row" id="g3Sets"></div>
+      <div class="g3-q-text" id="g3QText">احسب الناتج:</div>
+      <div style="margin-top:8px;">
+        <span id="g3SetA" style="font-family:'Tajawal',sans-serif;font-weight:900;font-size:1.2rem;">س</span>
+        <span class="g3-op" id="g3Op">−</span>
+        <span id="g3SetB" style="font-family:'Tajawal',sans-serif;font-weight:900;font-size:1.2rem;">ص</span>
+        <span style="font-size:1.4rem;font-weight:900;margin:0 6px;">=</span>
+        <span style="font-size:1.4rem;font-weight:900;color:var(--acc);">؟</span>
+      </div>
+    </div>
+    <div class="g3-options" id="g3Options"></div>
+    <div class="game-feedback" id="g3Feedback">اختر الناتج الصحيح 👆</div>
+    <div style="text-align:center">
+      <button class="next-btn" id="g3Next" onclick="g3NextQ()" style="display:none">التالي ←</button>
+    </div>
+    <div class="result-screen" id="g3Result" style="display:none;">
+      <div class="big-emoji" id="g3ResultEmoji">🎉</div>
+      <h2 id="g3ResultTitle">أحسنت!</h2>
+      <p id="g3ResultMsg">—</p>
+      <div class="result-score" id="g3ResultScore">٠ / ٦</div><br>
+      <button class="restart-btn" onclick="g3Restart()">🔄 العب مجدداً</button>
+      <button class="restart-btn" onclick="backToMenu()" style="background:var(--p);color:white;margin-right:8px;">🏠 القائمة</button>
+    </div>
+  </div>
+
+</div>
+
+</main>
+
+<div class="footer-credit">
+  ✨ من إعداد المعلمة <span class="name">نور حجاج</span> ✨
+</div>
+
+
+<script>
+// ════════ HELPER: convert digits to Eastern Arabic ════════
+function toArabic(n) {
+  return String(n).replace(/[0-9]/g, d => '٠١٢٣٤٥٦٧٨٩'[d]);
+}
+
+// 🎵 SOUND ENGINE
+let soundOn = true;
+let audioCtx = null;
+function initAudio() {
+  if (!audioCtx) {
+    try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch(e) {}
+  }
+}
+function playTone(freq, duration, type='sine', volume=0.15) {
+  if (!soundOn || !audioCtx) return;
+  try {
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = type; osc.frequency.value = freq;
+    gain.gain.setValueAtTime(volume, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+    osc.connect(gain); gain.connect(audioCtx.destination);
+    osc.start(); osc.stop(audioCtx.currentTime + duration);
+  } catch(e) {}
+}
+function soundCorrect() {
+  playTone(523, 0.12); setTimeout(()=>playTone(659, 0.12), 100);
+  setTimeout(()=>playTone(784, 0.18), 200);
+}
+function soundWrong() {
+  playTone(280, 0.15, 'square', 0.1);
+  setTimeout(()=>playTone(200, 0.25, 'square', 0.1), 130);
+}
+function soundTransition() { playTone(440, 0.08); setTimeout(()=>playTone(660, 0.1), 60); }
+function soundClick() { playTone(800, 0.04, 'sine', 0.06); }
+function soundVictory() {
+  [523,659,784,1047].forEach((n,i)=>setTimeout(()=>playTone(n,0.2,'sine',0.18), i*130));
+  setTimeout(()=>playTone(1047, 0.35, 'sine', 0.18), 750);
+}
+function soundSubmit() { playTone(660, 0.1); setTimeout(()=>playTone(880, 0.18), 100); }
+function toggleSound() {
+  soundOn = !soundOn;
+  document.getElementById('soundToggle').textContent = soundOn ? '🔊' : '🔇';
+  if (soundOn) { initAudio(); soundClick(); }
+}
+
+// CONFETTI
+function confetti(count=50) {
+  const colors = ['#f6ad55','#c53030','#38a169','#ecc94b','#805ad5','#3182ce'];
+  for (let i=0; i<count; i++) {
+    const piece = document.createElement('div');
+    piece.className = 'confetti-piece';
+    piece.style.left = Math.random()*100 + 'vw';
+    piece.style.background = colors[Math.floor(Math.random()*colors.length)];
+    piece.style.animationDuration = (2 + Math.random()*2) + 's';
+    piece.style.transform = `rotate(${Math.random()*360}deg)`;
+    if (Math.random()>0.5) piece.style.borderRadius = '50%';
+    document.body.appendChild(piece);
+    setTimeout(()=>piece.remove(), 4500);
+  }
+}
+
+// WELCOME
+let studentName = '';
+function toggleStart() {
+  document.getElementById('goBtn').disabled = document.getElementById('nameInput').value.trim().length < 2;
+}
+function startLesson() {
+  initAudio(); soundTransition();
+  studentName = document.getElementById('nameInput').value.trim();
+  document.getElementById('badgeName').textContent = studentName;
+  document.getElementById('welcome').style.display = 'none';
+}
+
+// TABS
+function showTab(id, btn) {
+  soundClick();
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ════════ WORKSHEET ════════
+const wsResults = {};
+const wsTotals = 10;
+const wsHints = {
+  1: 'س = {١، ٢، ٣}، اشطب ٢ و ٣ (موجودان في ص)، يبقى {١}.',
+  2: 'ص = {٢، ٣، ٤}، اشطب ٢ و ٣ (موجودان في س)، يبقى {٤}.',
+  3: 'س − ص = العناصر في س فقط (لا تنتمي لـ ص).',
+  4: 'لا يوجد عنصر مشترك، فلا نشطب شيئاً من أ. أ − ب = أ.',
+  5: 'كل عناصر س موجودة في ص، فنشطبها كلها → الناتج ∅.',
+  6: 'س = {أ، ب، ج}، اشطب ب و ج، يبقى {أ}.',
+  7: 'الكرة − الرسم: اشطب من الكرة من هو في الرسم (علي) → {أحمد، سامي}.',
+  8: 'الترتيب في الفرق مهم، فـ س − ص لا يساوي ص − س عادةً.',
+  9: 'س = {١، ٢، ٣، ٤، ٥}، اشطب ٣ و ٤، يبقى {١، ٢، ٥}.',
+  10: 'رمز الفرق هو علامة الطرح (−).'
+};
+
+function chkMCQ(btn, num, isCorrect) {
+  if (wsResults[num]) return;
+  initAudio();
+  const fb = document.getElementById('fb' + num);
+  const allBtns = btn.parentElement.querySelectorAll('.mcq-btn');
+  allBtns.forEach(b=>b.classList.add('dis'));
+  if (isCorrect) {
+    soundCorrect(); btn.classList.add('ok');
+    fb.className = 'feedback correct';
+    fb.innerHTML = '✅ صحيح! ' + wsHints[num];
+    wsResults[num] = 'correct';
+  } else {
+    soundWrong(); btn.classList.add('err');
+    allBtns.forEach(b=>{
+      if (b.getAttribute('onclick').includes('true')) b.classList.add('ok');
+    });
+    fb.className = 'feedback wrong';
+    fb.innerHTML = '❌ خطأ — التلميح: ' + wsHints[num];
+    wsResults[num] = 'wrong';
+  }
+}
+
+function submitWS() {
+  for (let i=1; i<=wsTotals; i++) if (!wsResults[i]) wsResults[i]='skipped';
+  const correct = Object.values(wsResults).filter(v=>v==='correct').length;
+  const pct = Math.round((correct/wsTotals)*100);
+  const msg = pct >= 80 ? '🌟 ممتاز يا بطل!' : pct >= 60 ? '👍 جيد، استمر!' : '📚 راجع الدرس مرة أخرى';
+  const bar = document.getElementById('wsResultBar');
+  bar.style.display = 'block';
+  document.getElementById('wsScoreText').textContent = toArabic(correct) + ' / ' + toArabic(wsTotals) + ' (' + toArabic(pct) + '٪)';
+  document.getElementById('wsMsg').textContent = msg;
+  bar.scrollIntoView({behavior:'smooth', block:'center'});
+  soundSubmit();
+  if (pct >= 80) confetti(40);
+}
+
+// ════════════════════════════════════════════════
+// 🎮 GAMES SYSTEM
+// ════════════════════════════════════════════════
+function openGame(num) {
+  soundClick();
+  document.getElementById('gamesMenu').style.display = 'none';
+  document.getElementById('game' + num + 'Area').style.display = 'block';
+  if (num === 1) g1Start();
+  else if (num === 2) g2Start();
+  else if (num === 3) g3Start();
+}
+function backToMenu() {
+  soundTransition();
+  document.getElementById('gamesMenu').style.display = 'block';
+  document.getElementById('game1Area').style.display = 'none';
+  document.getElementById('game2Area').style.display = 'none';
+  document.getElementById('game3Area').style.display = 'none';
+  document.getElementById('g1Result').style.display = 'none';
+  document.getElementById('g2Result').style.display = 'none';
+  document.getElementById('g3Result').style.display = 'none';
+}
+
+// ──────── GAME 1: Where does the element belong? ────────
+// zone: 'sMinusS' = in س only (س - ص)
+//       'ssMinusS' = in ص only (ص - س)
+//       'inter' = in both (س ∩ ص)
+//       'none' = not in either
+const g1Questions = [
+  { s: [1,2,3], ss: [3,4,5], el: 1, zone: 'sMinusS' },   // 1 in س only
+  { s: [1,2,3], ss: [3,4,5], el: 3, zone: 'inter' },     // 3 in both
+  { s: [1,2,3], ss: [3,4,5], el: 5, zone: 'ssMinusS' },  // 5 in ص only
+  { s: [1,2,3], ss: [3,4,5], el: 9, zone: 'none' },      // 9 in none
+  { s: [2,4,6], ss: [4,5,6], el: 2, zone: 'sMinusS' },   // 2 in س only
+  { s: [2,4,6], ss: [4,5,6], el: 5, zone: 'ssMinusS' },  // 5 in ص only
+  { s: [2,4,6], ss: [4,5,6], el: 4, zone: 'inter' },     // 4 in both
+  { s: [2,4,6], ss: [4,5,6], el: 7, zone: 'none' },
+];
+let g1Idx = 0, g1Score = 0, g1Order = [];
+
+function g1Start() {
+  g1Idx = 0; g1Score = 0;
+  document.getElementById('g1Score').textContent = '٠';
+  document.getElementById('g1Result').style.display = 'none';
+  document.querySelector('#game1Area .g1-question-box').style.display = '';
+  document.querySelector('#game1Area .g1-zones').style.display = '';
+  document.querySelector('#game1Area .game-feedback').style.display = '';
+  g1Order = [...Array(g1Questions.length).keys()].sort(()=>Math.random()-0.5).slice(0, 6);
+  g1LoadQ();
+}
+function g1LoadQ() {
+  const q = g1Questions[g1Order[g1Idx]];
+  document.getElementById('g1SetsInfo').innerHTML =
+    `س = {${q.s.map(toArabic).join('، ')}}<br>ص = {${q.ss.map(toArabic).join('، ')}}`;
+  document.getElementById('g1Element').textContent = toArabic(q.el);
+  document.getElementById('g1QText').textContent = `العنصر "${toArabic(q.el)}" ينتمي إلى:`;
+  document.getElementById('g1Progress').style.width = (g1Idx/6)*100 + '%';
+  document.getElementById('g1Feedback').textContent = 'اختر المنطقة الصحيحة 👆';
+  document.getElementById('g1Feedback').className = 'game-feedback';
+  document.getElementById('g1Next').style.display = 'none';
+  document.querySelectorAll('#game1Area .zone-btn').forEach(b => {
+    b.classList.remove('ok','err','dis');
+  });
+}
+function g1Pick(btn, zone) {
+  const q = g1Questions[g1Order[g1Idx]];
+  document.querySelectorAll('#game1Area .zone-btn').forEach(b => b.classList.add('dis'));
+  document.querySelectorAll('#game1Area .zone-btn').forEach(b => {
+    const onclick = b.getAttribute('onclick');
+    if (onclick.includes("'" + q.zone + "'")) b.classList.add('ok');
+  });
+  const fb = document.getElementById('g1Feedback');
+  if (zone === q.zone) {
+    soundCorrect(); g1Score++;
+    document.getElementById('g1Score').textContent = toArabic(g1Score);
+    btn.classList.add('ok');
+    fb.className = 'game-feedback correct-fb';
+    fb.textContent = '🎉 رائع!';
+  } else {
+    soundWrong();
+    btn.classList.add('err');
+    fb.className = 'game-feedback wrong-fb';
+    const labels = { sMinusS:'س − ص', ssMinusS:'ص − س', inter:'س ∩ ص', none:'لا في أي منهما' };
+    fb.textContent = '❌ الصحيح: ' + labels[q.zone];
+  }
+  document.getElementById('g1Next').style.display = 'inline-block';
+}
+function g1NextQ() {
+  soundClick();
+  g1Idx++;
+  if (g1Idx >= 6) g1End();
+  else g1LoadQ();
+}
+function g1End() {
+  document.querySelector('#game1Area .g1-question-box').style.display = 'none';
+  document.querySelector('#game1Area .g1-zones').style.display = 'none';
+  document.querySelector('#game1Area .game-feedback').style.display = 'none';
+  document.getElementById('g1Next').style.display = 'none';
+  document.getElementById('g1Result').style.display = 'block';
+  document.getElementById('g1ResultScore').textContent = toArabic(g1Score) + ' / ٦';
+  const pct = g1Score / 6;
+  if (pct >= 0.85) {
+    document.getElementById('g1ResultEmoji').textContent = '🏆';
+    document.getElementById('g1ResultTitle').textContent = 'بطل الفرق!';
+    document.getElementById('g1ResultMsg').textContent = 'أداء ممتاز 💪';
+    soundVictory(); confetti(80);
+  } else if (pct >= 0.5) {
+    document.getElementById('g1ResultEmoji').textContent = '⭐';
+    document.getElementById('g1ResultTitle').textContent = 'أحسنت!';
+    document.getElementById('g1ResultMsg').textContent = 'حاول مرة أخرى لتحسين أدائك';
+    soundVictory(); confetti(40);
+  } else {
+    document.getElementById('g1ResultEmoji').textContent = '📚';
+    document.getElementById('g1ResultTitle').textContent = 'تحتاج مراجعة';
+    document.getElementById('g1ResultMsg').textContent = 'راجع الشرح وحاول مجدداً';
+    soundSubmit();
+  }
+}
+function g1Restart() { g1Start(); }
+
+// ──────── GAME 2: Venn matching for difference ────────
+function makeVennSVG(type) {
+  // type: 'sMinusS', 'ssMinusS', 'inter', 'union'
+  const base = `<svg viewBox="0 0 180 110">`;
+  const labels = `<text x="50" y="60" text-anchor="middle" fill="#333" font-size="14" font-weight="900">س</text>
+                  <text x="130" y="60" text-anchor="middle" fill="#333" font-size="14" font-weight="900">ص</text>`;
+  const outline = `<circle cx="70" cy="55" r="40" fill="none" stroke="#666" stroke-width="2"/>
+                   <circle cx="110" cy="55" r="40" fill="none" stroke="#666" stroke-width="2"/>`;
+  let shading = '';
+  const uniqueId = 'cp_' + Math.random().toString(36).substr(2, 6);
+  if (type === 'sMinusS') {
+    // س only = left circle minus intersection
+    shading = `<defs><clipPath id="${uniqueId}"><circle cx="70" cy="55" r="40"/></clipPath></defs>
+               <circle cx="70" cy="55" r="40" fill="#c53030" fill-opacity="0.55"/>
+               <circle cx="110" cy="55" r="40" fill="white" clip-path="url(#${uniqueId})"/>`;
+  } else if (type === 'ssMinusS') {
+    // ص only = right circle minus intersection
+    shading = `<defs><clipPath id="${uniqueId}"><circle cx="110" cy="55" r="40"/></clipPath></defs>
+               <circle cx="110" cy="55" r="40" fill="#c53030" fill-opacity="0.55"/>
+               <circle cx="70" cy="55" r="40" fill="white" clip-path="url(#${uniqueId})"/>`;
+  } else if (type === 'inter') {
+    shading = `<path d="M 90,19 a 40,40 0 0 1 0,72 a 40,40 0 0 1 0,-72" fill="#c53030" fill-opacity="0.7"/>`;
+  } else if (type === 'union') {
+    shading = `<circle cx="70" cy="55" r="40" fill="#c53030" fill-opacity="0.55"/>
+               <circle cx="110" cy="55" r="40" fill="#c53030" fill-opacity="0.55"/>`;
+  }
+  return base + shading + outline + labels + `</svg>`;
+}
+const vennLabels = {
+  sMinusS: 'س − ص',
+  ssMinusS: 'ص − س',
+  inter: 'س ∩ ص',
+  union: 'س ∪ ص'
+};
+const g2Questions = [
+  { expr: 'س − ص', correct: 'sMinusS' },
+  { expr: 'ص − س', correct: 'ssMinusS' },
+  { expr: 'س − ص', correct: 'sMinusS' },
+  { expr: 'ص − س', correct: 'ssMinusS' },
+  { expr: 'س − ص', correct: 'sMinusS' },
+  { expr: 'ص − س', correct: 'ssMinusS' },
+];
+let g2Idx = 0, g2Score = 0, g2Order = [];
+
+function g2Start() {
+  g2Idx = 0; g2Score = 0;
+  document.getElementById('g2Score').textContent = '٠';
+  document.getElementById('g2Result').style.display = 'none';
+  document.querySelector('#game2Area .g2-question-box').style.display = '';
+  document.getElementById('g2Options').style.display = '';
+  document.querySelector('#game2Area .game-feedback').style.display = '';
+  g2Order = [...Array(g2Questions.length).keys()].sort(()=>Math.random()-0.5).slice(0,5);
+  g2LoadQ();
+}
+function g2LoadQ() {
+  const q = g2Questions[g2Order[g2Idx]];
+  document.getElementById('g2Expr').textContent = q.expr;
+  document.getElementById('g2Progress').style.width = (g2Idx/5)*100 + '%';
+  document.getElementById('g2Feedback').textContent = 'اختر الشكل الصحيح 👆';
+  document.getElementById('g2Feedback').className = 'game-feedback';
+  document.getElementById('g2Next').style.display = 'none';
+
+  // The 4 options: correct + 3 wrong (including the reverse difference!)
+  const allTypes = ['sMinusS','ssMinusS','inter','union'];
+  const types = allTypes.sort(()=>Math.random()-0.5);
+  const opts = document.getElementById('g2Options');
+  opts.innerHTML = '';
+  types.forEach(t => {
+    const div = document.createElement('div');
+    div.className = 'venn-option';
+    div.innerHTML = makeVennSVG(t) + `<div class="venn-option-label">${vennLabels[t]}</div>`;
+    div.onclick = () => g2Pick(div, t, q.correct);
+    opts.appendChild(div);
+  });
+}
+function g2Pick(el, chosen, correct) {
+  document.querySelectorAll('#game2Area .venn-option').forEach(o => {
+    o.classList.add('dis');
+  });
+  document.querySelectorAll('#game2Area .venn-option').forEach(o => {
+    if (o.querySelector('.venn-option-label').textContent === vennLabels[correct]) {
+      o.classList.add('ok');
+    }
+  });
+  const fb = document.getElementById('g2Feedback');
+  if (chosen === correct) {
+    soundCorrect(); g2Score++;
+    document.getElementById('g2Score').textContent = toArabic(g2Score);
+    el.classList.add('ok');
+    fb.className = 'game-feedback correct-fb';
+    fb.textContent = '🎉 رائع!';
+  } else {
+    soundWrong();
+    el.classList.add('err');
+    fb.className = 'game-feedback wrong-fb';
+    fb.textContent = '❌ الصحيح هو الشكل الأخضر';
+  }
+  document.getElementById('g2Next').style.display = 'inline-block';
+}
+function g2NextQ() {
+  soundClick();
+  g2Idx++;
+  if (g2Idx >= 5) g2End();
+  else g2LoadQ();
+}
+function g2End() {
+  document.querySelector('#game2Area .g2-question-box').style.display = 'none';
+  document.getElementById('g2Options').style.display = 'none';
+  document.querySelector('#game2Area .game-feedback').style.display = 'none';
+  document.getElementById('g2Next').style.display = 'none';
+  document.getElementById('g2Result').style.display = 'block';
+  document.getElementById('g2ResultScore').textContent = toArabic(g2Score) + ' / ٥';
+  const pct = g2Score / 5;
+  if (pct >= 0.8) {
+    document.getElementById('g2ResultEmoji').textContent = '🏆';
+    document.getElementById('g2ResultTitle').textContent = 'فنّان الأشكال!';
+    document.getElementById('g2ResultMsg').textContent = 'ميّزت كل الأشكال بنجاح 🎨';
+    soundVictory(); confetti(80);
+  } else if (pct >= 0.6) {
+    document.getElementById('g2ResultEmoji').textContent = '⭐';
+    document.getElementById('g2ResultTitle').textContent = 'جيد جداً!';
+    document.getElementById('g2ResultMsg').textContent = 'أداء جميل';
+    soundVictory(); confetti(40);
+  } else {
+    document.getElementById('g2ResultEmoji').textContent = '📚';
+    document.getElementById('g2ResultTitle').textContent = 'تحتاج مراجعة';
+    document.getElementById('g2ResultMsg').textContent = 'انظر لأشكال فِن مرة أخرى';
+    soundSubmit();
+  }
+}
+function g2Restart() { g2Start(); }
+
+// ──────── GAME 3: Calculate difference ────────
+function setDiff(a, b) {
+  return a.filter(x => !b.includes(x));
+}
+function fmtSet(arr) {
+  if (arr.length === 0) return '∅';
+  return '{' + arr.map(toArabic).join('، ') + '}';
+}
+
+const g3Questions = [
+  { a: [1,2,3], b: [3,4,5], op: '−', dir: 'ab' },     // س − ص = {1, 2}
+  { a: [1,2,3], b: [3,4,5], op: '−', dir: 'ba' },     // ص − س = {4, 5}
+  { a: [2,4,6], b: [1,2,3], op: '−', dir: 'ab' },     // {4, 6}
+  { a: [2,4,6], b: [1,2,3], op: '−', dir: 'ba' },     // {1, 3}
+  { a: [1,3,5], b: [2,4,6], op: '−', dir: 'ab' },     // {1, 3, 5} (disjoint)
+  { a: [1,3,5], b: [2,4,6], op: '−', dir: 'ba' },     // {2, 4, 6}
+  { a: [5,6,7], b: [5,7], op: '−', dir: 'ab' },       // {6}
+  { a: [5,6,7], b: [5,7], op: '−', dir: 'ba' },       // ∅
+  { a: [1,2], b: [2,3,4], op: '−', dir: 'ab' },       // {1}
+  { a: [1,2], b: [2,3,4], op: '−', dir: 'ba' },       // {3, 4}
+];
+
+let g3Idx = 0, g3Score = 0, g3Order = [];
+
+function g3Start() {
+  g3Idx = 0; g3Score = 0;
+  document.getElementById('g3Score').textContent = '٠';
+  document.getElementById('g3Result').style.display = 'none';
+  document.querySelector('#game3Area .g3-question-box').style.display = '';
+  document.getElementById('g3Options').style.display = '';
+  document.querySelector('#game3Area .game-feedback').style.display = '';
+  g3Order = [...Array(g3Questions.length).keys()].sort(()=>Math.random()-0.5).slice(0, 6);
+  g3LoadQ();
+}
+function g3LoadQ() {
+  const q = g3Questions[g3Order[g3Idx]];
+  document.getElementById('g3Sets').innerHTML =
+    `<div class="g3-set-bubble"><span class="label">س =</span>${fmtSet(q.a)}</div>
+     <div class="g3-set-bubble"><span class="label">ص =</span>${fmtSet(q.b)}</div>`;
+  // Set the direction display
+  if (q.dir === 'ab') {
+    document.getElementById('g3SetA').textContent = 'س';
+    document.getElementById('g3SetB').textContent = 'ص';
+  } else {
+    document.getElementById('g3SetA').textContent = 'ص';
+    document.getElementById('g3SetB').textContent = 'س';
+  }
+  document.getElementById('g3Op').textContent = '−';
+  document.getElementById('g3Progress').style.width = (g3Idx/6)*100 + '%';
+  document.getElementById('g3Feedback').textContent = 'اختر الناتج الصحيح 👆';
+  document.getElementById('g3Feedback').className = 'game-feedback';
+  document.getElementById('g3Next').style.display = 'none';
+
+  // Calculate correct result based on direction
+  let correctArr;
+  if (q.dir === 'ab') {
+    correctArr = setDiff(q.a, q.b);  // س − ص
+  } else {
+    correctArr = setDiff(q.b, q.a);  // ص − س
+  }
+  const correct = fmtSet(correctArr);
+
+  // Generate 3 distractors
+  const distractors = [];
+  // distractor 1: the reverse direction (common mistake!)
+  let reverseArr;
+  if (q.dir === 'ab') {
+    reverseArr = setDiff(q.b, q.a);
+  } else {
+    reverseArr = setDiff(q.a, q.b);
+  }
+  const reverse = fmtSet(reverseArr);
+  if (reverse !== correct) distractors.push(reverse);
+
+  // distractor 2: intersection
+  const interArr = q.a.filter(x => q.b.includes(x));
+  const inter = fmtSet(interArr);
+  if (inter !== correct && !distractors.includes(inter)) distractors.push(inter);
+
+  // distractor 3: union
+  const unionArr = [...new Set([...q.a, ...q.b])].sort((a,b)=>a-b);
+  const union = fmtSet(unionArr);
+  if (union !== correct && !distractors.includes(union)) distractors.push(union);
+
+  // distractor 4 (backup): empty set or all of one set
+  if (distractors.length < 3) {
+    const backup1 = fmtSet(q.a);
+    if (backup1 !== correct && !distractors.includes(backup1)) distractors.push(backup1);
+  }
+  if (distractors.length < 3) {
+    const backup2 = fmtSet(q.b);
+    if (backup2 !== correct && !distractors.includes(backup2)) distractors.push(backup2);
+  }
+  if (distractors.length < 3) {
+    if (correct !== '∅' && !distractors.includes('∅')) distractors.push('∅');
+  }
+
+  const opts = [correct, ...distractors.slice(0, 3)].sort(()=>Math.random()-0.5);
+  const optsDiv = document.getElementById('g3Options');
+  optsDiv.innerHTML = '';
+  opts.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'g3-opt-btn';
+    btn.textContent = opt;
+    btn.onclick = () => g3Pick(btn, opt, correct);
+    optsDiv.appendChild(btn);
+  });
+}
+function g3Pick(btn, chosen, correct) {
+  document.querySelectorAll('#game3Area .g3-opt-btn').forEach(b => {
+    b.classList.add('dis');
+    if (b.textContent === correct) b.classList.add('ok');
+  });
+  const fb = document.getElementById('g3Feedback');
+  if (chosen === correct) {
+    soundCorrect(); g3Score++;
+    document.getElementById('g3Score').textContent = toArabic(g3Score);
+    btn.classList.add('ok');
+    fb.className = 'game-feedback correct-fb';
+    fb.textContent = '🎉 ممتاز!';
+  } else {
+    soundWrong();
+    btn.classList.add('err');
+    fb.className = 'game-feedback wrong-fb';
+    fb.textContent = '❌ الصحيح: ' + correct;
+  }
+  document.getElementById('g3Next').style.display = 'inline-block';
+}
+function g3NextQ() {
+  soundClick();
+  g3Idx++;
+  if (g3Idx >= 6) g3End();
+  else g3LoadQ();
+}
+function g3End() {
+  document.querySelector('#game3Area .g3-question-box').style.display = 'none';
+  document.getElementById('g3Options').style.display = 'none';
+  document.querySelector('#game3Area .game-feedback').style.display = 'none';
+  document.getElementById('g3Next').style.display = 'none';
+  document.getElementById('g3Result').style.display = 'block';
+  document.getElementById('g3ResultScore').textContent = toArabic(g3Score) + ' / ٦';
+  const pct = g3Score / 6;
+  if (pct >= 0.85) {
+    document.getElementById('g3ResultEmoji').textContent = '🏆';
+    document.getElementById('g3ResultTitle').textContent = 'عبقري الفرق!';
+    document.getElementById('g3ResultMsg').textContent = 'حسبت كل النتائج بدقة 🧮';
+    soundVictory(); confetti(80);
+  } else if (pct >= 0.5) {
+    document.getElementById('g3ResultEmoji').textContent = '⭐';
+    document.getElementById('g3ResultTitle').textContent = 'أحسنت!';
+    document.getElementById('g3ResultMsg').textContent = 'أداء جيد، استمر';
+    soundVictory(); confetti(40);
+  } else {
+    document.getElementById('g3ResultEmoji').textContent = '📚';
+    document.getElementById('g3ResultTitle').textContent = 'تحتاج مراجعة';
+    document.getElementById('g3ResultMsg').textContent = 'راجع الأمثلة المحلولة';
+    soundSubmit();
+  }
+}
+function g3Restart() { g3Start(); }
+</script>
+</body>
+</html>
