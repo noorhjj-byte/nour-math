@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>دليل الألوان المرجعي</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+  :root {
+    --paper: #f4ede0;
+    --paper-dark: #ebe2cf;
+    --ink: #1a1610;
+    --ink-soft: #4a4438;
+    --ink-dim: #7d7363;
+    --accent: #b8420f;
+    --gold: #9c7a2e;
+    --line: #d4c9b3;
+    --good: #2d6e3e;
+    --bad: #a82a2a;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Georgia', 'Amiri', 'Times New Roman', serif;
+    line-height: 1.75;
+    min-height: 100vh;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(26,22,16,0.025) 28px, rgba(26,22,16,0.025) 29px);
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ===== Header ===== */
+  header {
+    padding: 1.5rem 1.25rem 1rem;
+    border-bottom: 2px solid var(--ink);
+    background: var(--paper);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    box-shadow: 0 1px 0 var(--paper), 0 2px 0 var(--ink);
+  }
+
+  .masthead {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--ink-soft);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    font-family: 'Courier New', monospace;
+  }
+
+  .title-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .title-bar h1 {
+    font-size: 1.5rem;
+    font-style: italic;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .title-bar .swatch-dot {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: conic-gradient(from 0deg,
+      #e74c3c, #f39c12, #f1c40f, #2ecc71, #3498db, #9b59b6, #e74c3c);
+    border: 2px solid var(--ink);
+    flex-shrink: 0;
+  }
+
+  /* ===== Intro ===== */
+  .intro {
+    padding: 2.5rem 1.25rem 1.5rem;
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .intro .kicker {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    border: 1px solid var(--accent);
+  }
+
+  .intro h2 {
+    font-size: clamp(1.8rem, 6vw, 2.6rem);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .intro h2 .italic {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .intro p {
+    color: var(--ink-soft);
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .meta-row {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: var(--ink-dim);
+    letter-spacing: 0.1em;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 0.75rem 0;
+    flex-wrap: wrap;
+  }
+
+  /* ===== Search & Filter ===== */
+  .toolbar {
+    max-width: 1200px;
+    margin: 1.5rem auto 0;
+    padding: 0 1.25rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .search-box {
+    position: relative;
+    margin-bottom: 1rem;
+  }
+
+  .search-box input {
+    width: 100%;
+    padding: 1rem 3rem 1rem 1.25rem;
+    border: 2px solid var(--ink);
+    background: var(--paper);
+    font-family: inherit;
+    font-size: 1rem;
+    color: var(--ink);
+    border-radius: 0;
+  }
+
+  .search-box input:focus {
+    outline: none;
+    background: #fff;
+  }
+
+  .search-box::after {
+    content: '⌕';
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    transform: translateY(-50%);
+    font-size: 1.4rem;
+    color: var(--ink-soft);
+    pointer-events: none;
+  }
+
+  .filter-chips {
+    display: flex;
+    gap: 0.4rem;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .filter-chips::-webkit-scrollbar { display: none; }
+
+  .chip {
+    flex-shrink: 0;
+    padding: 0.5rem 0.9rem;
+    border: 1px solid var(--ink);
+    background: transparent;
+    color: var(--ink);
+    font-family: inherit;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .chip.active {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  /* ===== Color Cards ===== */
+  .colors-grid {
+    max-width: 1200px;
+    margin: 2rem auto 0;
+    padding: 0 1.25rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  @media (min-width: 700px) {
+    .colors-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1000px) {
+    .colors-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .color-card {
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    cursor: pointer;
+    transition: transform 0.25s, box-shadow 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .color-card:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 6px 6px 0 var(--ink);
+  }
+
+  .color-card .hero-color {
+    height: 140px;
+    position: relative;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .color-card .hero-color::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.15));
+  }
+
+  .color-card .num {
+    position: absolute;
+    top: 0.6rem;
+    right: 0.75rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.9);
+    background: rgba(0,0,0,0.35);
+    padding: 0.15rem 0.5rem;
+    backdrop-filter: blur(10px);
+    z-index: 2;
+  }
+
+  .color-card .name-block {
+    padding: 1rem 1.1rem 1.1rem;
+  }
+
+  .color-card .ar-name {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.15rem;
+    letter-spacing: -0.01em;
+  }
+
+  .color-card .en-name {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--ink-dim);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+  }
+
+  .color-card .hex-tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 0.15rem 0.5rem;
+    letter-spacing: 0.05em;
+  }
+
+  .color-card .tap-hint {
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px dashed var(--line);
+    font-size: 0.75rem;
+    color: var(--ink-dim);
+    font-style: italic;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .color-card .tap-hint .arrow {
+    color: var(--accent);
+    font-style: normal;
+  }
+
+  /* ===== Empty State ===== */
+  .empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--ink-dim);
+    font-style: italic;
+    grid-column: 1 / -1;
+  }
+
+  /* ===== Modal ===== */
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(26, 22, 16, 0.75);
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+    backdrop-filter: blur(4px);
+  }
+
+  .modal-backdrop.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .modal {
+    position: fixed;
+    inset: 0;
+    z-index: 101;
+    overflow-y: auto;
+    padding: 2rem 1rem;
+    pointer-events: none;
+  }
+
+  .modal-content {
+    max-width: 720px;
+    margin: 0 auto;
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    box-shadow: 8px 8px 0 var(--ink);
+    transform: translateY(40px);
+    opacity: 0;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s;
+    pointer-events: auto;
+  }
+
+  .modal-backdrop.open ~ .modal .modal-content {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .modal-header {
+    height: 200px;
+    position: relative;
+    border-bottom: 2px solid var(--ink);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 1.25rem;
+  }
+
+  .modal-header::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 30%, rgba(0,0,0,0.5));
+    z-index: 1;
+  }
+
+  .modal-header > * { position: relative; z-index: 2; }
+
+  .modal-close {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    width: 36px;
+    height: 36px;
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-family: inherit;
+    color: var(--ink);
+    z-index: 3;
+    line-height: 1;
+  }
+
+  .modal-header h3 {
+    color: white;
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+  }
+
+  .modal-header .meta {
+    color: rgba(255,255,255,0.85);
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+  }
+
+  .modal-body {
+    padding: 1.5rem 1.25rem 2rem;
+  }
+
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--ink);
+  }
+
+  .section-label.good { color: var(--good); }
+  .section-label.bad { color: var(--bad); }
+  .section-label.use { color: var(--gold); }
+
+  .section-label.good::after { background: var(--good); }
+  .section-label.bad::after { background: var(--bad); }
+  .section-label.use::after { background: var(--gold); }
+
+  .modal-section { margin-bottom: 1.75rem; }
+
+  .modal-section p.desc {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    line-height: 1.7;
+  }
+
+  .companions {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 0.6rem;
+  }
+
+  .companion {
+    border: 2px solid var(--ink);
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .companion:hover { transform: translateY(-3px); }
+
+  .companion .swatch-bar {
+    height: 60px;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .companion .info {
+    padding: 0.4rem 0.5rem;
+    background: var(--paper);
+  }
+
+  .companion .info .ar {
+    font-size: 0.78rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 0.1rem;
+  }
+
+  .companion .info .hex {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: var(--ink-dim);
+  }
+
+  .uses-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .uses-list li {
+    padding: 0.6rem 0;
+    border-bottom: 1px dashed var(--line);
+    display: flex;
+    gap: 0.75rem;
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+  }
+
+  .uses-list li:last-child { border-bottom: none; }
+
+  .uses-list li::before {
+    content: '◆';
+    color: var(--gold);
+    flex-shrink: 0;
+    font-size: 0.7rem;
+    margin-top: 0.4rem;
+  }
+
+  .source-block {
+    margin-top: 1.5rem;
+    padding: 1rem 1.1rem;
+    background: var(--paper-dark);
+    border-right: 4px solid var(--accent);
+    font-size: 0.85rem;
+  }
+
+  .source-block strong {
+    display: block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    margin-bottom: 0.4rem;
+    text-transform: uppercase;
+  }
+
+  .source-block span {
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+
+  /* ===== Sources Section ===== */
+  .sources-section {
+    max-width: 900px;
+    margin: 4rem auto 0;
+    padding: 3rem 1.25rem;
+    border-top: 2px solid var(--ink);
+    position: relative;
+    z-index: 2;
+  }
+
+  .sources-section h2 {
+    font-size: 1.8rem;
+    font-style: italic;
+    text-align: center;
+    margin-bottom: 0.4rem;
+  }
+
+  .sources-section .lead {
+    text-align: center;
+    color: var(--ink-soft);
+    margin-bottom: 2rem;
+    font-size: 0.92rem;
+  }
+
+  .sources-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  @media (min-width: 600px) {
+    .sources-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  .source-card {
+    padding: 1.1rem 1.25rem;
+    background: var(--paper-dark);
+    border-right: 3px solid var(--ink);
+    font-size: 0.88rem;
+  }
+
+  .source-card .author {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.3rem;
+  }
+
+  .source-card .work {
+    font-weight: 700;
+    font-style: italic;
+    margin-bottom: 0.3rem;
+  }
+
+  .source-card .note {
+    color: var(--ink-soft);
+    font-size: 0.82rem;
+    line-height: 1.5;
+  }
+
+  /* ===== Footer ===== */
+  footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    border-top: 2px solid var(--ink);
+    background: var(--paper-dark);
+    color: var(--ink-soft);
+    font-size: 0.82rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  footer .ornament {
+    font-size: 1.5rem;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+
+  /* ===== Scroll lock ===== */
+  body.no-scroll { overflow: hidden; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="masthead">
+    <span>★ Vol. I</span>
+    <span>دليل مرجعي</span>
+    <span>2026 ★</span>
+  </div>
+  <div class="title-bar">
+    <h1>Chromatica</h1>
+    <div class="swatch-dot"></div>
+  </div>
+</header>
+
+<section class="intro">
+  <span class="kicker">A REFERENCE GUIDE</span>
+  <h2>دليلُ الألوان<br><span class="italic">وتناسقاتها</span></h2>
+  <p>
+    لكلّ لون قصّةٌ مع غيره من الألوان؛ هذه قواعد الانسجام والتنافر، مستخرجةٌ من أمّهات كتب نظرية الألوان.
+  </p>
+  <div class="meta-row">
+    <span>32 لون</span>
+    <span>·</span>
+    <span>8 مصادر</span>
+    <span>·</span>
+    <span>اضغط لتستكشف</span>
+  </div>
+</section>
+
+<div class="toolbar">
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="ابحث عن لون... (مثلاً: أزرق، أحمر، ذهبي)">
+  </div>
+  <div class="filter-chips" id="filterChips">
+    <button class="chip active" data-family="all">الكل</button>
+    <button class="chip" data-family="red">أحمر</button>
+    <button class="chip" data-family="orange">برتقالي</button>
+    <button class="chip" data-family="yellow">أصفر</button>
+    <button class="chip" data-family="green">أخضر</button>
+    <button class="chip" data-family="blue">أزرق</button>
+    <button class="chip" data-family="purple">بنفسجي</button>
+    <button class="chip" data-family="pink">وردي</button>
+    <button class="chip" data-family="brown">بنّي</button>
+    <button class="chip" data-family="neutral">محايد</button>
+  </div>
+</div>
+
+<main class="colors-grid" id="colorsGrid"></main>
+
+<section class="sources-section">
+  <h2>المصادر المعتمدة</h2>
+  <p class="lead">جميع التناسقات والقواعد في هذا الدليل مأخوذة من المراجع التالية:</p>
+  <div class="sources-grid">
+    <div class="source-card">
+      <div class="author">JOHANNES ITTEN · 1961</div>
+      <div class="work">The Art of Color</div>
+      <div class="note">المرجع الأشهر في نظرية الألوان، من مدرسة باوهاوس الألمانية. يضع قواعد التناسق السبع.</div>
+    </div>
+    <div class="source-card">
+      <div class="author">JOSEF ALBERS · 1963</div>
+      <div class="work">Interaction of Color</div>
+      <div class="note">دراسة تأثير الألوان النسبيّ على الإدراك البصري، من جامعة Yale.</div>
+    </div>
+    <div class="source-card">
+      <div class="author">ALBERT MUNSELL · 1905</div>
+      <div class="work">A Color Notation</div>
+      <div class="note">نظام تصنيف الألوان وفق الصبغة (Hue) والقيمة (Value) والإشباع (Chroma).</div>
+    </div>
+    <div class="source-card">
+      <div class="author">PANTONE INSTITUTE</div>
+      <div class="work">Color Trend Reports</div>
+      <div class="note">معايير صناعية للألوان وتطبيقاتها في الموضة والتصميم والطباعة.</div>
+    </div>
+    <div class="source-card">
+      <div class="author">ADOBE COLOR</div>
+      <div class="work">Color Harmony Rules</div>
+      <div class="note">قواعد التناسق الست المعتمدة: تكاملي، متجاور، ثلاثي، رباعي، مُنقَسم، أحادي.</div>
+    </div>
+    <div class="source-card">
+      <div class="author">FABER BIRREN · 1969</div>
+      <div class="work">Principles of Color</div>
+      <div class="note">دراسة علم نفس الألوان وتأثيرها على المزاج والسلوك البشري.</div>
+    </div>
+    <div class="source-card">
+      <div class="author">EVA HELLER · 2000</div>
+      <div class="work">Psychologie der Farben</div>
+      <div class="note">بحث ميداني على 2000 شخص لتحديد دلالات الألوان وارتباطاتها العاطفية.</div>
+    </div>
+    <div class="source-card">
+      <div class="author">DAVID HORNUNG · 2012</div>
+      <div class="work">Color: A Workshop Approach</div>
+      <div class="note">تطبيقات عملية لنظرية الألوان في التصميم الجرافيكي والديكور.</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="ornament">❦</div>
+  <p>دليلُ الألوان المرجعي — Chromatica · 2026</p>
+</footer>
+
+<div class="modal-backdrop" id="modalBackdrop"></div>
+<div class="modal" id="modal" aria-hidden="true"></div>
+
+<script>
+(function() {
+  'use strict';
+
+  // ========== قاعدة بيانات الألوان ==========
+  // لكل لون: المُتناسق (5)، غير المتناسق (3-4)، الاستخدامات، المصدر
+  var COLORS = [
+    {
+      ar: 'أحمر قانٍ', en: 'Crimson Red', hex: '#C41E3A', family: 'red',
+      desc: 'لون الطاقة والقوة والشغف. يجذب الانتباه فورًا ويُسرّع نبضات القلب وفقًا لدراسات إيفا هيلر.',
+      harmony: [
+        {ar:'أبيض ناصع', hex:'#F8F5F0'},
+        {ar:'أسود فحمي', hex:'#1A1A1A'},
+        {ar:'ذهبي', hex:'#C9A227'},
+        {ar:'رمادي فحمي', hex:'#3D3D3D'},
+        {ar:'كحلي عميق', hex:'#0F1A3D'}
+      ],
+      avoid: [
+        {ar:'برتقالي فاقع', hex:'#FF6A00'},
+        {ar:'وردي مُحمَر', hex:'#FF6F91'},
+        {ar:'أخضر ليموني', hex:'#9ACD32'}
+      ],
+      uses: ['الشعارات التي تتطلب جرأة وقوة', 'تنبيهات وعروض ترويجية', 'ديكور غرف الطعام (يفتح الشهية)', 'ملابس مناسبات مميزة'],
+      source: 'Itten · The Art of Color (1961)'
+    },
+    {
+      ar: 'أحمر طوبي', en: 'Brick Red', hex: '#9B3A2F', family: 'red',
+      desc: 'لون دافئ مستوحى من الطين المحروق، يُذكّر بالعمارة المتوسطية. أهدأ من الأحمر القاني وأكثر أناقة.',
+      harmony: [
+        {ar:'بيج كريمي', hex:'#E8D9BD'},
+        {ar:'أخضر زيتوني', hex:'#6B7A3A'},
+        {ar:'بنّي شوكولاتة', hex:'#4A2C1F'},
+        {ar:'كريمي عاجي', hex:'#F5E6D3'},
+        {ar:'تركوازي مُغبَر', hex:'#5E8B8B'}
+      ],
+      avoid: [
+        {ar:'نيون أحمر', hex:'#FF0033'},
+        {ar:'وردي زاهي', hex:'#FF1493'},
+        {ar:'بنفسجي صريح', hex:'#8A2BE2'}
+      ],
+      uses: ['الديكور الريفي والكلاسيكي', 'الخزفيات والفخار', 'تغليف منتجات طبيعية وعضوية', 'تصميم المطاعم التراثية'],
+      source: 'Pantone Earth Tones Collection'
+    },
+    {
+      ar: 'بُرغندي', en: 'Burgundy', hex: '#722F37', family: 'red',
+      desc: 'أحمر داكن مائل للأرجواني، مرتبط بالنبيذ الفاخر. لون الفخامة الكلاسيكية والرسمية الراقية.',
+      harmony: [
+        {ar:'ذهبي عتيق', hex:'#B8860B'},
+        {ar:'كريمي شامبانيا', hex:'#F1E4D0'},
+        {ar:'كحلي ملكي', hex:'#1B2845'},
+        {ar:'رمادي حجري', hex:'#8E8B82'},
+        {ar:'أخضر زمردي', hex:'#0E5C36'}
+      ],
+      avoid: [
+        {ar:'أصفر ليموني', hex:'#FFF44F'},
+        {ar:'وردي بيبي', hex:'#FFB6C1'},
+        {ar:'برتقالي طازج', hex:'#FFA500'}
+      ],
+      uses: ['ملابس المناسبات الرسمية', 'الديكور الفخم والكلاسيكي', 'تصميمات الخريف والشتاء', 'العلامات التجارية للنبيذ والفنادق الفاخرة'],
+      source: 'Pantone Fashion Color Report'
+    },
+    {
+      ar: 'وردي عتيق', en: 'Dusty Rose', hex: '#C9909A', family: 'pink',
+      desc: 'وردي هادئ مائل للرمادي، رقيق ومُريح للعين. لون رومانسي بدون أن يكون طفوليًا.',
+      harmony: [
+        {ar:'أخضر زاج', hex:'#577A4B'},
+        {ar:'بيج رملي', hex:'#D2BD9C'},
+        {ar:'كحلي', hex:'#1F3A5F'},
+        {ar:'ذهبي وردي', hex:'#B76E79'},
+        {ar:'أبيض ثلجي', hex:'#FAFAFA'}
+      ],
+      avoid: [
+        {ar:'برتقالي ناري', hex:'#FF4500'},
+        {ar:'أخضر ليموني', hex:'#7FFF00'},
+        {ar:'أصفر شمسي', hex:'#FFD700'}
+      ],
+      uses: ['تصميمات الموضة النسائية', 'صالات الجمال والسبا', 'دعوات الزفاف الراقية', 'الديكور الرومانسي العصري'],
+      source: 'Eva Heller · Psychologie der Farben (2000)'
+    },
+    {
+      ar: 'فوشيا', en: 'Fuchsia', hex: '#E83E8C', family: 'pink',
+      desc: 'وردي مُشع شديد الحيوية. يُعبّر عن الجرأة والإبداع، ويلفت الأنظار في أي تصميم.',
+      harmony: [
+        {ar:'أسود فاحم', hex:'#0A0A0A'},
+        {ar:'أبيض ناصع', hex:'#FFFFFF'},
+        {ar:'بنفسجي عميق', hex:'#4B0082'},
+        {ar:'تركوازي', hex:'#16A5A5'},
+        {ar:'ذهبي', hex:'#D4AF37'}
+      ],
+      avoid: [
+        {ar:'أحمر بُرتقالي', hex:'#FF4136'},
+        {ar:'بنّي ترابي', hex:'#8B4513'},
+        {ar:'أخضر زيتوني', hex:'#6B8E23'}
+      ],
+      uses: ['العلامات التجارية الشبابية', 'الموضة والمستحضرات الجمالية', 'الإعلانات الترويجية الجريئة', 'الفنون الرقمية الحديثة'],
+      source: 'Pantone Color of the Year Archives'
+    },
+    {
+      ar: 'برتقالي مُحترق', en: 'Burnt Orange', hex: '#CC5500', family: 'orange',
+      desc: 'برتقالي دافئ مائل للحُمرة. يستحضر أجواء الخريف وأوراق الشجر المتساقطة.',
+      harmony: [
+        {ar:'كحلي', hex:'#1C2B4A'},
+        {ar:'بيج طبيعي', hex:'#E0CFAE'},
+        {ar:'أخضر زيتوني', hex:'#556B2F'},
+        {ar:'بنّي شوكولاتة', hex:'#3E2723'},
+        {ar:'كريمي', hex:'#F4E8D0'}
+      ],
+      avoid: [
+        {ar:'وردي ساخن', hex:'#FF69B4'},
+        {ar:'أحمر قاني', hex:'#DC143C'},
+        {ar:'بنفسجي زاهي', hex:'#9400D3'}
+      ],
+      uses: ['تصميمات الخريف', 'المطاعم والمقاهي الدافئة', 'الديكور البوهيمي والإثني', 'تغليف المنتجات الطبيعية'],
+      source: 'Itten · Color Wheel Theory'
+    },
+    {
+      ar: 'مشمشي', en: 'Apricot', hex: '#FBCEB1', family: 'orange',
+      desc: 'برتقالي ناعم مائل للوردي. لون ودود وحنون، شائع في تصميمات المواليد والربيع.',
+      harmony: [
+        {ar:'أزرق فاتح سماوي', hex:'#A5D8E0'},
+        {ar:'أبيض كريمي', hex:'#FFF8E7'},
+        {ar:'رمادي ناعم', hex:'#C8C0B8'},
+        {ar:'أخضر نعناعي', hex:'#B5D8C5'},
+        {ar:'بيج باهت', hex:'#E8DCC4'}
+      ],
+      avoid: [
+        {ar:'أسود حالك', hex:'#000000'},
+        {ar:'أحمر دموي', hex:'#8B0000'},
+        {ar:'بنفسجي داكن', hex:'#2E0854'}
+      ],
+      uses: ['غرف الأطفال', 'تصميمات الربيع والصيف', 'علامات الأطعمة الطبيعية', 'دعوات المناسبات الحميمة'],
+      source: 'Pantone Spring Palette'
+    },
+    {
+      ar: 'تيراكوتا', en: 'Terracotta', hex: '#E2725B', family: 'orange',
+      desc: 'برتقالي ترابي مأخوذ من الفخار المغربي والمتوسطي. لون رائج في الديكور الحديث.',
+      harmony: [
+        {ar:'أزرق بترولي', hex:'#1F4E5F'},
+        {ar:'كريمي طبيعي', hex:'#F0E6D2'},
+        {ar:'أخضر زيتي', hex:'#7C8C5C'},
+        {ar:'بنّي محروق', hex:'#5C3A21'},
+        {ar:'بيج رملي', hex:'#D4C2A0'}
+      ],
+      avoid: [
+        {ar:'وردي بيبي', hex:'#FFC0CB'},
+        {ar:'أصفر فسفوري', hex:'#CCFF00'},
+        {ar:'بنفسجي لافندر', hex:'#E6E6FA'}
+      ],
+      uses: ['الديكور البوهيمي والمغربي', 'العمارة الطينية', 'تصميمات السيراميك والفخار', 'الموضة الإثنية'],
+      source: 'David Hornung · Color Workshop (2012)'
+    },
+    {
+      ar: 'أصفر خردلي', en: 'Mustard Yellow', hex: '#D4A017', family: 'yellow',
+      desc: 'أصفر داكن مائل للذهبي. لون فيكتوري كلاسيكي يُضفي دفئًا وأناقة في آنٍ معًا.',
+      harmony: [
+        {ar:'كحلي عميق', hex:'#10254A'},
+        {ar:'رمادي حجري', hex:'#6B6B6B'},
+        {ar:'بنّي شوكولاتة', hex:'#3E2A1F'},
+        {ar:'أبيض كريمي', hex:'#F5EFE0'},
+        {ar:'أخضر زيتوني داكن', hex:'#4A5D23'}
+      ],
+      avoid: [
+        {ar:'وردي بيبي', hex:'#FFB7C5'},
+        {ar:'أرجواني', hex:'#9F00FF'},
+        {ar:'أزرق نيوني', hex:'#1F51FF'}
+      ],
+      uses: ['الموضة الكلاسيكية الخريفية', 'الديكور الڤينتاج', 'تصميمات الكتب والمجلات الأدبية', 'العلامات التجارية ذات الطابع التراثي'],
+      source: 'Faber Birren · Principles of Color'
+    },
+    {
+      ar: 'أصفر ليموني', en: 'Lemon Yellow', hex: '#FFF44F', family: 'yellow',
+      desc: 'أصفر مُشرق نقي يستحضر أشعة الشمس. لون التفاؤل والطاقة، لكنه قد يُجهد العين بكثرته.',
+      harmony: [
+        {ar:'رمادي فحمي', hex:'#36454F'},
+        {ar:'أبيض', hex:'#FFFFFF'},
+        {ar:'كحلي', hex:'#1B2F5C'},
+        {ar:'أسود', hex:'#1A1A1A'},
+        {ar:'أخضر تفاحي', hex:'#5C8A4A'}
+      ],
+      avoid: [
+        {ar:'وردي زاهي', hex:'#FF1493'},
+        {ar:'برتقالي ناري', hex:'#FF4500'},
+        {ar:'أرجواني داكن', hex:'#6A0DAD'}
+      ],
+      uses: ['اللافتات التحذيرية', 'تصميمات الصيف والطفولة', 'العلامات التجارية المرحة', 'تأثيرات تركيز الانتباه (بمساحات صغيرة)'],
+      source: 'Itten · The Art of Color (1961)'
+    },
+    {
+      ar: 'ذهبي', en: 'Gold', hex: '#C9A227', family: 'yellow',
+      desc: 'لون الفخامة والثروة عبر العصور. يَنقُل الإحساس بالقيمة العالية والاحتفاء.',
+      harmony: [
+        {ar:'أسود فحمي', hex:'#1A1A1A'},
+        {ar:'كحلي ملكي', hex:'#0F1B3C'},
+        {ar:'بُرغندي', hex:'#722F37'},
+        {ar:'أبيض ناصع', hex:'#FFFFFF'},
+        {ar:'أخضر زمردي', hex:'#0E5C36'}
+      ],
+      avoid: [
+        {ar:'وردي بيبي', hex:'#FFC0CB'},
+        {ar:'سماوي فاتح', hex:'#87CEEB'},
+        {ar:'أخضر نيوني', hex:'#39FF14'}
+      ],
+      uses: ['الشعارات الفاخرة', 'الإكسسوارات الراقية', 'دعوات الأعراس الفخمة', 'تصميمات منتجات الترف'],
+      source: 'Pantone Luxury Edition'
+    },
+    {
+      ar: 'بيج رملي', en: 'Sand Beige', hex: '#D4BC94', family: 'neutral',
+      desc: 'لون محايد دافئ مأخوذ من الصحراء. أساس متعدد الاستخدامات يتناسق مع معظم الألوان.',
+      harmony: [
+        {ar:'أزرق بترولي', hex:'#1F4F5F'},
+        {ar:'بنّي شوكولاتة', hex:'#4A2F1F'},
+        {ar:'تركوازي مُغبَر', hex:'#5E8B8B'},
+        {ar:'أبيض كريمي', hex:'#F5EFE0'},
+        {ar:'أخضر زيتوني', hex:'#6B7A3A'}
+      ],
+      avoid: [
+        {ar:'وردي صريح', hex:'#FF69B4'},
+        {ar:'أصفر فاقع', hex:'#FFFF00'},
+        {ar:'أرجواني نيوني', hex:'#BF00FF'}
+      ],
+      uses: ['ديكور المنازل العصرية', 'الموضة الكاجوال', 'تصميمات الشركات الراقية', 'خلفيات الواجهات الرقمية'],
+      source: 'Pantone Neutrals Collection'
+    },
+    {
+      ar: 'كريمي عاجي', en: 'Ivory Cream', hex: '#F5E6D3', family: 'neutral',
+      desc: 'لون فاتح دافئ يُضفي راحة بصرية. بديل أنيق للأبيض الصارخ.',
+      harmony: [
+        {ar:'أخضر داكن', hex:'#1F3D2E'},
+        {ar:'بُرغندي', hex:'#722F37'},
+        {ar:'ذهبي عتيق', hex:'#B8860B'},
+        {ar:'كحلي', hex:'#1F2F4A'},
+        {ar:'بنّي خشبي', hex:'#6B4423'}
+      ],
+      avoid: [
+        {ar:'أبيض ثلجي', hex:'#FFFAFA'},
+        {ar:'أصفر فاقع', hex:'#FFFF33'},
+        {ar:'وردي فاقع', hex:'#FF66B2'}
+      ],
+      uses: ['دعوات الأعراس', 'كتالوجات المنتجات الراقية', 'الديكور الكلاسيكي', 'الخلفيات في الطباعة الفاخرة'],
+      source: 'Pantone Classic Whites'
+    },
+    {
+      ar: 'أخضر زمردي', en: 'Emerald Green', hex: '#0E7C5C', family: 'green',
+      desc: 'أخضر فاخر عميق، رمز الثروة والطبيعة. لون كلاسيكي يدلّ على الاستقرار والرفاهية.',
+      harmony: [
+        {ar:'ذهبي', hex:'#C9A227'},
+        {ar:'كريمي', hex:'#F5E6D3'},
+        {ar:'بُرغندي', hex:'#722F37'},
+        {ar:'كحلي', hex:'#1B2845'},
+        {ar:'أبيض ناصع', hex:'#FFFFFF'}
+      ],
+      avoid: [
+        {ar:'أحمر دموي', hex:'#8B0000'},
+        {ar:'برتقالي', hex:'#FFA500'},
+        {ar:'وردي بيبي', hex:'#FFC0CB'}
+      ],
+      uses: ['العلامات التجارية الفاخرة', 'البنوك والمؤسسات المالية', 'ديكور المكاتب الكلاسيكية', 'الموضة الراقية الشتوية'],
+      source: 'Itten · Color Contrast Theory'
+    },
+    {
+      ar: 'أخضر زيتوني', en: 'Olive Green', hex: '#6B7A3A', family: 'green',
+      desc: 'أخضر مائل للأصفر والبنّي. لون عسكري كلاسيكي وعصري، مرتبط بالطبيعة والصحراء.',
+      harmony: [
+        {ar:'بنّي شوكولاتة', hex:'#3E2A1F'},
+        {ar:'تيراكوتا', hex:'#E2725B'},
+        {ar:'كريمي', hex:'#F0E6D2'},
+        {ar:'أصفر خردلي', hex:'#D4A017'},
+        {ar:'أسود', hex:'#1A1A1A'}
+      ],
+      avoid: [
+        {ar:'وردي صريح', hex:'#FF69B4'},
+        {ar:'أرجواني', hex:'#8A2BE2'},
+        {ar:'سماوي فاقع', hex:'#00BFFF'}
+      ],
+      uses: ['الموضة العسكرية والكاجوال', 'تصميمات المنتجات العضوية', 'الديكور الريفي والصحراوي', 'تغليف منتجات السفر والتخييم'],
+      source: 'Pantone Earth Collection'
+    },
+    {
+      ar: 'أخضر نعناعي', en: 'Mint Green', hex: '#A8DDC5', family: 'green',
+      desc: 'أخضر فاتح مُنعش، يَخلُق إحساسًا بالنظافة والصفاء. شائع في تصميمات الصحة والجمال.',
+      harmony: [
+        {ar:'وردي عتيق', hex:'#C9909A'},
+        {ar:'بيج فاتح', hex:'#EBE2D0'},
+        {ar:'رمادي ناعم', hex:'#C8C8C8'},
+        {ar:'كحلي', hex:'#1F3A5F'},
+        {ar:'أبيض', hex:'#FFFFFF'}
+      ],
+      avoid: [
+        {ar:'أحمر ناري', hex:'#FF2400'},
+        {ar:'برتقالي مُحترق', hex:'#CC5500'},
+        {ar:'بنّي قاتم', hex:'#3B2417'}
+      ],
+      uses: ['تصميمات الصحة والمستشفيات', 'العلامات التجارية للأطفال', 'الديكور الربيعي', 'منتجات العناية الشخصية'],
+      source: 'Pantone Pastels'
+    },
+    {
+      ar: 'أخضر حشيش', en: 'Grass Green', hex: '#4A7C2A', family: 'green',
+      desc: 'أخضر طبيعي حيوي يستحضر المروج والربيع. لون يَبعث على الانتعاش والنشاط.',
+      harmony: [
+        {ar:'بنّي خشبي', hex:'#6B4423'},
+        {ar:'سماوي', hex:'#7BAFD4'},
+        {ar:'كريمي', hex:'#F5EFE0'},
+        {ar:'أصفر شمسي', hex:'#F5C518'},
+        {ar:'أبيض', hex:'#FAFAFA'}
+      ],
+      avoid: [
+        {ar:'وردي صريح', hex:'#FF1493'},
+        {ar:'أحمر فاقع', hex:'#FF0033'},
+        {ar:'بنفسجي زاهي', hex:'#9400D3'}
+      ],
+      uses: ['العلامات التجارية البيئية', 'ملصقات المنتجات الزراعية', 'تصميمات الحدائق', 'مواقع السفر والمغامرة'],
+      source: 'Faber Birren · Color in Nature'
+    },
+    {
+      ar: 'تركوازي', en: 'Turquoise', hex: '#16A5A5', family: 'blue',
+      desc: 'بين الأزرق والأخضر، يستحضر مياه البحار الاستوائية. لون منعش وحيوي ومرتبط بالسفر.',
+      harmony: [
+        {ar:'كريمي', hex:'#F5EFE0'},
+        {ar:'بنّي خشبي', hex:'#6B4423'},
+        {ar:'كورال', hex:'#FF6F61'},
+        {ar:'ذهبي', hex:'#C9A227'},
+        {ar:'أبيض ناصع', hex:'#FFFFFF'}
+      ],
+      avoid: [
+        {ar:'أحمر بُرتقالي', hex:'#FF4500'},
+        {ar:'وردي بيبي', hex:'#FFB6C1'},
+        {ar:'أصفر ليموني', hex:'#FFFF66'}
+      ],
+      uses: ['تصميمات السفر والشواطئ', 'العلامات التجارية للسبا والاستجمام', 'الموضة الصيفية', 'الديكور البوهيمي'],
+      source: 'Pantone Coastal Colors'
+    },
+    {
+      ar: 'أزرق سماوي', en: 'Sky Blue', hex: '#7BAFD4', family: 'blue',
+      desc: 'أزرق فاتح هادئ كصفحة السماء. لون السلام والصفاء، شائع في تصميمات الاسترخاء.',
+      harmony: [
+        {ar:'أبيض', hex:'#FFFFFF'},
+        {ar:'مشمشي', hex:'#FBCEB1'},
+        {ar:'رمادي ناعم', hex:'#D0D0D0'},
+        {ar:'أصفر شاحب', hex:'#F5E6A8'},
+        {ar:'بيج فاتح', hex:'#EBE2D0'}
+      ],
+      avoid: [
+        {ar:'أحمر دموي', hex:'#8B0000'},
+        {ar:'برتقالي محروق', hex:'#CC5500'},
+        {ar:'بنفسجي مظلم', hex:'#2E0854'}
+      ],
+      uses: ['غرف نوم الأطفال', 'تطبيقات التأمل والاسترخاء', 'تصميمات شركات الطيران', 'منتجات العناية بالبشرة'],
+      source: 'Eva Heller · Color Psychology'
+    },
+    {
+      ar: 'كحلي', en: 'Navy Blue', hex: '#1B2845', family: 'blue',
+      desc: 'أزرق داكن جدًا، أحد أكثر الألوان احترامًا في عالم الأعمال. بديل أرقى للأسود في كثير من السياقات.',
+      harmony: [
+        {ar:'أبيض ناصع', hex:'#FFFFFF'},
+        {ar:'ذهبي', hex:'#C9A227'},
+        {ar:'كريمي', hex:'#F5E6D3'},
+        {ar:'أحمر قاني', hex:'#C41E3A'},
+        {ar:'رمادي حجري', hex:'#8E8B82'}
+      ],
+      avoid: [
+        {ar:'بنفسجي صريح', hex:'#8A2BE2'},
+        {ar:'بنّي قاتم', hex:'#3B2417'},
+        {ar:'أزرق ملكي', hex:'#4169E1'}
+      ],
+      uses: ['البدلات الرسمية', 'هويات الشركات والبنوك', 'تصميمات السيارات الفاخرة', 'الزي العسكري والبحري'],
+      source: 'Pantone Corporate Standards'
+    },
+    {
+      ar: 'أزرق بترولي', en: 'Petrol Blue', hex: '#1F4E5F', family: 'blue',
+      desc: 'بين الأزرق والأخضر الداكن، لون عميق وفخم. شائع في الديكورات الذكورية والمكاتب التنفيذية.',
+      harmony: [
+        {ar:'برتقالي مُحترق', hex:'#CC5500'},
+        {ar:'بيج رملي', hex:'#D4BC94'},
+        {ar:'ذهبي عتيق', hex:'#B8860B'},
+        {ar:'كريمي', hex:'#F0E6D2'},
+        {ar:'تيراكوتا', hex:'#E2725B'}
+      ],
+      avoid: [
+        {ar:'أخضر نيوني', hex:'#39FF14'},
+        {ar:'وردي زاهي', hex:'#FF1493'},
+        {ar:'أصفر فاقع', hex:'#FFFF33'}
+      ],
+      uses: ['الديكور التنفيذي الفاخر', 'المكاتب الذكورية الراقية', 'تصميمات الفنادق البوتيك', 'الموضة الرسمية الحديثة'],
+      source: 'David Hornung · Color Workshop'
+    },
+    {
+      ar: 'أزرق ملكي', en: 'Royal Blue', hex: '#1E3A8A', family: 'blue',
+      desc: 'أزرق نقي عميق ومُشبَع، مرتبط تاريخيًا بالملوك والنبلاء. يَنقُل الثقة والقوة.',
+      harmony: [
+        {ar:'ذهبي', hex:'#C9A227'},
+        {ar:'أبيض', hex:'#FFFFFF'},
+        {ar:'فضي', hex:'#C0C0C0'},
+        {ar:'أصفر شمسي', hex:'#F5C518'},
+        {ar:'بيج فاتح', hex:'#EBE2D0'}
+      ],
+      avoid: [
+        {ar:'كحلي', hex:'#1B2845'},
+        {ar:'أرجواني', hex:'#8A2BE2'},
+        {ar:'أخضر نعناعي', hex:'#A8DDC5'}
+      ],
+      uses: ['الشعارات الرياضية', 'العلامات التجارية الجريئة', 'الأعلام والرموز الوطنية', 'تصميمات التكنولوجيا'],
+      source: 'Itten · Color and Power'
+    },
+    {
+      ar: 'لافندر', en: 'Lavender', hex: '#B6A6CA', family: 'purple',
+      desc: 'بنفسجي فاتح هادئ ومُسترخٍ، مرتبط بزهرة اللافندر. يَخلُق أجواء استرخائية وحالمة.',
+      harmony: [
+        {ar:'أصفر باهت', hex:'#F5E6A8'},
+        {ar:'أبيض', hex:'#FFFFFF'},
+        {ar:'رمادي ناعم', hex:'#D0D0D0'},
+        {ar:'أخضر زاج', hex:'#577A4B'},
+        {ar:'بيج ناعم', hex:'#EBE2D0'}
+      ],
+      avoid: [
+        {ar:'أحمر بُرتقالي', hex:'#FF4500'},
+        {ar:'أصفر فاقع', hex:'#FFFF00'},
+        {ar:'بنّي قاتم', hex:'#3B2417'}
+      ],
+      uses: ['تطبيقات الاسترخاء والنوم', 'منتجات الجمال والعطور', 'غرف نوم البنات', 'تصميمات الربيع'],
+      source: 'Eva Heller · Color Psychology'
+    },
+    {
+      ar: 'أرجواني عميق', en: 'Deep Purple', hex: '#4B0082', family: 'purple',
+      desc: 'بنفسجي داكن مُلكي، رمز الفخامة والإبداع والروحانية. يَنقُل الغموض والعمق.',
+      harmony: [
+        {ar:'ذهبي', hex:'#C9A227'},
+        {ar:'كريمي', hex:'#F5E6D3'},
+        {ar:'فضي', hex:'#C0C0C0'},
+        {ar:'أسود', hex:'#1A1A1A'},
+        {ar:'أبيض', hex:'#FFFFFF'}
+      ],
+      avoid: [
+        {ar:'أخضر زيتوني', hex:'#6B8E23'},
+        {ar:'بنّي ترابي', hex:'#8B4513'},
+        {ar:'برتقالي طازج', hex:'#FFA500'}
+      ],
+      uses: ['الشعارات الإبداعية والفنية', 'منتجات الترف العالي', 'تغليف الشوكولاتة الفاخرة', 'تصميمات الموضة الجريئة'],
+      source: 'Pantone Color of the Year (2018: Ultra Violet)'
+    },
+    {
+      ar: 'بنّي شوكولاتة', en: 'Chocolate Brown', hex: '#3E2A1F', family: 'brown',
+      desc: 'بنّي عميق دافئ، لون كلاسيكي يستحضر القهوة والشوكولاتة الداكنة. ثابت ومُريح.',
+      harmony: [
+        {ar:'كريمي', hex:'#F5E6D3'},
+        {ar:'أخضر زاج', hex:'#577A4B'},
+        {ar:'برتقالي مُحترق', hex:'#CC5500'},
+        {ar:'ذهبي', hex:'#C9A227'},
+        {ar:'بيج رملي', hex:'#D4BC94'}
+      ],
+      avoid: [
+        {ar:'وردي زاهي', hex:'#FF1493'},
+        {ar:'أزرق نيوني', hex:'#1F51FF'},
+        {ar:'أخضر فسفوري', hex:'#7FFF00'}
+      ],
+      uses: ['الأثاث الخشبي الكلاسيكي', 'المقاهي وعلامات القهوة', 'تصميمات الجلود', 'الديكور الأرضي والريفي'],
+      source: 'Pantone Earth Collection'
+    },
+    {
+      ar: 'كاميل (جمل)', en: 'Camel', hex: '#C19A6B', family: 'brown',
+      desc: 'بنّي فاتح مائل للأصفر، لون كلاسيكي للمعاطف والجلود الفاخرة. أنيق ومتعدد الاستخدامات.',
+      harmony: [
+        {ar:'أبيض', hex:'#FFFFFF'},
+        {ar:'كحلي', hex:'#1B2845'},
+        {ar:'كريمي', hex:'#F5E6D3'},
+        {ar:'بنّي شوكولاتة', hex:'#3E2A1F'},
+        {ar:'رمادي حجري', hex:'#8E8B82'}
+      ],
+      avoid: [
+        {ar:'وردي بيبي', hex:'#FFC0CB'},
+        {ar:'أخضر نيوني', hex:'#39FF14'},
+        {ar:'بنفسجي زاهي', hex:'#9400D3'}
+      ],
+      uses: ['المعاطف الشتوية الفاخرة', 'الحقائب الجلدية', 'الديكور الكلاسيكي الراقي', 'الموضة الخريفية'],
+      source: 'Pantone Fashion Standards'
+    },
+    {
+      ar: 'رمادي حجري', en: 'Stone Gray', hex: '#8E8B82', family: 'neutral',
+      desc: 'رمادي محايد دافئ مع لمسة من البيج. أساس عصري متعدد الاستخدامات في التصميم الحديث.',
+      harmony: [
+        {ar:'أبيض', hex:'#FFFFFF'},
+        {ar:'أصفر خردلي', hex:'#D4A017'},
+        {ar:'كحلي', hex:'#1B2845'},
+        {ar:'وردي عتيق', hex:'#C9909A'},
+        {ar:'أخضر زاج', hex:'#577A4B'}
+      ],
+      avoid: [
+        {ar:'برتقالي نيوني', hex:'#FF6700'},
+        {ar:'وردي فاقع', hex:'#FF1493'},
+        {ar:'أصفر فسفوري', hex:'#CCFF00'}
+      ],
+      uses: ['الواجهات المعمارية الحديثة', 'الأرضيات الخرسانية', 'تصميمات المكاتب العصرية', 'الموضة المينيمالية'],
+      source: 'Pantone Architectural Greys'
+    },
+    {
+      ar: 'رمادي فحمي', en: 'Charcoal Gray', hex: '#36454F', family: 'neutral',
+      desc: 'رمادي داكن قريب من الأسود، أكثر دفئًا منه وأقل حدّة. مثالي للنصوص والخلفيات الرسمية.',
+      harmony: [
+        {ar:'أبيض', hex:'#FFFFFF'},
+        {ar:'أصفر ليموني', hex:'#FFF44F'},
+        {ar:'برتقالي مُحترق', hex:'#CC5500'},
+        {ar:'تركوازي', hex:'#16A5A5'},
+        {ar:'ذهبي', hex:'#C9A227'}
+      ],
+      avoid: [
+        {ar:'كحلي', hex:'#1B2845'},
+        {ar:'بنّي قاتم', hex:'#3B2417'},
+        {ar:'بنفسجي عميق', hex:'#2E0854'}
+      ],
+      uses: ['تصميمات المواقع الحديثة', 'الأزياء الرجالية الرسمية', 'هويات شركات التكنولوجيا', 'النصوص في التصميمات المطبوعة'],
+      source: 'David Hornung · Modern Color'
+    },
+    {
+      ar: 'أبيض ناصع', en: 'Pure White', hex: '#FAFAFA', family: 'neutral',
+      desc: 'لون النقاء والصفاء. خلفية مثالية تُبرز جميع الألوان الأخرى، لكنها قد تكون صارخة بمفردها.',
+      harmony: [
+        {ar:'أسود', hex:'#1A1A1A'},
+        {ar:'كحلي', hex:'#1B2845'},
+        {ar:'أحمر قاني', hex:'#C41E3A'},
+        {ar:'أخضر زمردي', hex:'#0E7C5C'},
+        {ar:'ذهبي', hex:'#C9A227'}
+      ],
+      avoid: [
+        {ar:'كريمي عاجي', hex:'#F5E6D3'},
+        {ar:'أبيض ثلجي', hex:'#FFFAFA'},
+        {ar:'رمادي فضي', hex:'#E0E0E0'}
+      ],
+      uses: ['تصميمات المينيمال الراقية', 'المستشفيات والعيادات', 'العلامات التجارية للنظافة', 'خلفيات التصوير الفوتوغرافي'],
+      source: 'Itten · The Art of Color'
+    },
+    {
+      ar: 'أسود فحمي', en: 'Jet Black', hex: '#1A1A1A', family: 'neutral',
+      desc: 'لون القوة والأناقة الأبدية. يتناسق مع كل لون تقريبًا ويُضفي طابعًا فاخرًا.',
+      harmony: [
+        {ar:'أبيض ناصع', hex:'#FAFAFA'},
+        {ar:'ذهبي', hex:'#C9A227'},
+        {ar:'أحمر قاني', hex:'#C41E3A'},
+        {ar:'فضي', hex:'#C0C0C0'},
+        {ar:'فوشيا', hex:'#E83E8C'}
+      ],
+      avoid: [
+        {ar:'كحلي', hex:'#1B2845'},
+        {ar:'بنّي قاتم', hex:'#3B2417'},
+        {ar:'بنفسجي عميق', hex:'#2E0854'}
+      ],
+      uses: ['الأزياء الرسمية الراقية', 'منتجات التكنولوجيا الفاخرة', 'التصميمات الجريئة والقوية', 'الإطارات والخطوط الفنية'],
+      source: 'Pantone Black Edition'
+    },
+    {
+      ar: 'كورال', en: 'Coral', hex: '#FF6F61', family: 'orange',
+      desc: 'بين البرتقالي والوردي، لون مرجاني مرح ودافئ. كان لون العام لـ Pantone في 2019.',
+      harmony: [
+        {ar:'تركوازي', hex:'#16A5A5'},
+        {ar:'كريمي', hex:'#F5EFE0'},
+        {ar:'كحلي', hex:'#1B2845'},
+        {ar:'أبيض', hex:'#FFFFFF'},
+        {ar:'أخضر نعناعي', hex:'#A8DDC5'}
+      ],
+      avoid: [
+        {ar:'أحمر قاني', hex:'#C41E3A'},
+        {ar:'وردي فوشيا', hex:'#E83E8C'},
+        {ar:'برتقالي محروق', hex:'#CC5500'}
+      ],
+      uses: ['تصميمات الموضة الصيفية', 'العلامات الشبابية', 'دعوات الأعراس الاستوائية', 'الديكور البحري'],
+      source: 'Pantone Color of the Year 2019'
+    },
+    {
+      ar: 'أخضر فستقي', en: 'Pistachio Green', hex: '#A4C49C', family: 'green',
+      desc: 'أخضر فاتح هادئ مائل للأصفر، يستحضر حبة الفستق. لون عصري راقٍ ومُريح.',
+      harmony: [
+        {ar:'بيج كريمي', hex:'#E8D9BD'},
+        {ar:'بنّي خشبي', hex:'#6B4423'},
+        {ar:'وردي عتيق', hex:'#C9909A'},
+        {ar:'أبيض', hex:'#FFFFFF'},
+        {ar:'ذهبي', hex:'#C9A227'}
+      ],
+      avoid: [
+        {ar:'أحمر فاقع', hex:'#FF0033'},
+        {ar:'فوشيا', hex:'#E83E8C'},
+        {ar:'برتقالي ناري', hex:'#FF4500'}
+      ],
+      uses: ['الديكور العصري الراقي', 'تغليف الحلويات والشوكولاتة', 'تصميمات الربيع', 'المطابخ والمقاهي العصرية'],
+      source: 'Pantone Spring/Summer Report'
+    }
+  ];
+
+  // ========== الواجهة ==========
+  var grid = document.getElementById('colorsGrid');
+  var searchInput = document.getElementById('searchInput');
+  var chips = document.querySelectorAll('.chip');
+  var modalBackdrop = document.getElementById('modalBackdrop');
+  var modal = document.getElementById('modal');
+
+  var currentFamily = 'all';
+  var currentSearch = '';
+
+  function render() {
+    var filtered = COLORS.filter(function(c) {
+      var familyMatch = currentFamily === 'all' || c.family === currentFamily;
+      var searchMatch = !currentSearch || 
+        c.ar.indexOf(currentSearch) !== -1 || 
+        c.en.toLowerCase().indexOf(currentSearch.toLowerCase()) !== -1 ||
+        c.hex.toLowerCase().indexOf(currentSearch.toLowerCase()) !== -1;
+      return familyMatch && searchMatch;
+    });
+
+    if (filtered.length === 0) {
+      grid.innerHTML = '<div class="empty-state">لا توجد ألوان مطابقة لبحثك</div>';
+      return;
+    }
+
+    var html = '';
+    for (var i = 0; i < filtered.length; i++) {
+      var c = filtered[i];
+      var origIdx = COLORS.indexOf(c);
+      html += '<div class="color-card" data-idx="' + origIdx + '">';
+      html += '<div class="hero-color" style="background:' + c.hex + '">';
+      html += '<span class="num">No. ' + String(origIdx + 1).padStart(2, '0') + '</span>';
+      html += '</div>';
+      html += '<div class="name-block">';
+      html += '<div class="ar-name">' + c.ar + '</div>';
+      html += '<div class="en-name">' + c.en + '</div>';
+      html += '<span class="hex-tag">' + c.hex + '</span>';
+      html += '<div class="tap-hint"><span>اضغط للتفاصيل</span><span class="arrow">←</span></div>';
+      html += '</div>';
+      html += '</div>';
+    }
+    grid.innerHTML = html;
+
+    var cards = grid.querySelectorAll('.color-card');
+    for (var j = 0; j < cards.length; j++) {
+      cards[j].addEventListener('click', function() {
+        openModal(parseInt(this.getAttribute('data-idx'), 10));
+      });
+    }
+  }
+
+  function openModal(idx) {
+    var c = COLORS[idx];
+    var html = '<div class="modal-content">';
+    html += '<div class="modal-header" style="background:' + c.hex + '">';
+    html += '<button class="modal-close" id="closeBtn">✕</button>';
+    html += '<h3>' + c.ar + '</h3>';
+    html += '<div class="meta">' + c.en + ' · ' + c.hex + '</div>';
+    html += '</div>';
+    html += '<div class="modal-body">';
+
+    html += '<div class="modal-section">';
+    html += '<p class="desc">' + c.desc + '</p>';
+    html += '</div>';
+
+    // ألوان متناسقة
+    html += '<div class="modal-section">';
+    html += '<div class="section-label good">✓ ألوان تتناسق معه</div>';
+    html += '<div class="companions">';
+    for (var i = 0; i < c.harmony.length; i++) {
+      html += '<div class="companion">';
+      html += '<div class="swatch-bar" style="background:' + c.harmony[i].hex + '"></div>';
+      html += '<div class="info"><div class="ar">' + c.harmony[i].ar + '</div>';
+      html += '<div class="hex">' + c.harmony[i].hex + '</div></div>';
+      html += '</div>';
+    }
+    html += '</div></div>';
+
+    // ألوان غير متناسقة
+    html += '<div class="modal-section">';
+    html += '<div class="section-label bad">✕ ألوان يُفضَّل تجنّبها</div>';
+    html += '<div class="companions">';
+    for (var k = 0; k < c.avoid.length; k++) {
+      html += '<div class="companion">';
+      html += '<div class="swatch-bar" style="background:' + c.avoid[k].hex + '"></div>';
+      html += '<div class="info"><div class="ar">' + c.avoid[k].ar + '</div>';
+      html += '<div class="hex">' + c.avoid[k].hex + '</div></div>';
+      html += '</div>';
+    }
+    html += '</div></div>';
+
+    // الاستخدامات
+    html += '<div class="modal-section">';
+    html += '<div class="section-label use">◆ استخدامات مُوصى بها</div>';
+    html += '<ul class="uses-list">';
+    for (var m = 0; m < c.uses.length; m++) {
+      html += '<li>' + c.uses[m] + '</li>';
+    }
+    html += '</ul></div>';
+
+    // المصدر
+    html += '<div class="source-block">';
+    html += '<strong>المصدر</strong>';
+    html += '<span>' + c.source + '</span>';
+    html += '</div>';
+
+    html += '</div></div>';
+    modal.innerHTML = html;
+
+    modalBackdrop.classList.add('open');
+    document.body.classList.add('no-scroll');
+    modal.setAttribute('aria-hidden', 'false');
+
+    // إضافة تأثير الظهور
+    setTimeout(function() {
+      var mc = modal.querySelector('.modal-content');
+      if (mc) {
+        mc.style.transform = 'translateY(0)';
+        mc.style.opacity = '1';
+      }
+    }, 10);
+
+    document.getElementById('closeBtn').addEventListener('click', closeModal);
+  }
+
+  function closeModal() {
+    modalBackdrop.classList.remove('open');
+    document.body.classList.remove('no-scroll');
+    modal.setAttribute('aria-hidden', 'true');
+    setTimeout(function() { modal.innerHTML = ''; }, 300);
+  }
+
+  // أحداث
+  modalBackdrop.addEventListener('click', closeModal);
+
+  searchInput.addEventListener('input', function(e) {
+    currentSearch = e.target.value.trim();
+    render();
+  });
+
+  for (var n = 0; n < chips.length; n++) {
+    chips[n].addEventListener('click', function() {
+      for (var p = 0; p < chips.length; p++) chips[p].classList.remove('active');
+      this.classList.add('active');
+      currentFamily = this.getAttribute('data-family');
+      render();
+    });
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  render();
+})();
+</script>
+
+</body>
+</html>
